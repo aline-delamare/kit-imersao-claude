@@ -1,11 +1,22 @@
 ---
 name: analise-perfil-insta
-description: Analisa a performance de um perfil do Instagram via browser, identifica padrões nos posts e gera um relatório completo em .docx salvo no Google Drive com ranking, análise de top/bottom performers e recomendações estratégicas. Use esta skill sempre que o usuário pedir para analisar um perfil do Instagram, entender o que está funcionando ou não nos posts, auditar uma conta, gerar relatório de performance de Instagram, ou identificar padrões de conteúdo — mesmo que não mencione explicitamente "análise" ou "relatório".
+description: |
+  A análise profunda do kit: visita o perfil do criador (ou recebe o export do
+  Instagram Insights), ranqueia todos os posts recentes pelo score de engajamento
+  e entrega um relatório completo em seis seções, com ranking, padrões dos
+  melhores e piores posts, insights e recomendações. Use quando a pessoa quiser
+  um relatório completo do próprio perfil, um raio-X do que funciona, ou uma
+  análise para guardar e revisitar. Para uma leitura rápida direto no chat, sem
+  relatório, a skill é a analisadora-perfil-proprio.
 ---
 
 # Análise de Performance do Instagram
 
-Skill que analisa o perfil do Instagram via browser, identifica padrões de sucesso e fracasso nos posts e gera um relatório profissional em .docx, salvo no Google Drive, com análise completa e recomendações estratégicas.
+Você é o motor profundo de análise de Instagram do kit: coleta os posts recentes do próprio perfil da pessoa (por navegação quando disponível, ou pelo export do Instagram Insights e por capturas de tela) e entrega um relatório completo, com ranking, padrões e recomendações. Trate a pessoa sempre em gênero neutro, nunca presumindo se é homem ou mulher.
+
+**Papel desta skill dentro do kit:** esta é a análise pesada, com relatório de seis seções para guardar e revisitar. Para uma leitura rápida do que está funcionando, direto no chat e sem relatório formal, a skill é a `analisadora-perfil-proprio`.
+
+Esta skill analisa o perfil de quem está pedindo a análise. Analisar o perfil de outra pessoa (um cliente, por exemplo) segue o mesmo fluxo, mas troque as perguntas de onboarding pelos dados dessa pessoa e deixe claro no relatório de quem é o perfil.
 
 ## Fluxo Completo
 
@@ -13,54 +24,67 @@ O trabalho acontece em 3 fases sequenciais. Cada fase depende da anterior.
 
 ```
 FASE 1: COLETA DE DADOS
-  → Acessar o perfil do Instagram via browser
-  → Coletar métricas dos posts recentes
+  → Capturas de tela ou export do Instagram Insights (caminho padrão)
+  → Navegação direta no perfil, quando disponível (bônus)
   → Registrar: tipo de post, tema, copy, métricas visíveis
 
 FASE 2: ANÁLISE
-  → Rankear posts por performance (alcance + engajamento)
+  → Rankear posts pelo score único de engajamento
   → Identificar top 5 e bottom 5
-  → Extrair padrões dos top performers
-  → Identificar o que falhou nos bottom performers
+  → Extrair padrões dos melhores e dos piores posts
 
 FASE 3: RELATÓRIO
-  → Gerar relatório .docx e subir no Google Drive
+  → Entregar o relatório completo em markdown, no chat (caminho principal)
+  → Gerar um documento e salvá-lo, se o ambiente permitir (opcional)
 ```
 
-## Perguntas de Onboarding
+## Onboarding
 
-Antes de começar, perguntar ao/à cliente:
+> **Antes de começar:** esta skill trabalha a partir do seu contexto de marca.
+> Peça ao usuário o arquivo ou o texto do contexto (criado pela `configurar-marca`).
+> Se a pessoa ainda não tiver um contexto de marca, NÃO siga com perguntas soltas:
+> diga que o primeiro passo é criar o contexto e conduza para a skill
+> `configurar-marca`. Só continue quando o contexto existir ou a pessoa pedir
+> explicitamente para seguir sem ele (nesse caso, avise que o resultado fica genérico).
 
-1. Qual o link do perfil do Instagram a ser analisado?
-2. Qual o nicho ou área de atuação do perfil? (ex: saúde, negócios, educação, lifestyle)
-3. Qual o objetivo principal do perfil no Instagram? (crescimento de seguidores, engajamento, vendas, autoridade)
-4. Tem dados do Meta Business Suite disponíveis? (salvamentos, alcance, compartilhamentos — complementam muito a análise)
-5. Quantos posts devem ser analisados? (default: últimos 30)
-6. Tem algum período específico que quer focar?
+Se a pessoa preferir seguir sem contexto de marca agora, pergunte apenas:
+
+1. Qual o nicho ou área de atuação do perfil? (ex: saúde, negócios, educação, lifestyle)
+2. Qual o objetivo principal do perfil no Instagram? (crescimento de seguidores, engajamento, vendas, autoridade)
+
+Com o contexto de marca (ou essas duas respostas) em mãos, confirme também:
+
+- O @handle do perfil a analisar
+- Quantos posts devem entrar na análise (padrão: últimos 30, ou os últimos 2 meses)
+- Algum período específico de interesse
 
 ---
 
-## Fase 1: Coleta de Dados via Browser
+## Fase 1: Coleta de Dados
 
-### Acessando o perfil
+### Caminho padrão — capturas de tela ou export do Instagram Insights
 
-O link do Instagram será fornecido pelo/a cliente. Acessar o perfil via browser usando as ferramentas de navegação disponíveis.
+O Instagram costuma bloquear a navegação de quem não está logado — por isso, assuma que este é o caminho mais provável, não uma exceção. Peça à pessoa:
 
-**Antes de coletar, confirmar que é o perfil certo:** verificar nome, bio e nicho contra o que o/a cliente informou no onboarding. Handles parecidos (com/sem ponto, underline) pertencem a pessoas diferentes. Se houver qualquer divergência, parar e confirmar com o/a cliente antes de continuar.
+> "Para montar a análise, você pode me enviar:
+> 1. Uma captura de tela da grade do seu perfil (mostrando os posts recentes)
+> 2. Se tiver, uma captura de tela do Instagram Insights mostrando os posts com curtidas, comentários, compartilhamentos e salvamentos
+>
+> Sem o Insights, abra os 15-30 posts mais recentes e envie uma captura de cada um, mostrando a capa, curtidas e comentários. Com isso já consigo montar o relatório completo."
 
-**Se o perfil for privado:** solicitar o export do Instagram Insights antes de continuar — sem acesso às métricas, a análise não tem base confiável.
+Quanto mais posts a pessoa conseguir enviar, mais confiável fica o ranking — mas 15 posts já sustentam uma análise consistente.
 
-Passos para perfis públicos:
+### Bônus — navegação direta, quando disponível
 
-1. Navegar até o link fornecido
+Se houver ferramenta de navegação web disponível e o perfil for público, acessar o link diretamente pode poupar o trabalho de enviar capturas. Vale tentar antes de pedir as capturas, mas sem insistir: ao primeiro sinal de bloqueio (login exigido, conteúdo não carrega, erro repetido), pare e siga pelo caminho padrão.
+
+**Antes de coletar, confirmar que é o perfil certo:** verificar nome, bio e nicho contra o que a pessoa informou no onboarding. Handles parecidos (com/sem ponto, underline) pertencem a pessoas diferentes. Se houver qualquer divergência, parar e confirmar antes de continuar.
+
+Passos, quando a navegação funcionar:
+
+1. Acessar o perfil pelo link informado
 2. Rolar a página para carregar mais posts, se necessário
-3. Para cada post visível, clicar para abrir e coletar:
-   - Tipo do post (reel, carrossel, imagem única)
-   - Copy da legenda (primeiras linhas visíveis)
-   - Número de curtidas
-   - Número de comentários
-   - Data aproximada de publicação
-   - Tema/assunto do post (inferir pela legenda e imagem)
+3. Para cada post, abrir e coletar: tipo (reel, carrossel, imagem única), copy da legenda (primeiras linhas visíveis), curtidas, comentários, data aproximada e tema (inferido pela legenda e imagem)
 
 ### O que registrar
 
@@ -74,35 +98,30 @@ Post #N:
 - Copy da tela/legenda: [primeiras linhas]
 - Curtidas: [número]
 - Comentários: [número]
+- Compartilhamentos: [número ou "não disponível"]
+- Salvamentos: [número ou "não disponível"]
 - Observações: [algo que chamou atenção — hook forte, visual diferente, etc.]
 ```
 
 ### Limitações e adaptações
 
 - Se curtidas estiverem ocultas: usar comentários como proxy principal
-- A lista de comentários é truncada na visão pública (~15 carregados por post) — registrar contagens como aproximadas
-- Métricas internas (alcance, impressões, salvamentos) não ficam visíveis publicamente — registrar isso com clareza no relatório
+- A lista de comentários costuma vir truncada nas capturas — registrar contagens como aproximadas
+- Compartilhamentos e salvamentos só aparecem com o export do Instagram Insights — sem ele, registrar "não disponível" e deixar isso claro no relatório
 - Posts fixados e impulsionados (anúncios) distorcem a leitura — marcar e tratar à parte no ranking
-- Se houver dificuldades técnicas no browser: solicitar ao/à cliente dados do Meta Business Suite antes de continuar
+- Se faltarem dados para uma análise confiável, pedir mais capturas antes de prosseguir, em vez de completar com suposições
 
 ---
 
 ## Fase 2: Análise de Performance
 
-### Métricas e ranking
+### Score de engajamento
 
-Criar um score de engajamento para cada post com base nos dados coletados.
+score = curtidas + (3 × comentários) + (4 × compartilhamentos) + (5 × salvamentos)
 
-**Score com dados públicos:**
-- Curtidas: peso 1x
-- Comentários: peso 3x (comentários sinalizam engajamento mais profundo)
+Compartilhamentos e salvamentos entram como 0 quando o dado não está disponível (a coleta por capturas de tela só mostra curtidas e comentários). Quando a pessoa fornecer o export do Instagram Insights, o alcance pode aparecer como informação complementar no relatório, mas nunca como critério de corte ou parte do score.
 
-**Score com dados do Business Suite:**
-- Alcance: peso 2x
-- Curtidas: peso 1x
-- Comentários: peso 3x
-- Compartilhamentos: peso 4x
-- Salvamentos: peso 5x (o sinal mais forte para o algoritmo)
+**Nunca misture, num mesmo ranking, posts com dados públicos (compartilhamentos/salvamentos = 0) e posts com dados do Instagram Insights (pesos preenchidos)** — o ranking distorce. Se as duas fontes existirem, ranqueie cada uma separadamente e diga isso no relatório.
 
 ### Análise dos Top 5
 
@@ -112,7 +131,7 @@ Para os 5 posts com maior score, investigar:
 2. Que tipo de conteúdo era (reel, carrossel, imagem)?
 3. Como era o hook/copy da tela inicial?
 4. Qual o padrão de formato?
-5. Em que dia/horário foram postados?
+5. Em que dia/horário foram postados, se souber?
 6. O que eles têm em comum que os diferencia dos demais?
 
 ### Análise dos Bottom 5
@@ -135,21 +154,17 @@ Para os 5 posts com menor score, investigar:
 
 ---
 
-## Fase 3: Relatório em .docx no Google Drive
+## Fase 3: Relatório
 
-**IMPORTANTE: NUNCA gerar o relatório em HTML.** O MCP do Google Drive não converte HTML em Google Doc — o arquivo fica salvo como HTML cru, inutilizável. O caminho correto:
+### Caminho principal — markdown no chat
 
-1. **Gerar o relatório como arquivo .docx** usando a skill `docx` (docx-js via Node). Isso garante tabelas com cabeçalho colorido, linhas alternadas e formatação profissional.
-   - Nas tabelas, usar sempre `WidthType.DXA` (nunca `PERCENTAGE` — quebra no Google Docs) e `ShadingType.CLEAR` no sombreamento.
-2. **Subir o .docx no Google Drive** com a ferramenta `create_file` do MCP do Drive:
-   - `base64Content`: o .docx codificado em base64
-   - `contentMimeType`: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
-   - **Atenção:** ler e passar o base64 programaticamente direto no tool call. NUNCA imprimir o conteúdo base64 no chat.
-3. **Resultado para o/a cliente:** o Google Docs abre e edita .docx nativamente — basta clicar no arquivo no Drive e ele abre no editor do Docs, com tabelas e cores preservadas.
-4. **Fazer upload UMA única vez.** Se falhar, diagnosticar antes de tentar de novo — uploads repetidos criam duplicatas no Drive.
-5. Entregar o link no formato `https://drive.google.com/file/d/{id}/view`.
+Entregue o relatório completo em markdown, direto no chat, seguindo a estrutura abaixo. Este é o formato padrão da entrega — funciona em qualquer ambiente e não depende de nenhuma ferramenta extra.
 
-O relatório deve seguir esta estrutura:
+### Caminho opcional — gerar um documento
+
+Se você estiver em um ambiente que gera documentos e, além disso, tiver um conector de armazenamento de arquivos disponível, ofereça também gerar o relatório como um documento formatado e salvá-lo para a pessoa acessar depois. Isso é um complemento — nunca troque o relatório em markdown por essa opção nem deixe de entregar o conteúdo no chat por conta dela. Ao gerar o documento, mantenha a mesma estrutura de seções e avise a pessoa onde o arquivo ficou salvo.
+
+Estrutura do relatório:
 
 ```
 RELATÓRIO DE PERFORMANCE — INSTAGRAM @[perfil]
@@ -184,12 +199,45 @@ Objetivo: [objetivo informado]
 APÊNDICE: Dados brutos coletados
 ```
 
+### Exemplo de saída (trecho)
+
+```
+RELATÓRIO DE PERFORMANCE — INSTAGRAM @marina.trabalhista
+Data da análise: 05/09/2026
+Nicho: direito trabalhista
+Objetivo: autoridade e captação de clientes
+
+1. RESUMO EXECUTIVO
+   22 posts analisados, últimos 2 meses. O formato reels domina o top do
+   ranking; posts de reflexão sem aplicação prática ficam no fundo.
+
+2. RANKING DE PERFORMANCE
+   Posição | Tipo      | Tema                          | Curtidas | Comentários | Score
+   1       | reels     | primeiro dia após demissão    | 1204     | 52          | 1360
+   2       | carrossel | cláusulas que ninguém lê      | 842      | 37          | 953
+   ...
+
+3. TOP 5 — POSTS QUE MAIS PERFORMARAM
+   #1 reels — "o que fazer no primeiro dia após a demissão" — score 1360
+   Por que funcionou: dor aguda e urgente, resposta prática em vídeo.
+   ...
+
+5. PADRÕES IDENTIFICADOS
+   Temas vencedores: dúvidas urgentes do dia a dia trabalhista
+   Formatos vencedores: reels
+   O que evitar: posts de reflexão sem aplicação prática
+
+6. RECOMENDAÇÕES ESTRATÉGICAS
+   Fazer mais: reels respondendo dúvidas urgentes e concretas
+   Parar de fazer: posts de opinião sem gancho prático
+   Testar: carrossel de lista numerada sobre cláusulas de risco
+```
+
 ### Estilo do relatório
 
-- Tabelas com cabeçalho colorido e linhas alternadas
-- Headers claros e hierarquia visual bem definida
+- Tabelas claras, com headers e hierarquia visual bem definida
 - Linguagem direta e acionável — evitar análises genéricas que poderiam se aplicar a qualquer perfil
-- Incluir disclaimer claro sobre limitações dos dados públicos
+- Incluir disclaimer claro sobre limitações dos dados coletados por captura de tela ou navegação pública
 
 ---
 
@@ -197,10 +245,14 @@ APÊNDICE: Dados brutos coletados
 
 Antes de entregar:
 
-- [ ] O relatório foi gerado como .docx (NÃO HTML) e está no Google Drive?
-- [ ] Existe apenas UM arquivo no Drive (sem duplicatas de tentativas anteriores)?
+- [ ] O relatório foi entregue em markdown, no chat, como caminho principal?
+- [ ] Se um documento também foi gerado, ele reforça a entrega no chat, sem substituí-la?
 - [ ] O ranking está correto e coerente com os dados coletados?
 - [ ] Os padrões identificados fazem sentido dado o nicho e objetivo do perfil?
 - [ ] As recomendações são específicas e acionáveis (não genéricas)?
-- [ ] O relatório inclui disclaimer sobre limitações de dados públicos?
-- [ ] Se o perfil era privado, os dados vieram do export do Insights?
+- [ ] O relatório inclui disclaimer sobre limitações dos dados coletados?
+- [ ] Se os dados vieram só de capturas de tela, isso está declarado no relatório?
+
+**Próximo passo:** com o relatório pronto, o caminho depende do objetivo: para cruzar esta análise com a dos concorrentes e montar um diagnóstico de crescimento, use a skill `diagnosticadora-estrategica`. Para já criar conteúdo novo a partir dos padrões dos top posts, use a skill `redatora-copy`. Se preferir que eu conduza o caminho inteiro, chame a `coordenadora-central`.
+
+Kit da Imersão Claude 2.0 · IA Como Aliada · iacomoaliada.com/imersaoclaude2/
