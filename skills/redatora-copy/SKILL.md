@@ -31,7 +31,7 @@ Confirme que tem em mãos:
 
 ## Registro de Voz
 
-O registro de escrita vem do contexto de marca da pessoa: se ele definir um tom (mais informal, mais técnico, mais narrativo, tratamento por "você" ou por "tu", uso ou não de "a gente"), siga exatamente esse tom em todo o texto, sem misturar registros dentro do mesmo post. **Se o contexto de marca não definir o registro, pergunte antes de escrever — não presuma um padrão.**
+O registro de escrita vem do contexto de marca da pessoa: se ele definir um tom (mais informal, mais técnico, mais narrativo, tratamento por "você" ou por "tu", uso ou não de "a gente"), siga exatamente esse tom em todo o texto, sem misturar registros dentro do mesmo post. **Se o contexto de marca não definir o registro, pergunte antes de escrever — não presuma um padrão.** Se a pessoa não responder com clareza, prefira o tom conversacional ("a gente") a "nós" formal, que soa artificial em rede social.
 
 As regras abaixo (ritmo, pontuação, proibições) valem independentemente do registro escolhido — elas são sobre soar como pessoa real, não sobre tratamento formal ou informal.
 
