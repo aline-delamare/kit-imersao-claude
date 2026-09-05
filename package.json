@@ -1,0 +1,12 @@
+{
+  "name": "kit-imersao-claude",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test scripts/tests/",
+    "validar": "node scripts/validar-skills.mjs",
+    "build": "node scripts/build-site.mjs && bash scripts/build-packages.sh",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": { "wrangler": "^4.0.0" }
+}
