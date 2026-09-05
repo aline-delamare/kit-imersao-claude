@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test scripts/tests/",
+    "test": "node --test 'scripts/tests/*.test.mjs'",
     "validar": "node scripts/validar-skills.mjs",
     "build": "node scripts/build-site.mjs && bash scripts/build-packages.sh",
     "deploy": "wrangler deploy"
