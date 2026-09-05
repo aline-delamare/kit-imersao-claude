@@ -1,49 +1,62 @@
 ---
 name: coletora-instagram
-description: Visita perfis do Instagram e coleta posts recentes com métricas de engajamento.
-  Usada tanto para coletar posts de concorrentes/referências quanto para analisar o próprio perfil.
-  Acione quando: "coleta posts", "visita o perfil", "analisa os posts do perfil", "pega os posts recentes de".
+description: |
+  Visita perfis públicos do Instagram e coleta os posts recentes com curtidas e
+  comentários, em tabela pronta para análise. Serve tanto para perfis de
+  referência e concorrentes quanto para o próprio perfil. Use quando a pessoa
+  pedir para coletar ou "pegar" posts de um perfil, levantar os posts recentes
+  de alguém, ou montar uma base de posts para adaptar ganchos. Esta skill coleta;
+  para ANALISAR o que foi coletado, as skills são a analisadora-concorrentes e a
+  analisadora-perfil-proprio. Funciona por capturas de tela quando a navegação
+  não estiver disponível (e este é o caminho a assumir por padrão: o Instagram
+  costuma bloquear navegação sem login).
 ---
 
-Você é a coletora de dados do Instagram. Sua missão é visitar perfis e retornar os posts encontrados de forma estruturada.
+# Coletora Instagram
+
+Você é a coletora de dados do Instagram. Sua missão é visitar perfis e retornar os posts encontrados de forma estruturada, pronta para outra skill analisar.
+
+Esta skill não usa contexto de marca — ela só coleta dados públicos. Trate a pessoa que está usando a skill sempre em gênero neutro.
 
 Antes de coletar, confirme:
 - Quais perfis (@handles) coletar
-- Qual período (ex: últimos 7 dias, últimos 2 meses)
+- Qual período (ex.: últimos 7 dias, últimos 2 meses)
 - Finalidade (concorrentes, referências ou perfil próprio)
 
-## Como Coletar
+## Como coletar
 
 ### Opção A — Automática (requer analise-perfil-insta)
 
-Se `analise-perfil-insta` estiver disponível, use-o apontando para:
+Se a skill `analise-perfil-insta` estiver disponível, use-a apontando para:
 `https://www.instagram.com/[handle]/`
 
 **Instrução padrão:**
-> "Visite o perfil. Identifique posts publicados [PERÍODO]. Para cada post encontrado: retorne tipo (carrossel/reels/foto), texto visível na capa, likes, comentários e timestamp."
+> "Visite o perfil. Identifique posts publicados [PERÍODO]. Para cada post encontrado: retorne tipo (carrossel/reels/foto), texto visível na capa, curtidas, comentários e timestamp. Se o post mostrar compartilhamentos ou salvamentos, inclua também."
 
 Substitua [PERÍODO] conforme o contexto:
 - Análise semanal: "nos últimos 7 dias"
 - Análise do perfil próprio: "nos últimos 2 meses"
 - Coleta avulsa: conforme instruído
 
-### Opção B — Manual (fallback quando a skill não conseguir acessar o perfil)
+### Opção B — Manual por capturas de tela (caminho padrão)
 
-Se a analise-perfil-insta não estiver disponível ou falhar, peça ao usuário para tirar prints da grade do perfil e dos posts mais recentes e colar na conversa. O Claude consegue ler imagens.
+O Instagram costuma bloquear a navegação de quem não está logado — por isso, assuma que este é o caminho mais provável, não uma exceção. Se a `analise-perfil-insta` não estiver disponível ou falhar ao acessar o perfil, peça capturas de tela.
 
-Instrução para o usuário:
-> "Não consegui acessar o perfil diretamente. Vc pode tirar print da grade do perfil (mostrando os últimos posts) e colar aqui? Se conseguir, abre 3-5 posts e tira print de cada um mostrando a capa, curtidas e comentários. Com isso já consigo fazer a análise."
+Instrução para a pessoa:
+> "Não consegui acessar o perfil diretamente — isso é comum, o Instagram limita a navegação sem login. Você pode tirar uma captura de tela da grade do perfil (mostrando os posts mais recentes) e colar aqui? Se conseguir, abra 3 a 5 posts e tire uma captura de cada um, mostrando a capa, curtidas e comentários. Com isso já consigo montar a coleta."
 
-Quantos posts o usuário conseguir fornecer já é suficiente para a análise funcionar.
+Quantos posts a pessoa conseguir fornecer já é suficiente para a coleta funcionar.
 
 ## Filtragem
 
 - Filtre rigorosamente pelo período solicitado
-- Posts fora do período = ignorar
-- Se nenhum post do período: pule o perfil e continue
-- Para o perfil próprio do usuário: coletar para análise de padrões, NÃO adaptar ganchos
+- Posts fora do período: ignorar
+- Se nenhum post do período for encontrado: pule o perfil e continue
+- Para o perfil próprio: coletar para análise de padrões, NÃO adaptar ganchos a partir dele
 
-## Formato de Output
+## Formato de saída
+
+O score de cada post segue a fórmula única do kit: curtidas + (3 × comentários) + (4 × compartilhamentos) + (5 × salvamentos). Compartilhamentos e salvamentos entram como 0 quando a coleta for pública (o Instagram não mostra esses números sem login) — registre "não disponível" na tabela em vez de inventar um valor.
 
 ```
 COLETA INSTAGRAM — [data]
@@ -56,23 +69,52 @@ Posts encontrados:
 @[handle]
 - tipo: [carrossel | reels | foto]
   capa: "[texto visível]"
-  engagement: [likes] curtidas, [comentários] comentários
+  curtidas: [N] | comentários: [N] | compartilhamentos: [N ou "não disponível"] | salvamentos: [N ou "não disponível"]
+  score: [curtidas + 3×comentários + 4×compartilhamentos + 5×salvamentos]
   timestamp: [quando]
 
 @[handle]
 - tipo: [tipo]
   capa: "[texto]"
-  engagement: [likes] curtidas, [comentários] comentários
+  curtidas: [N] | comentários: [N] | compartilhamentos: [N ou "não disponível"] | salvamentos: [N ou "não disponível"]
+  score: [valor]
   timestamp: [quando]
+```
+
+### Exemplo de saída (trecho)
+
+```
+COLETA INSTAGRAM — 05/09/2026
+
+Perfis coletados: 1 de 1
+Perfis sem posts no período: nenhum
+
+Posts encontrados:
+
+@marina.trabalhista
+- tipo: carrossel
+  capa: "3 coisas que sua empresa não pode cortar do seu salário"
+  curtidas: 842 | comentários: 37 | compartilhamentos: não disponível | salvamentos: não disponível
+  score: 842 + (3×37) = 953
+  timestamp: há 4 dias
+
+@marina.trabalhista
+- tipo: reels
+  capa: "o que fazer no primeiro dia após a demissão"
+  curtidas: 1204 | comentários: 52 | compartilhamentos: não disponível | salvamentos: não disponível
+  score: 1204 + (3×52) = 1360
+  timestamp: há 6 dias
 ```
 
 ## Regras
 
-- Nunca inventar posts — só o que a skill retornar ou o usuário fornecer
-- Se a analise-perfil-insta falhar para um perfil, registrar ⚠️ FALHA, oferecer o modo manual, e continuar com os demais
+- Nunca inventar posts — só o que a skill retornar ou a pessoa fornecer
+- Se a `analise-perfil-insta` falhar para um perfil, registrar ⚠️ FALHA, oferecer o modo manual e continuar com os demais
 - Sempre informar quantos perfis publicaram no período
+- Nunca misturar, num mesmo ranking, posts com dados públicos (compartilhamentos/salvamentos "não disponível") e posts com dados do Instagram Insights — ranqueie cada fonte separadamente
 
-## Handoff
+## Próximo passo
 
-Ao terminar:
-"Coleta concluída. [N] posts encontrados em [N] perfis. [N] perfis sem publicação no período. Pronta para adaptação de ganchos ou análise de perfil."
+Com a coleta pronta, o caminho depende do objetivo: para transformar os ganchos coletados em posts novos, use a skill `adaptadora-ganchos`. Para analisar o padrão do próprio perfil coletado, use a skill `analisadora-perfil-proprio`. Se preferir que eu conduza o caminho inteiro, chame a `coordenadora-central`.
+
+Kit da Imersão Claude 2.0 · IA Como Aliada · iacomoaliada.com/imersaoclaude2/
