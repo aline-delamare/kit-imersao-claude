@@ -162,11 +162,20 @@ function buildDiagramaSVG(meta) {
     .map((c, i) => {
       const fill = fills[i % fills.length];
       const textoX = cardX + 34;
+      // Separador entre skills em pessego e maior que o texto: marca onde um
+      // nome termina e o proximo comeca (off-white sobre off-white nao lia).
       const linhasSkills = c.linhas
-        .map(
-          (linha, li) =>
-            `<text x="${textoX}" y="${c.y + 48 + li * 23}" font-family="Poppins" font-size="13" fill="#FFFDEE">${esc(linha)}</text>`
-        )
+        .map((linha, li) => {
+          const spans = linha
+            .split(" · ")
+            .map(
+              (nome, ni) =>
+                (ni ? `<tspan fill="#F0A78B" font-size="19" dx="2"> · </tspan>` : "") +
+                `<tspan fill="#FFFDEE">${esc(nome)}</tspan>`
+            )
+            .join("");
+          return `<text x="${textoX}" y="${c.y + 48 + li * 23}" font-family="Poppins" font-size="13">${spans}</text>`;
+        })
         .join("\n        ");
       return `<g>
         <rect x="${cardX}" y="${c.y}" width="${cardW}" height="${c.altura}" rx="26" fill="${fill}"/>
@@ -178,13 +187,13 @@ function buildDiagramaSVG(meta) {
     })
     .join("\n      ");
 
-  return `<svg viewBox="0 0 ${largura} ${alturaTotal}" width="100%" aria-label="Mapa do kit: a coordenadora-central no centro e as 14 skills agrupadas por funcao">
+  return `<svg viewBox="0 0 ${largura} ${alturaTotal}" width="100%" aria-label="Mapa do kit: a coordenadora-central no centro e as 14 skills agrupadas por função">
       ${ramos}
       <circle cx="${orbX}" cy="${orbY}" r="${orbR}" fill="#D97757"/>
       <circle cx="${orbX + 54}" cy="${orbY - 50}" r="11" fill="#650022"/>
       <text x="${orbX}" y="${orbY - 6}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="20" fill="#FFFDEE">coordenadora</text>
       <text x="${orbX}" y="${orbY + 20}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="20" fill="#FFFDEE">central</text>
-      <text x="${orbX}" y="${orbY + orbR + 26}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" letter-spacing="2.5" fill="#5C3B2E">VOCE FALA COM ELA</text>
+      <text x="${orbX}" y="${orbY + orbR + 26}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" letter-spacing="2.5" fill="#5C3B2E">VOCÊ FALA COM ELA</text>
       ${caixas}
     </svg>`;
 }
