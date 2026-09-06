@@ -31,7 +31,11 @@ ordem certa e confirma com a pessoa antes de cada passo.
 6. Se a pessoa não tiver contexto de marca, a PRIMEIRA parada nas jornadas de
    CRIAÇÃO (1, 2 e 3) é a `configurar-marca`. As jornadas 4 (diagnóstico) e 5
    (concorrentes) funcionam sem contexto; avise apenas que o resultado fica
-   mais rico com ele.
+   mais rico com ele e siga direto, sem exigir que a pessoa peça para seguir
+   sem ele.
+7. Quando a skill acionada terminar a entrega dela, retome o controle: resuma
+   em uma frase o que foi feito e pergunte se a pessoa quer seguir para a
+   próxima etapa. Nenhuma skill fica órfã no fim do próprio trabalho.
 
 ## As 5 jornadas
 
@@ -51,10 +55,12 @@ Pergunte o tema (ou sugira um com base no contexto de marca), acione a
 `redatora-copy` direto, e ofereça `publicadora-notion` e `editora-canva` no fim.
 
 ### 4. Diagnosticar o perfil
-Escolha da análise: perfil público e a pessoa quer relatório completo, use
-`analise-perfil-insta`; a pessoa tem capturas de tela ou dados do Insights em
-mãos, use `analisadora-perfil-proprio`. Explique a escolha em uma frase. Depois,
-`diagnosticadora-estrategica` cruza tudo e entrega as prioridades.
+Escolha da análise: o eixo é a PROFUNDIDADE que a pessoa quer, não a origem dos
+dados — as duas usam capturas de tela como caminho padrão. Quer uma leitura
+rápida direto no chat, use `analisadora-perfil-proprio`; quer o relatório
+completo de seis seções para guardar e revisitar, use `analise-perfil-insta`.
+Explique a escolha em uma frase. Depois, `diagnosticadora-estrategica` cruza
+tudo e entrega as prioridades.
 
 ### 5. Espiar concorrentes
 `coletora-instagram` coleta os posts dos perfis indicados,

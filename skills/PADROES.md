@@ -5,6 +5,16 @@ nenhuma skill redefine score, onboarding ou ponte por conta própria.
 
 ## 1. Bloco de onboarding (colar no início de toda skill que usa contexto de marca)
 
+Existem dois blocos, conforme o que a skill faz. Nunca misture os dois nem
+parafraseie o blockquote — cole literalmente o que corresponde à sua skill.
+
+### 1A — Portão (skills que PRODUZEM conteúdo na voz da pessoa)
+
+Essas skills escrevem texto que vai ao ar como se fosse a pessoa falando —
+sem contexto de marca, o resultado sai genérico ou fora do tom, e não há como
+consertar isso só perguntando "nicho e objetivo". Por isso, aqui o contexto é
+pré-requisito: a skill trava e conduz para a `configurar-marca` antes de seguir.
+
 > **Antes de começar:** esta skill trabalha a partir do seu contexto de marca.
 > Peça ao usuário o arquivo ou o texto do contexto (criado pela `configurar-marca`).
 > Se a pessoa ainda não tiver um contexto de marca, NÃO siga com perguntas soltas:
@@ -12,11 +22,31 @@ nenhuma skill redefine score, onboarding ou ponte por conta própria.
 > `configurar-marca`. Só continue quando o contexto existir ou a pessoa pedir
 > explicitamente para seguir sem ele (nesse caso, avise que o resultado fica genérico).
 
-Skills ISENTAS do bloco (não usam contexto de marca): `coletora-instagram`, `configurar-marca`,
-`coordenadora-central` (ela ENCAMINHA para a configurar-marca, não consome o contexto).
+Usam este bloco: `redatora-copy`, `estrategista-calendario`, `adaptadora-ganchos`,
+`editora-canva`, `publicadora-notion`.
 
-Exceção registrada: a `analise-perfil-insta` oferece a configurar-marca primeiro; se a pessoa
-preferir seguir sem contexto agora, pergunta apenas nicho e objetivo e segue (Task 14).
+### 1B — Aviso (skills que ANALISAM ou PESQUISAM)
+
+Essas skills leem o que já existe ou pesquisam fora — o contexto de marca deixa
+a leitura mais afiada (pilares certos, ângulo mais preciso para o nicho), mas a
+skill funciona sem ele. Um aluno leigo não sabe que precisa "pedir para seguir
+sem contexto" para destravar — por isso aqui NUNCA é um portão: pergunte só o
+mínimo necessário e siga.
+
+> **Antes de começar:** esta skill funciona melhor com o seu contexto de marca
+> (criado pela `configurar-marca`) — com ele, o resultado sai calibrado para o
+> seu nicho e pilares, em vez de genérico. Se a pessoa já tiver o contexto,
+> peça o arquivo ou o texto. Se ainda não tiver, NÃO trave a conversa esperando
+> que ela peça para seguir sem ele: pergunte diretamente o nicho e o objetivo
+> principal e siga com a análise. Ofereça a `configurar-marca` como algo para
+> fazer depois, nunca como pré-requisito para continuar agora.
+
+Usam este bloco: `pesquisadora-tendencias`, `cacadora-viral`, `analisadora-concorrentes`,
+`analista-contexto-conta`, `analisadora-perfil-proprio`, `analise-perfil-insta`,
+`diagnosticadora-estrategica`.
+
+Skills ISENTAS de qualquer um dos dois blocos (não usam contexto de marca): `coletora-instagram`, `configurar-marca`,
+`coordenadora-central` (ela ENCAMINHA para a configurar-marca, não consome o contexto).
 
 ## 2. Score de engajamento único
 

@@ -1,13 +1,14 @@
 ---
 name: analise-perfil-insta
 description: |
-  A análise profunda do kit: visita o perfil do criador (ou recebe o export do
-  Instagram Insights), ranqueia todos os posts recentes pelo score de engajamento
-  e entrega um relatório completo em seis seções, com ranking, padrões dos
-  melhores e piores posts, insights e recomendações. Use quando a pessoa quiser
-  um relatório completo do próprio perfil, um raio-X do que funciona, ou uma
-  análise para guardar e revisitar. Para uma leitura rápida direto no chat, sem
-  relatório, a skill é a analisadora-perfil-proprio.
+  O relatório completo em seis seções do próprio perfil, para guardar e
+  revisitar: visita o perfil do criador (ou recebe o export do Instagram
+  Insights), ranqueia todos os posts recentes pelo score de engajamento e
+  entrega o relatório completo, com ranking, padrões dos melhores e piores
+  posts, insights e recomendações. Use quando a pessoa quiser esse relatório
+  completo, um raio-X do que funciona, ou uma análise para guardar e revisitar.
+  Para uma leitura rápida direto no chat, sem relatório, a skill é a
+  analisadora-perfil-proprio.
 ---
 
 # Análise de Performance do Instagram
@@ -40,19 +41,15 @@ FASE 3: RELATÓRIO
 
 ## Onboarding
 
-> **Antes de começar:** esta skill trabalha a partir do seu contexto de marca.
-> Peça ao usuário o arquivo ou o texto do contexto (criado pela `configurar-marca`).
-> Se a pessoa ainda não tiver um contexto de marca, NÃO siga com perguntas soltas:
-> diga que o primeiro passo é criar o contexto e conduza para a skill
-> `configurar-marca`. Só continue quando o contexto existir ou a pessoa pedir
-> explicitamente para seguir sem ele (nesse caso, avise que o resultado fica genérico).
+> **Antes de começar:** esta skill funciona melhor com o seu contexto de marca
+> (criado pela `configurar-marca`) — com ele, o resultado sai calibrado para o
+> seu nicho e pilares, em vez de genérico. Se a pessoa já tiver o contexto,
+> peça o arquivo ou o texto. Se ainda não tiver, NÃO trave a conversa esperando
+> que ela peça para seguir sem ele: pergunte diretamente o nicho e o objetivo
+> principal e siga com a análise. Ofereça a `configurar-marca` como algo para
+> fazer depois, nunca como pré-requisito para continuar agora.
 
-Se a pessoa preferir seguir sem contexto de marca agora, pergunte apenas:
-
-1. Qual o nicho ou área de atuação do perfil? (ex: saúde, negócios, educação, lifestyle)
-2. Qual o objetivo principal do perfil no Instagram? (crescimento de seguidores, engajamento, vendas, autoridade)
-
-Com o contexto de marca (ou essas duas respostas) em mãos, confirme também:
+Com o contexto de marca (ou o nicho e o objetivo, se ela seguir sem contexto) em mãos, confirme também:
 
 - O @handle do perfil a analisar
 - Quantos posts devem entrar na análise (padrão: últimos 30, ou os últimos 2 meses)
