@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>analista-contexto-conta · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
+</div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Pesquisa</span>
+  <div class="head-grid">
+    <div>
+      <h1>analista-contexto-conta</h1>
+      <p>Mapeia o estado atual da conta: pilares de conteúdo ativos, distribuição do que foi postado recentemente e o que evitar repetir. Entrega o quadro "CONTEXTO DA CONTA" usado pelo calendário e pelo diagnóstico.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
+      <line x1="38" y1="42" x2="82" y2="42" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="78" x2="64" y2="78" stroke="#D97757" stroke-width="4"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Mapeia o estado atual da conta: pilares de conteúdo ativos, distribuição do que foi postado recentemente e o que evitar repetir. Entrega o quadro "CONTEXTO DA CONTA" usado pelo calendário e pelo diagnóstico.</p>
+    </div>
+    <div class="section">
+      <h2>Quando usar</h2>
+      <ul>
+        <li>Use no início do planejamento ou quando a pessoa quiser revisar os pilares e o histórico recente.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>O que ela pergunta</h2>
+      <ul>
+        <li>Nenhum dado obrigatório: descreva o que você precisa e ela conduz a conversa a partir daí.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Exemplo de resultado</h2>
+      <div class="example">
+        <span class="mono">Saída de exemplo</span>
+        <pre>CONTEXTO DA CONTA, 05/09/2026
+
+Quem é o criador hoje:
+Consultor de carreira, foco em profissionais de tecnologia em transição.
+Tom direto, com exemplos reais de mentorias.
+
+Produto em destaque: Mentoria de Transição de Carreira
+
+Pilares ativos:
+- EDUCACIONAL (sem histórico ainda): pilar planejado, sem dado de postagem ainda
+- BASTIDOR DO CONSULTÓRIO (sem histórico ainda): pilar planejado, sem dado de postagem ainda
+- PROVA SOCIAL (sem histórico ainda): pilar planejado, sem dado de postagem ainda
+- CONVERSÃO (sem histórico ainda): pilar planejado, sem dado de postagem ainda
+
+Temas recentes a evitar (repetição):
+- sem histórico ainda
+
+Oportunidades de pilar subexplorado:
+- sem dado, avaliar após as primeiras semanas de postagem</pre>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="side-card side-download">
+      <h3>Instalar no Claude</h3>
+      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/analista-contexto-conta.skill">Baixar analista-contexto-conta.skill</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar no Claude Code</h3>
+      <p>Cole na aba Code do Claude Desktop:</p>
+      <div class="codebox">
+        <span class="mono">Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.</span>
+        <code>Baixe o repositório https://github.com/aline-delamare/kit-imersao-claude (sem git, baixe e extraia https://github.com/aline-delamare/kit-imersao-claude/archive/refs/heads/main.zip) e instale a pasta skills/analista-contexto-conta/ como skill global do Claude Code</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Configuração</h3>
+      <p>Nenhum pré-requisito técnico.</p>
+    </div>
+  </aside>
+</main>
+
+<section class="related"><div class="wrap">
+  <h2>Funciona junto com</h2>
+  <div class="rel-cards">
+    <a class="rel-card" href="/skills/configurar-marca.html"><span class="mono">Antes</span><h4>configurar-marca</h4><p>Cria o seu contexto de marca, o documento que dá o tom para todas as outras.</p></a>
+    <a class="rel-card" href="/skills/estrategista-calendario.html"><span class="mono">Depois</span><h4>estrategista-calendario</h4><p>Monta o calendário da semana na frequência que você aguenta manter.</p></a>
+    <a class="rel-card" href="/skills/diagnosticadora-estrategica.html"><span class="mono">Depois</span><h4>diagnosticadora-estrategica</h4><p>Cruza as análises e entrega fase atual, gargalos e prioridades.</p></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>

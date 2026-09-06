@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body class="gate-body">
+<main class="gate">
+  <span class="lockup">A <span class="orb"><i>ia</i></span> A</span>
+  <span class="mono">Imersão Claude · 12.09 · 13.09</span>
+  <h1>Área da <em>turma</em>.</h1>
+  <p class="sub">Este kit é exclusivo para quem participa da Imersão Claude 2.0. Digite a senha compartilhada durante o evento.</p>
+  <form method="POST" action="/entrar">
+    <label for="pwd">Senha de acesso</label>
+    <input id="pwd" name="senha" type="password" autocomplete="off" placeholder="••••••••••••••">
+    <div class="error">Senha incorreta. Confira e tente novamente.</div>
+    <button type="submit">Entrar</button>
+  </form>
+  <p class="hint">Não tem a senha? Ela está no grupo de WhatsApp da turma.</p>
+  <div class="foot"><span class="mono">Um produto da IA Como Aliada</span></div>
+</main>
+<script>
+var params = new URLSearchParams(location.search);
+if (params.get('erro') === '1') document.querySelector('.error').style.display = 'block';
+</script>
+</body>
+</html>

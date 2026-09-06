@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>editora-canva · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
+</div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Publicação · Com configuração</span>
+  <div class="head-grid">
+    <div>
+      <h1>editora-canva</h1>
+      <p>Aplica o copy aprovado no template do Canva do criador, slide a slide, usando o conector do Canva quando disponível. Sem o conector, entrega o texto formatado slide a slide para colar manualmente.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
+      <line x1="38" y1="42" x2="82" y2="42" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="78" x2="64" y2="78" stroke="#D97757" stroke-width="4"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Aplica o copy aprovado no template do Canva do criador, slide a slide, usando o conector do Canva quando disponível. Sem o conector, entrega o texto formatado slide a slide para colar manualmente.</p>
+    </div>
+    <div class="section">
+      <h2>Quando usar</h2>
+      <ul>
+        <li>Use depois do copy pronto, quando a pessoa pedir para montar a arte, aplicar o texto no template ou finalizar o carrossel.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>O que ela pergunta</h2>
+      <ul>
+        <li>Substituir o conteúdo mantendo o estilo (negrito, itálico) que já existe</li>
+        <li>Não alterar cores, fontes ou tamanhos, o template da pessoa já está correto</li>
+        <li>Não alterar elementos visuais (formas, imagens, fundos)</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Exemplo de resultado</h2>
+      <div class="example">
+        <span class="mono">Saída de exemplo</span>
+        <pre>COPY PARA COLAR NO CANVA, slide a slide
+
+Slide 1 (capa)
+Título: 3 cláusulas que ninguém lê antes de assinar o contrato
+Texto: e que custam caro depois
+Sugestão visual: número "3" em destaque, fundo da cor principal da marca
+
+Slide 2
+Título: A multa de rescisão antecipada
+Texto: define quanto custa sair do contrato antes do prazo combinado
+Sugestão visual: ícone de contrato ou documento
+
+Slide 3
+Título: Quem paga o quê em caso de atraso
+Texto: sem essa cláusula clara, a dúvida vira briga
+Sugestão visual: ícone de calendário ou relógio
+
+Slide 7 (CTA)
+Título: Salva esse post antes de assinar o próximo contrato
+Texto: (sem texto de apoio)
+Sugestão visual: seta ou ícone de "salvar"</pre>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="side-card side-download">
+      <h3>Instalar no Claude</h3>
+      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/editora-canva.skill">Baixar editora-canva.skill</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar no Claude Code</h3>
+      <p>Cole na aba Code do Claude Desktop:</p>
+      <div class="codebox">
+        <span class="mono">Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.</span>
+        <code>Baixe o repositório https://github.com/aline-delamare/kit-imersao-claude (sem git, baixe e extraia https://github.com/aline-delamare/kit-imersao-claude/archive/refs/heads/main.zip) e instale a pasta skills/editora-canva/ como skill global do Claude Code</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Configuração</h3>
+      <p>Conector do Canva e link do template (opcional: sem eles, entrega o texto formatado).</p>
+    </div>
+  </aside>
+</main>
+
+<section class="related"><div class="wrap">
+  <h2>Funciona junto com</h2>
+  <div class="rel-cards">
+    <a class="rel-card" href="/skills/publicadora-notion.html"><span class="mono">Antes</span><h4>publicadora-notion</h4><p>Salva o copy aprovado no seu calendário editorial.</p></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>

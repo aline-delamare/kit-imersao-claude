@@ -1,0 +1,271 @@
+/* ===================================================================
+   Kit Imersão Claude 2.0 · base.css
+   Tokens, fontes self-hosted e componentes comuns às 4 páginas do site
+   (home, página de skill, fluxo, senha). Deriva dos mockups aprovados
+   em 05/09/2026: home.html, skill-page.html, senha.html.
+   Paleta: SOMENTE as 7 cores do brand book v3.0 (mais rgba delas).
+   =================================================================== */
+
+/* ---------- Fontes self-hosted (sem Google Fonts) ---------- */
+@font-face{
+  font-family:'Libre Baskerville';
+  src:url('/static/fonts/libre-baskerville-latin-400-normal.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Libre Baskerville';
+  src:url('/static/fonts/libre-baskerville-latin-700-normal.woff2') format('woff2');
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Libre Baskerville';
+  src:url('/static/fonts/libre-baskerville-latin-400-italic.woff2') format('woff2');
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Poppins';
+  src:url('/static/fonts/poppins-latin-300-normal.woff2') format('woff2');
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Poppins';
+  src:url('/static/fonts/poppins-latin-400-normal.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Poppins';
+  src:url('/static/fonts/poppins-latin-500-normal.woff2') format('woff2');
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Poppins';
+  src:url('/static/fonts/poppins-latin-600-normal.woff2') format('woff2');
+  font-weight:600;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'JetBrains Mono';
+  src:url('/static/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'JetBrains Mono';
+  src:url('/static/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'JetBrains Mono';
+  src:url('/static/fonts/jetbrains-mono-latin-600-normal.woff2') format('woff2');
+  font-weight:600;font-style:normal;font-display:swap;
+}
+
+/* ---------- Tokens (7 cores do brand book v3.0) ---------- */
+:root{
+  --marrom:#382315; --vinho:#650022; --medio:#5C3B2E; --coral:#D97757;
+  --pessego:#F0A78B; --bege:#DCC996; --offwhite:#FFFDEE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:300;background:var(--offwhite);color:var(--marrom);
+}
+.serif{font-family:'Libre Baskerville',Georgia,'Times New Roman',serif}
+.mono{
+  font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
+  text-transform:uppercase;letter-spacing:.22em;font-size:11px;
+}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:1020px;margin:0 auto;padding:0 32px}
+
+/* ---------- NAV ---------- */
+nav{background:var(--offwhite);border-bottom:1px solid rgba(56,35,21,.12);position:sticky;top:0;z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--marrom)}
+.orb{width:34px;height:34px;border-radius:50%;background:var(--coral);position:relative;display:flex;align-items:center;justify-content:center}
+.orb i{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--offwhite);font-size:15px}
+.orb::after{content:"";position:absolute;top:4px;right:5px;width:5px;height:5px;border-radius:50%;background:var(--vinho)}
+.brand b{font-family:'Libre Baskerville',serif;font-weight:700;font-size:16px}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--medio);font-size:14px;font-weight:400}
+.nav-cta{background:var(--vinho);color:var(--offwhite)!important;padding:10px 22px;border-radius:999px;font-weight:500}
+.back{text-decoration:none;color:var(--medio);font-size:14px}
+
+/* ---------- BOTÕES ---------- */
+.btn{display:inline-block;text-decoration:none;padding:15px 32px;border-radius:999px;font-weight:500;font-size:15px;border:none;cursor:pointer}
+.btn-coral{background:var(--coral);color:var(--offwhite)}
+.btn-vinho{background:var(--vinho);color:var(--offwhite)}
+.btn-ghost{border:1px solid rgba(255,253,238,.45);color:var(--offwhite);background:transparent}
+.btn-block{display:block;text-align:center}
+
+/* ---------- HERO (vinho) ---------- */
+.hero{background:var(--vinho);color:var(--offwhite);padding:88px 0 96px}
+.hero .mono{color:var(--pessego);margin-bottom:28px;display:block}
+.hero h1{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(38px,5.4vw,64px);line-height:1.12;max-width:15ch}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--pessego)}
+.hero p{margin-top:24px;max-width:52ch;font-size:17px;line-height:1.7;color:rgba(255,253,238,.85)}
+.hero .ctas{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.hero-sym{display:flex;justify-content:center}
+
+/* ---------- DIAGRAMA (off-white) ---------- */
+.diagram{background:var(--offwhite);padding:96px 0}
+.diagram h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(28px,3.4vw,40px);max-width:24ch}
+.diagram h2 em{font-style:italic;font-weight:400;color:var(--coral)}
+.diagram > .wrap > p{margin-top:16px;max-width:58ch;font-size:16px;line-height:1.7;color:var(--medio)}
+.diagram-canvas{margin-top:56px;background:var(--offwhite);overflow-x:auto}
+
+/* ---------- INSTALAÇÃO (bege) ---------- */
+.install{background:var(--bege);padding:96px 0}
+.install h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(28px,3.4vw,40px)}
+.install > .wrap > p.lead{margin-top:16px;max-width:60ch;font-size:16px;line-height:1.7;color:var(--medio)}
+.kit-minimo{margin-top:24px;background:var(--offwhite);border-radius:14px;padding:20px 24px;max-width:70ch}
+.kit-minimo p{font-size:14.5px;line-height:1.65;color:var(--medio)}
+.kit-minimo .mono{color:var(--vinho);display:block;margin-bottom:8px}
+.install-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px}
+.install-card{background:var(--offwhite);border-radius:16px;padding:36px}
+.install-card .mono{color:var(--vinho);display:block;margin-bottom:20px}
+.install-card h3{font-family:'Libre Baskerville',serif;font-size:21px;margin-bottom:20px}
+.step{display:flex;gap:16px;margin-bottom:18px;align-items:flex-start}
+.step-n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--coral);font-weight:600;padding-top:2px}
+.step p{font-size:14.5px;line-height:1.6;color:var(--medio)}
+.code-warning{font-size:10px;color:var(--vinho);display:block;margin-bottom:10px}
+.codebox{background:var(--marrom);border-radius:12px;padding:18px 20px;margin-top:8px;position:relative}
+.codebox code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--pessego);line-height:1.6;display:block;padding-right:70px;white-space:pre-wrap;word-break:break-word}
+.copy-btn{position:absolute;top:14px;right:14px;background:var(--coral);color:var(--offwhite);border:none;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;padding:7px 12px;cursor:pointer}
+
+/* ---------- CATÁLOGO (off-white) ---------- */
+.catalog{background:var(--offwhite);padding:96px 0}
+.catalog h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(28px,3.4vw,40px)}
+.catalog h2 em{font-style:italic;font-weight:400;color:var(--coral)}
+.group-label{margin-top:52px;margin-bottom:20px;color:var(--vinho)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border-radius:16px;padding:28px;text-decoration:none;display:block;min-height:150px}
+.card h4{font-family:'Libre Baskerville',serif;font-size:18px;margin-bottom:10px}
+.card p{font-size:13.5px;line-height:1.6;opacity:.85}
+.card .mono{font-size:9.5px;display:block;margin-bottom:14px;opacity:.75}
+.c-off{background:var(--offwhite);border:1px solid rgba(56,35,21,.18);color:var(--marrom)}
+.c-pessego{background:var(--pessego);color:var(--marrom)}
+.c-bege{background:var(--bege);color:var(--marrom)}
+.c-vinho{background:var(--vinho);color:var(--offwhite)}
+.c-marrom{background:var(--marrom);color:var(--offwhite)}
+.c-medio{background:var(--medio);color:var(--offwhite)}
+.card-hero{grid-column:1 / -1;background:var(--coral);color:var(--offwhite);display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:36px}
+.card-hero h4{font-size:26px}
+.card-hero p{font-size:15px;max-width:60ch}
+.card-hero .btn{background:var(--marrom);color:var(--offwhite);white-space:nowrap}
+
+/* ---------- DOWNLOAD ALL (marrom) ---------- */
+.download{background:var(--marrom);color:var(--offwhite);padding:80px 0;text-align:left}
+.download-inner{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+.download h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(26px,3vw,36px)}
+.download h2 em{font-style:italic;font-weight:400;color:var(--pessego)}
+.download p{margin-top:12px;color:rgba(255,253,238,.8);font-size:15px;max-width:52ch;line-height:1.7}
+.download .microtexto{margin-top:14px;font-size:12.5px;color:rgba(255,253,238,.65);max-width:38ch;line-height:1.6}
+.download-cta{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+
+/* ---------- FOOTER (off-white) ---------- */
+footer{background:var(--offwhite);border-top:1px solid rgba(56,35,21,.12);padding:48px 0}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.foot .lockup{font-family:'Libre Baskerville',serif;font-weight:700;font-size:20px;color:var(--vinho);display:flex;align-items:center;gap:8px}
+.foot .lockup .orb{width:26px;height:26px}.foot .lockup .orb i{font-size:12px}
+.foot .mono{color:var(--medio)}
+
+/* ---------- PÁGINA DE SKILL: header (marrom) ---------- */
+.head{background:var(--marrom);color:var(--offwhite);padding:72px 0}
+.head .mono{color:var(--pessego);display:block;margin-bottom:20px}
+.head-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.head h1{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(34px,4.5vw,52px)}
+.head p{margin-top:16px;font-size:16.5px;line-height:1.7;color:rgba(255,253,238,.85);max-width:56ch}
+
+/* ---------- PÁGINA DE SKILL: conteúdo (off-white) ---------- */
+.content{padding:80px 0;display:grid;grid-template-columns:1.6fr 1fr;gap:56px}
+.section + .section{margin-top:48px}
+.section h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:24px;margin-bottom:16px}
+.section p, .section li{font-size:15.5px;line-height:1.75;color:var(--medio)}
+.section ul{list-style:none}
+.section li{padding-left:22px;position:relative;margin-bottom:10px}
+.section li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:3px;background:var(--coral)}
+.example{background:var(--bege);border-radius:16px;padding:28px;margin-top:16px}
+.example .mono{color:var(--vinho);display:block;margin-bottom:14px}
+.example pre{font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.8;color:var(--marrom);white-space:pre-wrap;word-break:break-word}
+
+/* ---------- SIDEBAR (página de skill) ---------- */
+.side-card{border-radius:16px;padding:30px;margin-bottom:24px}
+.side-download{background:var(--vinho);color:var(--offwhite)}
+.side-download h3{font-family:'Libre Baskerville',serif;font-size:20px;margin-bottom:8px}
+.side-download p{font-size:13.5px;line-height:1.6;color:rgba(255,253,238,.8);margin-bottom:20px}
+.side-code{background:var(--offwhite);border:1px solid rgba(56,35,21,.18)}
+.side-code h3{font-family:'Libre Baskerville',serif;font-size:20px;margin-bottom:8px}
+.side-code > p{font-size:13.5px;line-height:1.6;color:var(--medio);margin-bottom:16px}
+.side-code .codebox{margin-top:0}
+.side-code .codebox .mono{color:var(--bege);font-size:9px;display:block;margin-bottom:10px}
+.side-code .codebox code{font-size:12px;padding-right:0}
+.side-config{background:var(--pessego)}
+.side-config h3{font-family:'Libre Baskerville',serif;font-size:18px;margin-bottom:10px}
+.side-config p{font-size:13.5px;line-height:1.65}
+
+/* ---------- FUNCIONA JUNTO (pêssego) ---------- */
+.related{background:var(--pessego);padding:72px 0}
+.related h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(24px,3vw,32px);margin-bottom:32px}
+.rel-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rel-card{background:var(--offwhite);border-radius:14px;padding:24px;text-decoration:none;color:var(--marrom)}
+.rel-card .mono{font-size:9px;color:var(--coral);display:block;margin-bottom:10px}
+.rel-card h4{font-family:'Libre Baskerville',serif;font-size:17px;margin-bottom:8px}
+.rel-card p{font-size:13px;line-height:1.6;color:var(--medio)}
+
+/* ---------- FLUXO ---------- */
+.fluxo-hero{background:var(--offwhite);padding:64px 0 40px}
+.fluxo-hero h1{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(32px,4.5vw,48px);max-width:22ch}
+.fluxo-hero h1 em{font-style:italic;font-weight:400;color:var(--coral)}
+.fluxo-hero p{margin-top:16px;max-width:58ch;font-size:16px;line-height:1.7;color:var(--medio)}
+.jornada{padding:72px 0}
+.jornada h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(24px,3vw,34px);margin-bottom:28px}
+.pills{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.pill{display:inline-block;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;background:var(--offwhite);color:var(--marrom)}
+.pill-arrow{font-family:'JetBrains Mono',monospace;font-size:14px;opacity:.75}
+.pill-ou{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;opacity:.75}
+.jornada-vinho{background:var(--vinho);color:var(--offwhite)}
+.jornada-vinho .pill{background:var(--offwhite);color:var(--vinho)}
+.jornada-off{background:var(--offwhite);color:var(--marrom)}
+.jornada-off .pill{background:var(--bege);color:var(--marrom)}
+.jornada-bege{background:var(--bege);color:var(--marrom)}
+.jornada-bege .pill{background:var(--offwhite);color:var(--marrom)}
+.jornada-marrom{background:var(--marrom);color:var(--offwhite)}
+.jornada-marrom .pill{background:var(--pessego);color:var(--marrom)}
+.jornada-pessego{background:var(--pessego);color:var(--marrom)}
+.jornada-pessego .pill{background:var(--offwhite);color:var(--marrom)}
+
+/* ---------- SENHA ---------- */
+.gate-body{
+  font-family:'Poppins',sans-serif;font-weight:300;background:var(--vinho);color:var(--offwhite);
+  min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;
+}
+.gate{width:100%;max-width:440px;text-align:center}
+.gate .lockup{font-family:'Libre Baskerville',serif;font-weight:700;font-size:30px;color:var(--bege);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:48px}
+.gate .lockup .orb{width:42px;height:42px}
+.gate .lockup .orb i{font-size:19px;font-weight:400}
+.gate .mono{color:var(--pessego);display:block;margin-bottom:18px}
+.gate h1{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(28px,5vw,36px);line-height:1.2}
+.gate h1 em{font-style:italic;font-weight:400;color:var(--pessego)}
+.gate .sub{margin-top:14px;font-size:15px;line-height:1.7;color:rgba(255,253,238,.8)}
+.gate form{margin-top:40px;display:flex;flex-direction:column;gap:14px;text-align:left}
+.gate label{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:var(--bege)}
+.gate input{background:var(--offwhite);border:none;border-radius:12px;padding:16px 18px;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--marrom);letter-spacing:.06em;width:100%}
+.gate input:focus{outline:3px solid var(--coral)}
+.gate button{background:var(--coral);color:var(--offwhite);border:none;border-radius:999px;
+  padding:16px;font-family:'Poppins',sans-serif;font-weight:500;font-size:15px;cursor:pointer}
+.gate button:active{transform:scale(.98)}
+.gate .error{display:none;background:var(--offwhite);color:var(--vinho);border-radius:10px;padding:12px 16px;font-size:13.5px}
+.gate .hint{margin-top:36px;font-size:13px;color:rgba(255,253,238,.6);line-height:1.6}
+.gate .foot{margin-top:56px}
+.gate .foot .mono{color:rgba(255,253,238,.45);font-size:9.5px}
+
+/* ---------- Breakpoint único: 860px ---------- */
+@media(max-width:860px){
+  .hero-grid,.install-cols,.download-inner,.content,.head-grid{grid-template-columns:1fr}
+  .cards,.rel-cards{grid-template-columns:1fr}
+  .nav-links a:not(.nav-cta){display:none}
+  .card-hero{grid-template-columns:1fr}
+  .download-cta{align-items:flex-start}
+}

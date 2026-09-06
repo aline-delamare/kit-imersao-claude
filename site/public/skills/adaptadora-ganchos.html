@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>adaptadora-ganchos · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
+</div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Criação</span>
+  <div class="head-grid">
+    <div>
+      <h1>adaptadora-ganchos</h1>
+      <p>Transforma ganchos de posts de referência em versões com a voz do criador, mantendo a estrutura que funciona e trocando o conteúdo para o nicho dele.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
+      <line x1="38" y1="42" x2="82" y2="42" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="78" x2="64" y2="78" stroke="#D97757" stroke-width="4"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Transforma ganchos de posts de referência em versões com a voz do criador, mantendo a estrutura que funciona e trocando o conteúdo para o nicho dele.</p>
+    </div>
+    <div class="section">
+      <h2>Quando usar</h2>
+      <ul>
+        <li>Use depois de coletar posts de concorrentes ou referências, quando a pessoa pedir para adaptar ganchos, "traduzir" um post para o nicho dela ou criar variações de um post que funcionou.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>O que ela pergunta</h2>
+      <ul>
+        <li>Nenhum dado obrigatório: descreva o que você precisa e ela conduz a conversa a partir daí.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Exemplo de resultado</h2>
+      <div class="example">
+        <span class="mono">Saída de exemplo</span>
+        <pre>POST ADAPTADO, @marina.trabalhista
+
+Gancho original: "3 coisas que sua empresa não pode cortar do seu salário"
+Tipo de gancho: Número
+Por que funciona: lista curta e concreta gera salvamento, a pessoa guarda para conferir depois.
+
+Gancho adaptado: "3 cláusulas que seu contrato de consultoria não pode deixar de ter"
+Pilar sugerido: EDUCACIONAL
+Formato: carrossel</pre>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="side-card side-download">
+      <h3>Instalar no Claude</h3>
+      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/adaptadora-ganchos.skill">Baixar adaptadora-ganchos.skill</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar no Claude Code</h3>
+      <p>Cole na aba Code do Claude Desktop:</p>
+      <div class="codebox">
+        <span class="mono">Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.</span>
+        <code>Baixe o repositório https://github.com/aline-delamare/kit-imersao-claude (sem git, baixe e extraia https://github.com/aline-delamare/kit-imersao-claude/archive/refs/heads/main.zip) e instale a pasta skills/adaptadora-ganchos/ como skill global do Claude Code</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Configuração</h3>
+      <p>Nenhum pré-requisito técnico.</p>
+    </div>
+  </aside>
+</main>
+
+<section class="related"><div class="wrap">
+  <h2>Funciona junto com</h2>
+  <div class="rel-cards">
+    <a class="rel-card" href="/skills/coletora-instagram.html"><span class="mono">Antes</span><h4>coletora-instagram</h4><p>Reúne posts de qualquer perfil a partir das suas capturas de tela (ou coleta automática quando disponível).</p></a>
+    <a class="rel-card" href="/skills/redatora-copy.html"><span class="mono">Depois</span><h4>redatora-copy</h4><p>Escreve carrossel, reel e legenda no seu tom, pronto para publicar.</p></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>

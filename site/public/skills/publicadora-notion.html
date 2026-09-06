@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>publicadora-notion · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
+</div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Publicação · Com configuração</span>
+  <div class="head-grid">
+    <div>
+      <h1>publicadora-notion</h1>
+      <p>Salva o copy aprovado no calendário editorial do criador: no Notion pelo conector, em planilha, ou como tabela pronta no chat quando não houver conector.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
+      <line x1="38" y1="42" x2="82" y2="42" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="78" x2="64" y2="78" stroke="#D97757" stroke-width="4"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Salva o copy aprovado no calendário editorial do criador: no Notion pelo conector, em planilha, ou como tabela pronta no chat quando não houver conector.</p>
+    </div>
+    <div class="section">
+      <h2>Quando usar</h2>
+      <ul>
+        <li>Use depois do copy pronto, quando a pessoa pedir para salvar, organizar ou registrar os posts da semana no calendário.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>O que ela pergunta</h2>
+      <ul>
+        <li>Conector do Notion ou planilha (opcional: sem eles, entrega tabela no chat).</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Exemplo de resultado</h2>
+      <div class="example">
+        <span class="mono">Saída de exemplo</span>
+        <pre>3 posts salvos no Notion:
+→ "o erro que todo consultor iniciante comete", 08/09, EDUCACIONAL
+→ "minha terça atendendo 4 clientes", 10/09, BASTIDOR
+→ "3 vagas abertas este mês", 12/09, CONVERSÃO
+
+Link: notion.so/workspace/calendario-editorial
+
+0 falhas.</pre>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="side-card side-download">
+      <h3>Instalar no Claude</h3>
+      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/publicadora-notion.skill">Baixar publicadora-notion.skill</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar no Claude Code</h3>
+      <p>Cole na aba Code do Claude Desktop:</p>
+      <div class="codebox">
+        <span class="mono">Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.</span>
+        <code>Baixe o repositório https://github.com/aline-delamare/kit-imersao-claude (sem git, baixe e extraia https://github.com/aline-delamare/kit-imersao-claude/archive/refs/heads/main.zip) e instale a pasta skills/publicadora-notion/ como skill global do Claude Code</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Configuração</h3>
+      <p>Conector do Notion ou planilha (opcional: sem eles, entrega tabela no chat).</p>
+    </div>
+  </aside>
+</main>
+
+<section class="related"><div class="wrap">
+  <h2>Funciona junto com</h2>
+  <div class="rel-cards">
+    <a class="rel-card" href="/skills/redatora-copy.html"><span class="mono">Antes</span><h4>redatora-copy</h4><p>Escreve carrossel, reel e legenda no seu tom, pronto para publicar.</p></a>
+    <a class="rel-card" href="/skills/editora-canva.html"><span class="mono">Depois</span><h4>editora-canva</h4><p>Aplica o copy no seu template do Canva, slide a slide.</p></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>

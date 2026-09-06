@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>estrategista-calendario · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
+</div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Criação</span>
+  <div class="head-grid">
+    <div>
+      <h1>estrategista-calendario</h1>
+      <p>Cruza tendências, contexto da conta, referências e concorrência para propor o calendário da semana: dia a dia, com tema, formato, gancho e fonte de cada post, na frequência que a pessoa aguenta manter.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
+      <line x1="38" y1="42" x2="82" y2="42" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="78" x2="64" y2="78" stroke="#D97757" stroke-width="4"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Cruza tendências, contexto da conta, referências e concorrência para propor o calendário da semana: dia a dia, com tema, formato, gancho e fonte de cada post, na frequência que a pessoa aguenta manter.</p>
+    </div>
+    <div class="section">
+      <h2>Quando usar</h2>
+      <ul>
+        <li>Use depois das pesquisas, quando a pessoa pedir o calendário, o planejamento da semana ou "o que postar essa semana".</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>O que ela pergunta</h2>
+      <ul>
+        <li>Output da pesquisadora-tendencias (updates e novidades do nicho)</li>
+        <li>Output da analista-contexto-conta (pilares, histórico, o que evitar)</li>
+        <li>Output da analisadora-concorrentes (ganchos e padrões dos concorrentes)</li>
+        <li>Output da cacadora-viral (referências que estão performando)</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Exemplo de resultado</h2>
+      <div class="example">
+        <span class="mono">Saída de exemplo</span>
+        <pre>calendário sugerido, semana de 08/09 a 12/09:
+
+SEG 08/09 7h, "o erro que todo consultor iniciante comete no primeiro contrato", carrossel, EDUCACIONAL
+                gancho: erro concreto + como corrigir em 3 passos
+                fonte: @consultoria.pratica, post sobre contratos, adaptado
+
+QUA 10/09 12h, "como é minha terça-feira atendendo 4 clientes diferentes", reels, BASTIDOR DO CONSULTÓRIO
+                gancho: rotina real, sem filtro
+                fonte: pesquisadora-tendencias, bastidores estão em alta no nicho
+
+SEX 12/09 19h, "3 vagas abertas para a mentoria deste mês", foto, CONVERSÃO
+                gancho: prova social + urgência real (vagas limitadas)
+                fonte: contexto de marca, CTA principal do criador
+
+aprova esse calendário? pode ajustar título, formato, dia ou remover algum.
+quando estiver pronto, responde "aprovado" ou lista os ajustes.</pre>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="side-card side-download">
+      <h3>Instalar no Claude</h3>
+      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/estrategista-calendario.skill">Baixar estrategista-calendario.skill</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar no Claude Code</h3>
+      <p>Cole na aba Code do Claude Desktop:</p>
+      <div class="codebox">
+        <span class="mono">Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.</span>
+        <code>Baixe o repositório https://github.com/aline-delamare/kit-imersao-claude (sem git, baixe e extraia https://github.com/aline-delamare/kit-imersao-claude/archive/refs/heads/main.zip) e instale a pasta skills/estrategista-calendario/ como skill global do Claude Code</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Configuração</h3>
+      <p>Nenhum pré-requisito técnico.</p>
+    </div>
+  </aside>
+</main>
+
+<section class="related"><div class="wrap">
+  <h2>Funciona junto com</h2>
+  <div class="rel-cards">
+    <a class="rel-card" href="/skills/pesquisadora-tendencias.html"><span class="mono">Antes</span><h4>pesquisadora-tendencias</h4><p>O que está em alta no seu nicho nos últimos sete dias.</p></a>
+    <a class="rel-card" href="/skills/analista-contexto-conta.html"><span class="mono">Antes</span><h4>analista-contexto-conta</h4><p>Mapeia seus pilares ativos e o que evitar repetir.</p></a>
+    <a class="rel-card" href="/skills/redatora-copy.html"><span class="mono">Depois</span><h4>redatora-copy</h4><p>Escreve carrossel, reel e legenda no seu tom, pronto para publicar.</p></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>

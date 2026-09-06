@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coletora-instagram · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
+</div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Pesquisa</span>
+  <div class="head-grid">
+    <div>
+      <h1>coletora-instagram</h1>
+      <p>Visita perfis públicos do Instagram e coleta os posts recentes com curtidas e comentários, em tabela pronta para análise. Serve tanto para perfis de referência e concorrentes quanto para o próprio perfil.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
+      <line x1="38" y1="42" x2="82" y2="42" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#D97757" stroke-width="4"/>
+      <line x1="38" y1="78" x2="64" y2="78" stroke="#D97757" stroke-width="4"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Visita perfis públicos do Instagram e coleta os posts recentes com curtidas e comentários, em tabela pronta para análise. Serve tanto para perfis de referência e concorrentes quanto para o próprio perfil.</p>
+    </div>
+    <div class="section">
+      <h2>Quando usar</h2>
+      <ul>
+        <li>Use quando a pessoa pedir para coletar ou "pegar" posts de um perfil, levantar os posts recentes de alguém, ou montar uma base de posts para adaptar ganchos.</li>
+        <li>Esta skill coleta; para ANALISAR o que foi coletado, as skills são a analisadora-concorrentes e a analisadora-perfil-proprio.</li>
+        <li>Funciona por capturas de tela quando a navegação não estiver disponível (e este é o caminho a assumir por padrão: o Instagram costuma bloquear navegação sem login).</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>O que ela pergunta</h2>
+      <ul>
+        <li>Nenhum dado obrigatório: descreva o que você precisa e ela conduz a conversa a partir daí.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Exemplo de resultado</h2>
+      <div class="example">
+        <span class="mono">Saída de exemplo</span>
+        <pre>COLETA INSTAGRAM, 05/09/2026
+
+Perfis coletados: 1 de 1
+Perfis sem posts no período: nenhum
+
+Posts encontrados:
+
+@marina.trabalhista
+- tipo: carrossel
+  capa: "3 coisas que sua empresa não pode cortar do seu salário"
+  curtidas: 842 | comentários: 37 | compartilhamentos: não disponível | salvamentos: não disponível
+  score: 842 + (3×37) = 953
+  timestamp: há 4 dias
+
+@marina.trabalhista
+- tipo: reels
+  capa: "o que fazer no primeiro dia após a demissão"
+  curtidas: 1204 | comentários: 52 | compartilhamentos: não disponível | salvamentos: não disponível
+  score: 1204 + (3×52) = 1360
+  timestamp: há 6 dias</pre>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="side-card side-download">
+      <h3>Instalar no Claude</h3>
+      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/coletora-instagram.skill">Baixar coletora-instagram.skill</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar no Claude Code</h3>
+      <p>Cole na aba Code do Claude Desktop:</p>
+      <div class="codebox">
+        <span class="mono">Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.</span>
+        <code>Baixe o repositório https://github.com/aline-delamare/kit-imersao-claude (sem git, baixe e extraia https://github.com/aline-delamare/kit-imersao-claude/archive/refs/heads/main.zip) e instale a pasta skills/coletora-instagram/ como skill global do Claude Code</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Configuração</h3>
+      <p>Nenhum pré-requisito técnico.</p>
+    </div>
+  </aside>
+</main>
+
+<section class="related"><div class="wrap">
+  <h2>Funciona junto com</h2>
+  <div class="rel-cards">
+    <a class="rel-card" href="/skills/adaptadora-ganchos.html"><span class="mono">Depois</span><h4>adaptadora-ganchos</h4><p>Transforma ganchos de referência em versões com a sua voz.</p></a>
+    <a class="rel-card" href="/skills/analisadora-perfil-proprio.html"><span class="mono">Depois</span><h4>analisadora-perfil-proprio</h4><p>Ranqueia seus posts recentes: os 5 melhores, os 5 piores e os padrões, direto no chat.</p></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>
