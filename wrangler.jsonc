@@ -3,6 +3,12 @@
   "name": "kit-imersao-claude",
   "main": "worker/index.js",
   "compatibility_date": "2026-09-05",
+  "routes": [
+    {
+      "pattern": "skills.iacomoaliada.com",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "./site/public/",
     "binding": "ASSETS",
