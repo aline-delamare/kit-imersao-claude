@@ -7,8 +7,8 @@ description: |
   entrega o relatório completo, com ranking, padrões dos melhores e piores
   posts, insights e recomendações. Use quando a pessoa quiser esse relatório
   completo, um raio-X do que funciona, ou uma análise para guardar e revisitar.
-  Para uma leitura rápida direto no chat, sem relatório, a skill é a
-  analisadora-perfil-proprio.
+  Quem só quer saber pontualmente quais posts performaram melhor, sem querer
+  um relatório para guardar, é com a analisadora-perfil-proprio.
 ---
 
 # Análise de Performance do Instagram
@@ -25,8 +25,10 @@ O trabalho acontece em 3 fases sequenciais. Cada fase depende da anterior.
 
 ```
 FASE 1: COLETA DE DADOS
-  → Capturas de tela ou export do Instagram Insights (caminho padrão)
-  → Navegação direta no perfil, quando disponível (bônus)
+  → Navegação direta no perfil (caminho recomendado: Cowork ou Claude Code,
+    com Claude in Chrome logado no Instagram da pessoa)
+  → Capturas de tela ou export do Instagram Insights, no claude.ai ou sem a
+    extensão (alternativa)
   → Registrar: tipo de post, tema, copy, métricas visíveis
 
 FASE 2: ANÁLISE
@@ -59,21 +61,9 @@ Com o contexto de marca (ou o nicho e o objetivo, se ela seguir sem contexto) em
 
 ## Fase 1: Coleta de Dados
 
-### Caminho padrão — capturas de tela ou export do Instagram Insights
+### Caminho recomendado — navegação automática (Cowork ou Claude Code)
 
-O Instagram costuma bloquear a navegação de quem não está logado — por isso, assuma que este é o caminho mais provável, não uma exceção. Peça à pessoa:
-
-> "Para montar a análise, você pode me enviar:
-> 1. Uma captura de tela da grade do seu perfil (mostrando os posts recentes)
-> 2. Se tiver, uma captura de tela do Instagram Insights mostrando os posts com curtidas, comentários, compartilhamentos e salvamentos
->
-> Sem o Insights, abra os 15-30 posts mais recentes e envie uma captura de cada um, mostrando a capa, curtidas e comentários. Com isso já consigo montar o relatório completo."
-
-Quanto mais posts a pessoa conseguir enviar, mais confiável fica o ranking — mas 15 posts já sustentam uma análise consistente.
-
-### Bônus — navegação direta, quando disponível
-
-Se houver ferramenta de navegação web disponível e o perfil for público, acessar o link diretamente pode poupar o trabalho de enviar capturas. Vale tentar antes de pedir as capturas, mas sem insistir: ao primeiro sinal de bloqueio (login exigido, conteúdo não carrega, erro repetido), pare e siga pelo caminho padrão.
+No Claude Cowork ou no Claude Code, com a extensão **Claude in Chrome** instalada e a pessoa **logada na própria conta do Instagram no Chrome dela**, o Claude navega até o perfil e coleta os posts sozinho. Esse caminho exige plano pago (Claude Pro ou superior) e a extensão instalada; confirme os dois antes de seguir por aqui. Tente este caminho primeiro quando o ambiente permitir.
 
 **Antes de coletar, confirmar que é o perfil certo:** verificar nome, bio e nicho contra o que a pessoa informou no onboarding. Handles parecidos (com/sem ponto, underline) pertencem a pessoas diferentes. Se houver qualquer divergência, parar e confirmar antes de continuar.
 
@@ -82,6 +72,20 @@ Passos, quando a navegação funcionar:
 1. Acessar o perfil pelo link informado
 2. Rolar a página para carregar mais posts, se necessário
 3. Para cada post, abrir e coletar: tipo (reel, carrossel, imagem única), copy da legenda (primeiras linhas visíveis), curtidas, comentários, data aproximada e tema (inferido pela legenda e imagem)
+
+Se a navegação não estiver disponível neste ambiente (claude.ai puro, ou sem a extensão/sessão logada) ou falhar ao acessar o perfil, siga pelo caminho alternativo abaixo.
+
+### Caminho alternativo — capturas de tela ou export do Instagram Insights
+
+No claude.ai, sem controle de navegador, ou sempre que a navegação falhar, peça à pessoa:
+
+> "Para montar a análise, você pode me enviar:
+> 1. Uma captura de tela da grade do seu perfil (mostrando os posts recentes)
+> 2. Se tiver, uma captura de tela do Instagram Insights mostrando os posts com curtidas, comentários, compartilhamentos e salvamentos
+>
+> Sem o Insights, abra os 15-30 posts mais recentes e envie uma captura de cada um, mostrando a capa, curtidas e comentários. Com isso já consigo montar o relatório completo."
+
+Quanto mais posts a pessoa conseguir enviar, mais confiável fica o ranking — mas 15 posts já sustentam uma análise consistente.
 
 ### O que registrar
 

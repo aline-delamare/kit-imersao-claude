@@ -5,8 +5,9 @@ description: |
   capturas de posts que viu bombando e a skill extrai gancho, formato, estrutura
   e por que funciona, em lista numerada pronta para adaptar. Use quando a pessoa
   tiver referências em mãos ou pedir para "destrinchar" um post que funcionou.
-  Para tendências gerais do nicho (sem post específico), a skill certa é a
-  pesquisadora-tendencias.
+  Sem um post ou link específico em mãos — só a pergunta do que está bombando
+  ou em alta no nicho — a skill certa é a pesquisadora-tendencias; esta aqui
+  precisa de referências concretas para trabalhar.
 ---
 
 # Caçadora de Referências

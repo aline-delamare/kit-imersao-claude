@@ -74,6 +74,7 @@ preenchidos) — o ranking distorce; ranqueie cada fonte separada.
 | Capacidade | claude.ai | Cowork | Claude Code |
 |---|---|---|---|
 | Navegar na web / buscar | sim (busca) | sim | sim |
+| Coletar dados do Instagram | por capturas de tela (não controla navegador) | navega e coleta sozinho, com Claude in Chrome + sessão logada no Instagram da pessoa (exige plano pago) | navega e coleta sozinho, com Claude in Chrome + sessão logada no Instagram da pessoa (exige plano pago) |
 | Conectores (Notion, Canva, Drive) | sim, se conectados | sim, se conectados | sim, se configurados |
 | Ler/gravar arquivo local | não | pasta do projeto | sim |
 | Rodar código (Node/Python) | não | limitado | sim |
@@ -82,6 +83,12 @@ Regra de escrita: a skill descreve a AÇÃO ("salve o texto no seu Notion usando
 conector"), nunca o nome técnico da ferramenta (proibido `mcp__...`). Todo passo
 que depende de conector ou de arquivo local declara o caminho alternativo em
 seguida ("sem o conector, entregue a tabela no chat para copiar e colar").
+
+Regra para skills de coleta do Instagram: apresente PRIMEIRO o caminho navegado
+(Cowork ou Claude Code, com a extensão Claude in Chrome instalada e a pessoa
+logada na própria conta do Instagram no Chrome dela — exige plano pago, Claude
+Pro ou superior) e só depois o caminho de capturas de tela, para quem está no
+claude.ai ou sem a extensão.
 
 ## 5. Onde guardar o contexto de marca (usado pela configurar-marca)
 

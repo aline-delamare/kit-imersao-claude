@@ -7,9 +7,10 @@ description: |
   pedir para coletar ou "pegar" posts de um perfil, levantar os posts recentes
   de alguém, ou montar uma base de posts para adaptar ganchos. Esta skill coleta;
   para ANALISAR o que foi coletado, as skills são a analisadora-concorrentes e a
-  analisadora-perfil-proprio. Funciona por capturas de tela quando a navegação
-  não estiver disponível (e este é o caminho a assumir por padrão: o Instagram
-  costuma bloquear navegação sem login).
+  analisadora-perfil-proprio. No Cowork ou no Claude Code, com a extensão Claude
+  in Chrome e a pessoa logada na própria conta do Instagram, a coleta é
+  navegada e automática (exige plano pago); no claude.ai puro, sem controle de
+  navegador, funciona por capturas de tela.
 ---
 
 # Coletora Instagram
@@ -25,7 +26,9 @@ Antes de coletar, confirme:
 
 ## Como coletar
 
-### Opção A — Automática (requer analise-perfil-insta)
+### Caminho A — Navegação automática (caminho recomendado: Cowork ou Claude Code)
+
+No Claude Cowork ou no Claude Code, com a extensão **Claude in Chrome** instalada e a pessoa **logada na própria conta do Instagram no Chrome dela**, o Claude navega até o perfil e coleta os posts sozinho — sem depender de capturas de tela. Esse caminho exige plano pago (Claude Pro ou superior) e a extensão instalada; confirme os dois antes de seguir por aqui.
 
 Se a skill `analise-perfil-insta` estiver disponível, use-a apontando para:
 `https://www.instagram.com/[handle]/`
@@ -38,12 +41,12 @@ Substitua [PERÍODO] conforme o contexto:
 - Análise do perfil próprio: "nos últimos 2 meses"
 - Coleta avulsa: conforme instruído
 
-### Opção B — Manual por capturas de tela (caminho padrão)
+### Caminho B — Manual por capturas de tela (para quem está no claude.ai ou sem a extensão)
 
-O Instagram costuma bloquear a navegação de quem não está logado — por isso, assuma que este é o caminho mais provável, não uma exceção. Se a `analise-perfil-insta` não estiver disponível ou falhar ao acessar o perfil, peça capturas de tela.
+No claude.ai puro, sem controle de navegador, ou quando a pessoa não tem a extensão Claude in Chrome instalada nem sessão logada no Instagram, peça capturas de tela. Isso não é um sinal de bloqueio do Instagram — é apenas o ambiente sem navegação disponível. Use também este caminho se a `analise-perfil-insta` não estiver disponível ou falhar ao acessar o perfil.
 
 Instrução para a pessoa:
-> "Não consegui acessar o perfil diretamente — isso é comum, o Instagram limita a navegação sem login. Você pode tirar uma captura de tela da grade do perfil (mostrando os posts mais recentes) e colar aqui? Se conseguir, abra 3 a 5 posts e tire uma captura de cada um, mostrando a capa, curtidas e comentários. Com isso já consigo montar a coleta."
+> "Aqui eu não consigo navegar sozinho até o perfil — isso acontece no claude.ai ou quando a extensão Claude in Chrome não está instalada/logada no Instagram. Você pode tirar uma captura de tela da grade do perfil (mostrando os posts mais recentes) e colar aqui? Se conseguir, abra 3 a 5 posts e tire uma captura de cada um, mostrando a capa, curtidas e comentários. Com isso já consigo montar a coleta."
 
 Quantos posts a pessoa conseguir fornecer já é suficiente para a coleta funcionar.
 

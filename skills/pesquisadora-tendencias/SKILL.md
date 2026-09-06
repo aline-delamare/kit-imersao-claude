@@ -3,9 +3,11 @@ name: pesquisadora-tendencias
 description: |
   Pesquisa na web o que está em alta no nicho do criador nos últimos sete dias:
   temas, notícias e conversas que valem post. Entrega uma lista numerada com fonte.
-  Use no começo do planejamento da semana, quando a pessoa perguntar "sobre o que
-  postar", pedir tendências do nicho ou quiser ideias novas de pauta. Para analisar
-  posts concretos que a pessoa viu bombando, a skill certa é a cacadora-viral.
+  Use no começo do planejamento da semana, ou quando a pessoa já sabe que quer
+  a pesquisa de tendências do nicho e pede ideias novas de pauta. Quem chega
+  perdido, sem saber por onde começar, é com a coordenadora-central. Para
+  analisar posts concretos que a pessoa viu bombando, a skill certa é a
+  cacadora-viral.
 ---
 
 # Pesquisadora de Tendências

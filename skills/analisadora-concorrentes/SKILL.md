@@ -39,7 +39,7 @@ Selecione 3 perfis relevantes (mesmo nicho, audiência parecida, conteúdo ativo
 
 **Passo 1 — Coletar os posts:**
 
-Use a skill `coletora-instagram` para visitar cada perfil e coletar posts do período informado.
+Use a skill `coletora-instagram` para visitar cada perfil e coletar posts do período informado. No Cowork ou no Claude Code, com a extensão Claude in Chrome e a pessoa logada na própria conta do Instagram, essa coleta é navegada e automática (exige plano pago); no claude.ai ou sem a extensão, ela funciona por capturas de tela.
 
 **Se a `coletora-instagram` não estiver instalada:** peça à pessoa capturas de tela dos perfis diretamente — a grade de cada perfil e, se possível, 3 a 5 posts abertos mostrando capa, curtidas e comentários. Com isso já dá para seguir para a análise.
 

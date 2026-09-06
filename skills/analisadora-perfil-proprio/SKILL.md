@@ -51,12 +51,14 @@ A skill vai:
 
 Aguarde a conclusão antes de prosseguir.
 
-### Opção B — Manual (caminho padrão desta skill: pessoa quer a leitura rápida, sem o relatório completo)
+### Opção B — Coleta direta desta skill (caminho padrão desta skill: pessoa quer a leitura rápida, sem o relatório completo)
 
-Peça ao usuário para enviar capturas de tela dos posts e do Instagram Insights.
+**Caminho recomendado — navegação automática (Cowork ou Claude Code):** com a extensão **Claude in Chrome** instalada e a pessoa **logada na própria conta do Instagram no Chrome dela**, acesse o perfil diretamente e colete os posts do período — sem depender de capturas de tela. Esse caminho exige plano pago (Claude Pro ou superior) e a extensão instalada; confirme os dois antes de seguir por aqui. Se a `coletora-instagram` estiver disponível, use-a para essa coleta. Tente este caminho primeiro quando o ambiente permitir.
+
+**Caminho alternativo — capturas de tela (claude.ai ou sem a extensão):** se a navegação não estiver disponível neste ambiente ou falhar ao acessar o perfil, peça ao usuário para enviar capturas de tela dos posts e do Instagram Insights.
 
 Instrução para o usuário:
-> "Não consegui acessar seu perfil diretamente. Você pode me enviar:
+> "Aqui eu não consigo navegar sozinho até o seu perfil — isso acontece no claude.ai ou quando a extensão Claude in Chrome não está instalada/logada no Instagram. Você pode me enviar:
 > 1. Uma captura de tela da grade do seu perfil (mostrando os posts dos últimos 2 meses)
 > 2. Uma captura de tela do Instagram Insights (Meta Business Suite) mostrando os posts com curtidas, comentários, compartilhamentos e salvamentos
 >
