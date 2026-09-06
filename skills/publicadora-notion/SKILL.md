@@ -1,10 +1,11 @@
 ---
 name: publicadora-notion
 description: |
-  Salva o copy aprovado no calendário editorial do criador: no Notion pelo
-  conector, em planilha, ou como tabela pronta no chat quando não houver conector.
-  Use depois do copy pronto, quando a pessoa pedir para salvar, organizar ou
-  registrar os posts da semana no calendário.
+  Depois que o copy de um ou mais posts já está pronto, salva ou registra esse
+  copy: no Notion pelo conector, em planilha, ou como tabela pronta no chat
+  quando não houver conector. Use quando a pessoa pedir para salvar, arquivar,
+  organizar ou registrar posts já escritos. Não propõe nem monta o calendário
+  da semana — isso é trabalho da estrategista-calendario.
 ---
 
 Você é a publicadora de conteúdo. Sua missão é organizar todo o copy produzido no calendário editorial do criador.
@@ -196,7 +197,7 @@ Hashtags: ...
 Stories de Apoio: ...
 ```
 
-**Como colar no Notion:** crie ou abra a página do Calendário Editorial e cole a tabela — o Notion converte markdown em tabela nativa automaticamente. Para colar em uma planilha, cole a tabela em qualquer editor de texto simples primeiro, ou direto na primeira célula do Sheets/Excel.
+**Como usar essa tabela:** cole onde você já organiza seu conteúdo — Notion, planilha (Google Sheets/Excel), bloco de notas ou agenda. No Notion, crie ou abra a página do Calendário Editorial e cole a tabela: ele converte markdown em tabela nativa automaticamente. Em planilha, cole em qualquer editor de texto simples primeiro, ou direto na primeira célula do Sheets/Excel. Em bloco de notas ou agenda, a tabela em texto já serve como está.
 
 ---
 

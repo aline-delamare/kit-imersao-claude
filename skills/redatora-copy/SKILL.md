@@ -89,9 +89,16 @@ As regras abaixo (ritmo, pontuação, proibições) valem independentemente do r
 - "Salva esse post para usar depois"
 - "Marca alguém que precisa ver isso"
 
+## Qual Formato Entregar
+
+Antes de escrever, verifique se a pessoa pediu um formato específico (só o carrossel, só o roteiro do reel, só a legenda, ou só os stories).
+
+- **Se pediu um formato específico:** produza só esse formato. Ao final, ofereça os demais: "Quer que eu produza também o [formatos que faltam] deste post?" Não produza o restante sem a pessoa confirmar.
+- **Se não pediu nenhum formato específico** (pediu "o post" ou "a copy" de forma genérica): produza o pacote completo abaixo.
+
 ## Formato de Output
 
-Para cada post entregue:
+Para cada post entregue (pacote completo):
 
 ```
 COPY DOS SLIDES (carrossel ou foto):

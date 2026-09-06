@@ -1,8 +1,8 @@
 ---
 name: configurar-marca
 description: |
-  Monta o contexto de marca do criador: o documento central com tom de voz, público,
-  produto e pilares que todas as outras skills do kit usam para escrever certo.
+  Monta o contexto de marca do criador: o documento central com tom de voz,
+  público e produto que todas as outras skills do kit usam para escrever certo.
   É o primeiro passo do kit, antes de qualquer outra skill. Use quando a pessoa
   estiver começando, pedir para "configurar minha marca", "criar meu contexto",
   ou quando qualquer skill notar que o contexto de marca ainda não existe.
@@ -133,14 +133,14 @@ Nunca faço: não prometo resultado de processo, não menciono valor de causa.
 
 A forma de salvar muda conforme o ambiente onde você está trabalhando com o criador:
 
-- **claude.ai:** oriente a criar um Projeto (ex: "Meu conteúdo") e salvar o contexto nas instruções do projeto, ou como documento anexado a ele.
+- **claude.ai:** você não tem como salvar nada nas instruções do projeto — quem cola o texto lá é a própria pessoa. Entregue o documento pronto e oriente: criar um Projeto (ex: "Meu conteúdo"), colar o contexto nas instruções do projeto (ou anexá-lo como documento) e confirmar aqui quando tiver colado.
 - **Cowork:** salve o contexto como `contexto-marca.md` na pasta de trabalho.
 - **Claude Code:** salve o contexto como `contexto-marca.md` na pasta onde a pessoa está trabalhando e informe o caminho usado.
 
-Depois de salvar, informe ao criador:
+No Cowork e no Claude Code, depois de gravar o arquivo você já sabe que o salvamento aconteceu — informe ao criador:
 
 ```
-Contexto de marca salvo.
+Contexto de marca salvo em contexto-marca.md.
 
 As outras skills deste kit vão PEDIR esse contexto no início; tenha-o
 à mão ou anexado ao Projeto. Nenhuma skill lê esse documento sozinha —
@@ -149,6 +149,20 @@ As outras skills deste kit vão PEDIR esse contexto no início; tenha-o
 Você pode atualizar esse documento a qualquer momento: basta pedir
 "atualize meu contexto de marca".
 ```
+
+No claude.ai, você não executou nenhuma ação de salvar — quem cola o texto é a pessoa. Nunca afirme "contexto salvo" nesse ambiente. Entregue o documento e peça confirmação:
+
+```
+Aqui está o seu contexto de marca pronto. Cole esse documento nas
+instruções do seu Projeto (ou anexe como arquivo) e me confirme quando
+tiver colado.
+
+As outras skills deste kit vão PEDIR esse contexto no início; tenha-o
+à mão ou anexado ao Projeto. Nenhuma skill lê esse documento sozinha —
+é você quem apresenta o contexto quando ela perguntar.
+```
+
+Só trate o contexto como salvo depois que a pessoa confirmar que colou.
 
 ---
 
