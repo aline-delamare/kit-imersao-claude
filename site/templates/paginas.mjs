@@ -101,91 +101,91 @@ function footerSimples() {
 // meta.grupos / meta.skills / meta.jornadas.
 // ---------------------------------------------------------------------
 
-function posicoesUniformes(n, larguraTotal, largura, margemX) {
-  if (n <= 1) return [margemX];
-  const gap = (larguraTotal - margemX * 2 - n * largura) / (n - 1);
-  return Array.from({ length: n }, (_, i) => margemX + i * (largura + gap));
-}
-
-function quebrarNome(nome) {
-  // Quebra nomes longos em até duas linhas para caber na caixa do diagrama.
-  if (nome.length <= 15) return [nome];
-  const partes = nome.split("-");
-  let linha1 = "";
-  let i = 0;
-  while (i < partes.length && (linha1 + (linha1 ? "-" : "") + partes[i]).length <= 14) {
-    linha1 += (linha1 ? "-" : "") + partes[i];
-    i++;
+function quebrarLinhas(texto, maxChars) {
+  // Quebra "a · b · c" em linhas de ate maxChars, sem cortar nome no meio.
+  const partes = texto.split(" · ");
+  const linhas = [];
+  let atual = "";
+  for (const parte of partes) {
+    const candidata = atual ? `${atual} · ${parte}` : parte;
+    if (candidata.length > maxChars && atual) {
+      linhas.push(atual);
+      atual = parte;
+    } else {
+      atual = candidata;
+    }
   }
-  if (i === 0) {
-    // Nem a primeira parte cabe: usa ela sozinha na primeira linha mesmo assim.
-    linha1 = partes[0];
-    i = 1;
-  }
-  const linha2 = partes.slice(i).join("-");
-  return linha2 ? [linha1 + "-", linha2] : [linha1];
+  if (atual) linhas.push(atual);
+  return linhas;
 }
 
 function buildDiagramaSVG(meta) {
+  // Mapa mental radial: orb da coordenadora a esquerda, ramos curvos ate um
+  // cartao por grupo. Grupos, skills e numero de ramos vem sempre do meta.
   const largura = 1100;
-  const margemX = 40;
-  const boxWidth = 200;
-  const boxTopY = 250;
-  const centroX = largura / 2;
-  const centroY = 110;
+  const orbX = 168;
+  const orbR = 82;
+  const cardX = 430;
+  const cardW = 630;
+  const gap = 22;
+  const topo = 30;
 
   const grupos = GROUP_ORDER.filter((g) => meta.grupos[g]);
-  const boxX = posicoesUniformes(grupos.length, largura, boxWidth, margemX);
+  const fills = ["#650022", "#5C3B2E", "#382315"];
 
-  const skillsPorGrupo = grupos.map((g) =>
-    meta.skills.filter((s) => s.grupo === g && s.nome !== "coordenadora-central")
-  );
-  const maxLinhas = Math.max(1, ...skillsPorGrupo.map((lista) =>
-    lista.reduce((acc, s) => acc + quebrarNome(s.nome).length, 0)
-  ));
-  const boxHeight = 92 + maxLinhas * 22;
+  const cards = grupos.map((g) => {
+    const skills = meta.skills
+      .filter((s) => s.grupo === g && s.nome !== "coordenadora-central")
+      .map((s) => s.nome);
+    const linhas = quebrarLinhas(skills.join(" · "), 74);
+    return { label: meta.grupos[g], linhas, altura: 62 + linhas.length * 23 };
+  });
 
-  // Setas: uma por jornada em meta.jornadas, nunca um número fixo.
-  const setasX = posicoesUniformes(meta.jornadas.length, largura, 2, margemX + boxWidth / 2 - 1);
-  const linhas = setasX
-    .map((x) => `<line x1="${centroX}" y1="${centroY + 58}" x2="${x + 1}" y2="${boxTopY}" stroke="#DCC996" stroke-width="2.5"/>`)
-    .join("\n      ");
+  let y = topo;
+  cards.forEach((c) => {
+    c.y = y;
+    c.centro = y + c.altura / 2;
+    y += c.altura + gap;
+  });
+  const alturaTotal = y - gap + topo;
+  const orbY = alturaTotal / 2;
 
-  const caixas = grupos
-    .map((g, gi) => {
-      const label = meta.grupos[g];
-      const x = boxX[gi];
-      const cx = x + boxWidth / 2;
-      const fills = ["#650022", "#5C3B2E", "#382315"];
-      const fill = fills[gi % fills.length];
-      let y = boxTopY + 32;
-      const labelLine = `<text x="${cx}" y="${y}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" letter-spacing="2" fill="#F0A78B">${esc(label.toUpperCase())}</text>`;
-      y += 33;
-      const nomes = skillsPorGrupo[gi].flatMap((s) => quebrarNome(s.nome));
-      const linhasSkills = nomes
-        .map((linha) => {
-          const t = `<text x="${cx}" y="${y}" text-anchor="middle" font-family="Poppins" font-size="12" fill="#FFFDEE">${esc(linha)}</text>`;
-          y += 22;
-          return t;
-        })
-        .join("\n        ");
-      return `<rect x="${x}" y="${boxTopY}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="${fill}"/>
-        ${labelLine}
-        ${linhasSkills}`;
+  const ramos = cards
+    .map((c) => {
+      const x1 = orbX + orbR;
+      const cp = x1 + (cardX - 16 - x1) * 0.55;
+      return `<path d="M ${x1} ${orbY} C ${cp} ${orbY}, ${cp} ${c.centro}, ${cardX - 16} ${c.centro}" fill="none" stroke="#DCC996" stroke-width="2.5" stroke-linecap="round"/>`;
     })
     .join("\n      ");
 
-  const viewBoxHeight = boxTopY + boxHeight + 20;
+  const caixas = cards
+    .map((c, i) => {
+      const fill = fills[i % fills.length];
+      const textoX = cardX + 34;
+      const linhasSkills = c.linhas
+        .map(
+          (linha, li) =>
+            `<text x="${textoX}" y="${c.y + 48 + li * 23}" font-family="Poppins" font-size="13" fill="#FFFDEE">${esc(linha)}</text>`
+        )
+        .join("\n        ");
+      return `<g>
+        <rect x="${cardX}" y="${c.y}" width="${cardW}" height="${c.altura}" rx="26" fill="${fill}"/>
+        <circle cx="${cardX}" cy="${c.centro}" r="15" fill="#F0A78B"/>
+        <circle cx="${cardX}" cy="${c.centro}" r="6" fill="${fill}"/>
+        <text x="${textoX}" y="${c.y + 26}" font-family="JetBrains Mono" font-size="10" letter-spacing="2.5" fill="#F0A78B">${esc(c.label.toUpperCase())}</text>
+        ${linhasSkills}
+      </g>`;
+    })
+    .join("\n      ");
 
-  return `<svg viewBox="0 0 ${largura} ${viewBoxHeight}" width="100%" aria-label="Diagrama da coordenadora-central">
-      <circle cx="${centroX}" cy="${centroY}" r="58" fill="#D97757"/>
-      <circle cx="${centroX + 38}" cy="${centroY - 34}" r="8" fill="#650022"/>
-      <text x="${centroX}" y="${centroY - 5}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="17" fill="#FFFDEE">coordenadora</text>
-      <text x="${centroX}" y="${centroY + 16}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="17" fill="#FFFDEE">central</text>
-      ${linhas}
-      <g font-family="Poppins" font-size="13">
+  return `<svg viewBox="0 0 ${largura} ${alturaTotal}" width="100%" aria-label="Mapa do kit: a coordenadora-central no centro e as 14 skills agrupadas por funcao">
+      ${ramos}
+      <circle cx="${orbX}" cy="${orbY}" r="${orbR}" fill="#D97757"/>
+      <circle cx="${orbX + 54}" cy="${orbY - 50}" r="11" fill="#650022"/>
+      <text x="${orbX}" y="${orbY - 6}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="20" fill="#FFFDEE">coordenadora</text>
+      <text x="${orbX}" y="${orbY + 20}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="20" fill="#FFFDEE">central</text>
+      <text x="${orbX}" y="${orbY + orbR + 26}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" letter-spacing="2.5" fill="#5C3B2E">VOCE FALA COM ELA</text>
       ${caixas}
-      </g>
     </svg>`;
 }
 
@@ -359,11 +359,11 @@ export function renderHome(meta, skills) {
     <div class="install-card">
       <span class="mono">Claude.ai · Cowork</span>
       <h3>Upload da skill</h3>
-      <div class="step"><span class="step-n">01</span><p>Baixe o arquivo <b>.skill</b> na página da skill (ou o kit completo).</p><img src="/static/img/passo-1.png" alt="Passo 1: Página da skill mostrando o botão de download do arquivo .skill"/></div>
-      <div class="step"><span class="step-n">02</span><p>No Claude, abra <b>Configurações › Capacidades › Criar habilidades</b>.</p><img src="/static/img/passo-2.png" alt="Passo 2: Menu do Claude com Configurações selecionadas, mostrando a opção Capacidades › Criar habilidades"/></div>
-      <div class="step"><span class="step-n">03</span><p>Clique em <b>Fazer upload de uma habilidade</b> e selecione o arquivo.</p><img src="/static/img/passo-3.png" alt="Passo 3: Interface de upload no Claude com o botão 'Fazer upload de uma habilidade' e seletor de arquivo"/></div>
-      <div class="step"><span class="step-n">04</span><p>Comece qualquer conversa chamando a <b>coordenadora-central</b>.</p><img src="/static/img/passo-4.png" alt="Passo 4: Conversa no Claude com a coordenadora-central chamada e respondendo"/></div>
-      <div class="step"><span class="step-n">05</span><p>A skill está pronta! Use o comando indicado para ativar o squad completo.</p><img src="/static/img/passo-5.png" alt="Passo 5: Interface do Claude mostrando a skill coordenadora-central ativa e pronta para uso"/></div>
+      <div class="step"><span class="step-n">01</span><div class="step-body"><p>Baixe o arquivo <b>.skill</b> na página da skill (ou o kit completo).</p><img src="/static/img/passo-1.png" alt="Passo 1: Página da skill mostrando o botão de download do arquivo .skill"/></div></div>
+      <div class="step"><span class="step-n">02</span><div class="step-body"><p>No Claude, abra <b>Configurações › Capacidades › Criar habilidades</b>.</p><img src="/static/img/passo-2.png" alt="Passo 2: Menu do Claude com Configurações selecionadas, mostrando a opção Capacidades › Criar habilidades"/></div></div>
+      <div class="step"><span class="step-n">03</span><div class="step-body"><p>Clique em <b>Fazer upload de uma habilidade</b> e selecione o arquivo.</p><img src="/static/img/passo-3.png" alt="Passo 3: Interface de upload no Claude com o botão 'Fazer upload de uma habilidade' e seletor de arquivo"/></div></div>
+      <div class="step"><span class="step-n">04</span><div class="step-body"><p>Comece qualquer conversa chamando a <b>coordenadora-central</b>.</p><img src="/static/img/passo-4.png" alt="Passo 4: Conversa no Claude com a coordenadora-central chamada e respondendo"/></div></div>
+      <div class="step"><span class="step-n">05</span><div class="step-body"><p>A skill está pronta! Use o comando indicado para ativar o squad completo.</p><img src="/static/img/passo-5.png" alt="Passo 5: Interface do Claude mostrando a skill coordenadora-central ativa e pronta para uso"/></div></div>
     </div>
     <div class="install-card">
       <span class="mono">Claude Code</span>
