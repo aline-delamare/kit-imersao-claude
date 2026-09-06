@@ -1,7 +1,7 @@
 /* ===================================================================
    Kit Imersão Claude 2.0 · base.css
    Tokens, fontes self-hosted e componentes comuns às 4 páginas do site
-   (home, página de skill, fluxo, senha). Deriva dos mockups aprovados
+   (home, página de skill, senha). Deriva dos mockups aprovados
    em 05/09/2026: home.html, skill-page.html, senha.html.
    Paleta: SOMENTE as 7 cores do brand book v3.0 (mais rgba delas).
    =================================================================== */
@@ -217,28 +217,6 @@ footer{background:var(--offwhite);border-top:1px solid rgba(56,35,21,.12);paddin
 .rel-card .mono{font-size:9px;color:var(--coral);display:block;margin-bottom:10px}
 .rel-card h4{font-family:'Libre Baskerville',serif;font-size:17px;margin-bottom:8px}
 .rel-card p{font-size:13px;line-height:1.6;color:var(--medio)}
-
-/* ---------- FLUXO ---------- */
-.fluxo-hero{background:var(--offwhite);padding:64px 0 40px}
-.fluxo-hero h1{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(32px,4.5vw,48px);max-width:22ch}
-.fluxo-hero h1 em{font-style:italic;font-weight:400;color:var(--coral)}
-.fluxo-hero p{margin-top:16px;max-width:58ch;font-size:16px;line-height:1.7;color:var(--medio)}
-.jornada{padding:72px 0}
-.jornada h2{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(24px,3vw,34px);margin-bottom:28px}
-.pills{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
-.pill{display:inline-block;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;background:var(--offwhite);color:var(--marrom)}
-.pill-arrow{font-family:'JetBrains Mono',monospace;font-size:14px;opacity:.75}
-.pill-ou{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;opacity:.75}
-.jornada-vinho{background:var(--vinho);color:var(--offwhite)}
-.jornada-vinho .pill{background:var(--offwhite);color:var(--vinho)}
-.jornada-off{background:var(--offwhite);color:var(--marrom)}
-.jornada-off .pill{background:var(--bege);color:var(--marrom)}
-.jornada-bege{background:var(--bege);color:var(--marrom)}
-.jornada-bege .pill{background:var(--offwhite);color:var(--marrom)}
-.jornada-marrom{background:var(--marrom);color:var(--offwhite)}
-.jornada-marrom .pill{background:var(--pessego);color:var(--marrom)}
-.jornada-pessego{background:var(--pessego);color:var(--marrom)}
-.jornada-pessego .pill{background:var(--offwhite);color:var(--marrom)}
 
 /* ---------- SENHA ---------- */
 .gate-body{

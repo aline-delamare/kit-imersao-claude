@@ -1,29 +1,200 @@
 {
-  "grupos": { "comecar": "Começar aqui", "pesquisa": "Pesquisa", "criacao": "Criação", "publicacao": "Publicação", "analise": "Análise" },
-  "ordem_instalacao": ["coordenadora-central", "configurar-marca"],
-  "kit_minimo": ["coordenadora-central", "configurar-marca", "redatora-copy", "estrategista-calendario"],
-  "jornadas": [
-    { "nome": "Primeiro uso", "skills": ["configurar-marca"] },
-    { "nome": "Semana de conteúdo", "skills": ["pesquisadora-tendencias", "analista-contexto-conta", "cacadora-viral", "analisadora-concorrentes", "estrategista-calendario", "adaptadora-ganchos", "redatora-copy", "publicadora-notion", "editora-canva"] },
-    { "nome": "Criar um post agora", "skills": ["redatora-copy", "publicadora-notion", "editora-canva"] },
-    { "nome": "Diagnosticar o perfil", "escolha": ["analise-perfil-insta", "analisadora-perfil-proprio"], "skills": ["diagnosticadora-estrategica"] },
-    { "nome": "Espiar concorrentes", "skills": ["coletora-instagram", "analisadora-concorrentes", "adaptadora-ganchos"] }
+  "grupos": {
+    "comecar": "Começar aqui",
+    "pesquisa": "Pesquisa",
+    "criacao": "Criação",
+    "publicacao": "Publicação",
+    "analise": "Análise"
+  },
+  "ordem_instalacao": [
+    "coordenadora-central",
+    "configurar-marca"
+  ],
+  "kit_minimo": [
+    "coordenadora-central",
+    "configurar-marca",
+    "redatora-copy",
+    "estrategista-calendario"
   ],
   "skills": [
-    { "nome": "coordenadora-central", "grupo": "comecar", "resumo": "A porta de entrada. Entende o que você precisa e conduz o squad inteiro, etapa por etapa.", "config": "Pressupõe as demais skills instaladas (ela coordena, não substitui).", "antes": [], "depois": ["configurar-marca"] },
-    { "nome": "configurar-marca", "grupo": "comecar", "resumo": "Cria o seu contexto de marca, o documento que dá o tom para todas as outras.", "config": "Nenhum pré-requisito. É o ponto de partida.", "antes": ["coordenadora-central"], "depois": ["analisadora-perfil-proprio", "estrategista-calendario"] },
-    { "nome": "pesquisadora-tendencias", "grupo": "pesquisa", "resumo": "O que está em alta no seu nicho nos últimos sete dias.", "config": "", "antes": ["configurar-marca"], "depois": ["estrategista-calendario"] },
-    { "nome": "cacadora-viral", "grupo": "pesquisa", "resumo": "Garimpa temas quentes e padrões dos posts que estão funcionando.", "config": "", "antes": ["configurar-marca"], "depois": ["adaptadora-ganchos"] },
-    { "nome": "analisadora-concorrentes", "grupo": "pesquisa", "resumo": "Lê o que os concorrentes postam e aponta os espaços que você pode ocupar.", "config": "Lista de perfis concorrentes (ou a skill busca com você).", "antes": ["coletora-instagram"], "depois": ["estrategista-calendario"] },
-    { "nome": "coletora-instagram", "grupo": "pesquisa", "resumo": "Reúne posts de qualquer perfil a partir das suas capturas de tela (ou coleta automática quando disponível).", "config": "", "antes": [], "depois": ["adaptadora-ganchos", "analisadora-perfil-proprio"] },
-    { "nome": "analista-contexto-conta", "grupo": "pesquisa", "resumo": "Mapeia seus pilares ativos e o que evitar repetir.", "config": "", "antes": ["configurar-marca"], "depois": ["estrategista-calendario", "diagnosticadora-estrategica"] },
-    { "nome": "estrategista-calendario", "grupo": "criacao", "resumo": "Monta o calendário da semana na frequência que você aguenta manter.", "config": "", "antes": ["pesquisadora-tendencias", "analista-contexto-conta"], "depois": ["redatora-copy"] },
-    { "nome": "adaptadora-ganchos", "grupo": "criacao", "resumo": "Transforma ganchos de referência em versões com a sua voz.", "config": "", "antes": ["coletora-instagram"], "depois": ["redatora-copy"] },
-    { "nome": "redatora-copy", "grupo": "criacao", "resumo": "Escreve carrossel, reel e legenda no seu tom, pronto para publicar.", "config": "", "antes": ["estrategista-calendario", "adaptadora-ganchos"], "depois": ["publicadora-notion", "editora-canva"] },
-    { "nome": "publicadora-notion", "grupo": "publicacao", "resumo": "Salva o copy aprovado no seu calendário editorial.", "config": "Conector do Notion ou planilha (opcional: sem eles, entrega tabela no chat).", "antes": ["redatora-copy"], "depois": ["editora-canva"] },
-    { "nome": "editora-canva", "grupo": "publicacao", "resumo": "Aplica o copy no seu template do Canva, slide a slide.", "config": "Conector do Canva e link do template (opcional: sem eles, entrega o texto formatado).", "antes": ["publicadora-notion"], "depois": [] },
-    { "nome": "analisadora-perfil-proprio", "grupo": "analise", "resumo": "Ranqueia seus posts recentes: os 5 melhores, os 5 piores e os padrões, direto no chat.", "config": "Capturas de tela ou export do Instagram Insights (coleta automática quando disponível).", "antes": ["coletora-instagram"], "depois": ["diagnosticadora-estrategica"] },
-    { "nome": "analise-perfil-insta", "grupo": "analise", "resumo": "Análise profunda do perfil com relatório completo em seis seções.", "config": "Capturas de tela ou export do Instagram Insights (coleta automática quando disponível).", "antes": [], "depois": ["diagnosticadora-estrategica"] },
-    { "nome": "diagnosticadora-estrategica", "grupo": "analise", "resumo": "Cruza as análises e entrega fase atual, gargalos e prioridades.", "config": "", "antes": ["analisadora-perfil-proprio", "analista-contexto-conta"], "depois": ["estrategista-calendario"] }
+    {
+      "nome": "coordenadora-central",
+      "grupo": "comecar",
+      "resumo": "A porta de entrada. Entende o que você precisa e conduz o squad inteiro, etapa por etapa.",
+      "config": "Pressupõe as demais skills instaladas (ela coordena, não substitui).",
+      "antes": [],
+      "depois": [
+        "configurar-marca"
+      ]
+    },
+    {
+      "nome": "configurar-marca",
+      "grupo": "comecar",
+      "resumo": "Cria o seu contexto de marca, o documento que dá o tom para todas as outras.",
+      "config": "Nenhum pré-requisito. É o ponto de partida.",
+      "antes": [
+        "coordenadora-central"
+      ],
+      "depois": [
+        "analisadora-perfil-proprio",
+        "estrategista-calendario"
+      ]
+    },
+    {
+      "nome": "pesquisadora-tendencias",
+      "grupo": "pesquisa",
+      "resumo": "O que está em alta no seu nicho nos últimos sete dias.",
+      "config": "",
+      "antes": [
+        "configurar-marca"
+      ],
+      "depois": [
+        "estrategista-calendario"
+      ]
+    },
+    {
+      "nome": "cacadora-viral",
+      "grupo": "pesquisa",
+      "resumo": "Garimpa temas quentes e padrões dos posts que estão funcionando.",
+      "config": "",
+      "antes": [
+        "configurar-marca"
+      ],
+      "depois": [
+        "adaptadora-ganchos"
+      ]
+    },
+    {
+      "nome": "analisadora-concorrentes",
+      "grupo": "pesquisa",
+      "resumo": "Lê o que os concorrentes postam e aponta os espaços que você pode ocupar.",
+      "config": "Lista de perfis concorrentes (ou a skill busca com você).",
+      "antes": [
+        "coletora-instagram"
+      ],
+      "depois": [
+        "estrategista-calendario"
+      ]
+    },
+    {
+      "nome": "coletora-instagram",
+      "grupo": "pesquisa",
+      "resumo": "Reúne posts de qualquer perfil a partir das suas capturas de tela (ou coleta automática quando disponível).",
+      "config": "",
+      "antes": [],
+      "depois": [
+        "adaptadora-ganchos",
+        "analisadora-perfil-proprio"
+      ]
+    },
+    {
+      "nome": "analista-contexto-conta",
+      "grupo": "pesquisa",
+      "resumo": "Mapeia seus pilares ativos e o que evitar repetir.",
+      "config": "",
+      "antes": [
+        "configurar-marca"
+      ],
+      "depois": [
+        "estrategista-calendario",
+        "diagnosticadora-estrategica"
+      ]
+    },
+    {
+      "nome": "estrategista-calendario",
+      "grupo": "criacao",
+      "resumo": "Monta o calendário da semana na frequência que você aguenta manter.",
+      "config": "",
+      "antes": [
+        "pesquisadora-tendencias",
+        "analista-contexto-conta"
+      ],
+      "depois": [
+        "redatora-copy"
+      ]
+    },
+    {
+      "nome": "adaptadora-ganchos",
+      "grupo": "criacao",
+      "resumo": "Transforma ganchos de referência em versões com a sua voz.",
+      "config": "",
+      "antes": [
+        "coletora-instagram"
+      ],
+      "depois": [
+        "redatora-copy"
+      ]
+    },
+    {
+      "nome": "redatora-copy",
+      "grupo": "criacao",
+      "resumo": "Escreve carrossel, reel e legenda no seu tom, pronto para publicar.",
+      "config": "",
+      "antes": [
+        "estrategista-calendario",
+        "adaptadora-ganchos"
+      ],
+      "depois": [
+        "publicadora-notion",
+        "editora-canva"
+      ]
+    },
+    {
+      "nome": "publicadora-notion",
+      "grupo": "publicacao",
+      "resumo": "Salva o copy aprovado no seu calendário editorial.",
+      "config": "Conector do Notion ou planilha (opcional: sem eles, entrega tabela no chat).",
+      "antes": [
+        "redatora-copy"
+      ],
+      "depois": [
+        "editora-canva"
+      ]
+    },
+    {
+      "nome": "editora-canva",
+      "grupo": "publicacao",
+      "resumo": "Aplica o copy no seu template do Canva, slide a slide.",
+      "config": "Conector do Canva e link do template (opcional: sem eles, entrega o texto formatado).",
+      "antes": [
+        "publicadora-notion"
+      ],
+      "depois": []
+    },
+    {
+      "nome": "analisadora-perfil-proprio",
+      "grupo": "analise",
+      "resumo": "Ranqueia seus posts recentes: os 5 melhores, os 5 piores e os padrões, direto no chat.",
+      "config": "Capturas de tela ou export do Instagram Insights (coleta automática quando disponível).",
+      "antes": [
+        "coletora-instagram"
+      ],
+      "depois": [
+        "diagnosticadora-estrategica"
+      ]
+    },
+    {
+      "nome": "analise-perfil-insta",
+      "grupo": "analise",
+      "resumo": "Análise profunda do perfil com relatório completo em seis seções.",
+      "config": "Capturas de tela ou export do Instagram Insights (coleta automática quando disponível).",
+      "antes": [],
+      "depois": [
+        "diagnosticadora-estrategica"
+      ]
+    },
+    {
+      "nome": "diagnosticadora-estrategica",
+      "grupo": "analise",
+      "resumo": "Cruza as análises e entrega fase atual, gargalos e prioridades.",
+      "config": "",
+      "antes": [
+        "analisadora-perfil-proprio",
+        "analista-contexto-conta"
+      ],
+      "depois": [
+        "estrategista-calendario"
+      ]
+    }
   ]
 }

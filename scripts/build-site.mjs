@@ -17,7 +17,6 @@ import { join, dirname } from "node:path";
 import {
   renderHome,
   renderSkill,
-  renderFluxo,
   renderSenha,
 } from "../site/templates/paginas.mjs";
 
@@ -103,7 +102,6 @@ export function construir({ meta, skills }) {
   const paginas = new Map();
 
   paginas.set("index.html", renderHome(meta, skills));
-  paginas.set("fluxo.html", renderFluxo(meta));
   paginas.set("senha.html", renderSenha());
 
   for (const entrada of meta.skills) {

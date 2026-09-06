@@ -6,9 +6,9 @@ import { readFileSync } from "node:fs";
 const meta = JSON.parse(readFileSync("site/meta/skills-meta.json", "utf8"));
 const skills = lerSkills("skills");
 
-test("gera 18 páginas (home + 15 skills + fluxo + senha)", () => {
+test("gera 17 páginas (home + 15 skills + senha)", () => {
   const paginas = construir({ meta, skills });
-  assert.equal(paginas.size, 18);
+  assert.equal(paginas.size, 17);
 });
 test("home lista as 15 skills e o link do kit completo", () => {
   const home = construir({ meta, skills }).get("index.html");

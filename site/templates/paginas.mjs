@@ -1,5 +1,5 @@
 // Kit Imersão Claude 2.0 : templates do site
-// Exporta renderHome, renderSkill, renderFluxo, renderSenha.
+// Exporta renderHome, renderSkill, renderSenha.
 // Cada função retorna uma string HTML completa começando em <!DOCTYPE html>.
 // Todo o markup deriva dos mockups aprovados (home.html, skill-page.html,
 // senha.html) e usa exclusivamente os tokens de base.css (as 7 cores do
@@ -10,7 +10,6 @@ const REPO_ZIP = `${REPO_URL}/archive/refs/heads/main.zip`;
 const AVISO_CODE = "Este bloco é para o Claude Code. No claude.ai, use o caminho de upload ao lado.";
 const GROUP_ORDER = ["comecar", "pesquisa", "criacao", "publicacao", "analise"];
 const CARD_COLORS = ["c-off", "c-pessego", "c-medio", "c-bege", "c-vinho"];
-const JORNADA_BG = ["jornada-vinho", "jornada-off", "jornada-bege", "jornada-marrom", "jornada-pessego"];
 
 // ---------------------------------------------------------------------
 // Utilidades
@@ -69,7 +68,7 @@ function navHome() {
   return `<nav><div class="wrap nav-inner">
   <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
   <div class="nav-links">
-    <a href="/index.html#instalacao">Instalação</a><a href="/index.html#skills">Skills</a><a href="/fluxo.html">Fluxo da semana</a>
+    <a href="/index.html#instalacao">Instalação</a><a href="/index.html#skills">Skills</a>
     <a class="nav-cta" href="/index.html#download">Baixar o kit</a>
   </div>
 </div></nav>`;
@@ -98,7 +97,7 @@ function footerSimples() {
 // ---------------------------------------------------------------------
 // Diagrama SVG da coordenadora-central (home): derivado de meta, nada
 // hard-coded: grupos, skills por grupo e número de setas vêm de
-// meta.grupos / meta.skills / meta.jornadas.
+// meta.grupos / meta.skills.
 // ---------------------------------------------------------------------
 
 function quebrarLinhas(texto, maxChars) {
@@ -531,59 +530,6 @@ ${footerSimples()}
 ${scriptCopiar()}`;
 
   return documentShell({ title: `${entrada.nome} · Kit de Skills`, body });
-}
-
-// ---------------------------------------------------------------------
-// renderFluxo
-// ---------------------------------------------------------------------
-
-export function renderFluxo(meta) {
-  function pillFor(nome) {
-    const e = findSkillMeta(meta, nome);
-    if (!e) return `<span class="pill">${esc(nome)}</span>`;
-    return `<a class="pill" href="${skillHref(nome)}">${esc(nome)}</a>`;
-  }
-
-  const secoes = meta.jornadas
-    .map((jornada, i) => {
-      const bg = JORNADA_BG[i % JORNADA_BG.length];
-      const partes = [];
-      if (jornada.escolha && jornada.escolha.length) {
-        jornada.escolha.forEach((nome, idx) => {
-          if (idx > 0) partes.push(`<span class="pill-ou">ou</span>`);
-          partes.push(pillFor(nome));
-        });
-        if (jornada.skills && jornada.skills.length) {
-          partes.push(`<span class="pill-arrow">&rarr;</span>`);
-        }
-      }
-      (jornada.skills || []).forEach((nome, idx) => {
-        if (idx > 0) partes.push(`<span class="pill-arrow">&rarr;</span>`);
-        partes.push(pillFor(nome));
-      });
-
-      return `<section class="jornada ${bg}"><div class="wrap">
-  <h2>${i + 1}. ${esc(jornada.nome)}</h2>
-  <div class="pills">
-    ${partes.join("\n    ")}
-  </div>
-</div></section>`;
-    })
-    .join("\n\n");
-
-  const body = `${navHome()}
-
-<header class="fluxo-hero"><div class="wrap">
-  <span class="mono">Imersão Claude · 12.09 · 13.09</span>
-  <h1>As <em>cinco jornadas</em> do squad.</h1>
-  <p>Cada jornada é uma sequência de skills que já sabe em que ordem trabalhar. Comece por qualquer uma delas ou peça para a coordenadora-central escolher por você.</p>
-</div></header>
-
-${secoes}
-
-${footerHome()}`;
-
-  return documentShell({ title: "Fluxo da semana · Kit de Skills", body });
 }
 
 // ---------------------------------------------------------------------
