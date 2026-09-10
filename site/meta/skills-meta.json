@@ -42,13 +42,13 @@
           "Se você ainda não tem contexto de marca, ela propõe criar na primeira fase, com a configurar-marca.",
           "A sua aprovação a cada entrega, antes de seguir para a próxima etapa."
         ],
-        "exemplo": "Kit da Imersão Claude 2.0 carregado. Sou a Lia, a coordenadora desta sessão.\nContexto de marca: ainda não encontrado\nSe você já tem o seu contexto de marca, cole aqui. Se ainda não tem, a gente cria na primeira fase.\n\n────────────────────────────────────────\n✅ KIT IMERSÃO CLAUDE 2.0 ATIVO · Lia no comando\n────────────────────────────────────────\n\nVocê fala só comigo. Eu entendo o que você precisa, pergunto o que faltar,\nchamo a skill que resolve e volto para a gente decidir o próximo passo.\n\n→ COMEÇAR AQUI · contexto de marca · voz e pilares\n→ PESQUISA · tendências · posts virais · concorrentes · coleta de perfis · momento da conta\n→ CRIAÇÃO · calendário · ganchos · copy\n→ PUBLICAÇÃO · salvar no Notion · arte no Canva\n→ ANÁLISE · leitura do perfil · relatório completo · prioridades\n\nEu pergunto o que faltar antes de fazer · nada sai sem a sua aprovação.\n\nO que a gente vai fazer?"
+        "exemplo": "Kit da Imersão Claude 2.0 carregado. Sou a Lia, a coordenadora desta sessão.\nContexto de marca: ainda não encontrado\nSe você já tem o seu contexto de marca, cole aqui. Se ainda não tem, a gente cria na primeira fase.\n\n────────────────────────────────────────\n✅ KIT IMERSÃO CLAUDE 2.0 ATIVO · Lia no comando\n────────────────────────────────────────\n\nVocê fala só comigo. Eu entendo o que você precisa, pergunto o que faltar,\nchamo a skill que resolve e volto para a gente decidir o próximo passo.\n\n→ COMEÇAR AQUI · contexto de marca · voz e pilares\n→ PESQUISA · tendências · posts virais · concorrentes · coleta de perfis · momento da conta\n→ CRIAÇÃO · calendário · ganchos · copy\n→ PUBLICAÇÃO · salvar no Notion · arte do carrossel\n→ ANÁLISE · leitura do perfil · relatório completo · prioridades\n\nEu pergunto o que faltar antes de fazer · nada sai sem a sua aprovação.\n\nO que a gente vai fazer?"
       }
     },
     {
       "nome": "configurar-marca",
       "grupo": "comecar",
-      "resumo": "Cria o seu contexto de marca, o documento que dá o tom para todas as outras.",
+      "resumo": "Cria o seu contexto de marca, o documento que dá o tom e o visual (cores e fontes) para todas as outras.",
       "config": "Nenhum pré-requisito. É o ponto de partida.",
       "antes": [
         "coordenadora-central"
@@ -172,8 +172,8 @@
     {
       "nome": "editora-canva",
       "grupo": "publicacao",
-      "resumo": "Aplica o copy no seu template do Canva, slide a slide.",
-      "config": "Conector do Canva e link do template (opcional: sem eles, entrega o texto formatado).",
+      "resumo": "Transforma o copy em carrossel pronto: slides em HTML para baixar em PNG ou aplicados no seu template do Canva.",
+      "config": "Nenhum pré-requisito para montar em HTML. Para o Canva: conector conectado e link do template (sem o conector, ela entrega o texto para colar).",
       "antes": [
         "publicadora-notion"
       ],

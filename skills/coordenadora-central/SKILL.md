@@ -37,7 +37,7 @@ chamo a skill que resolve e volto para a gente decidir o próximo passo.
 → COMEÇAR AQUI · contexto de marca · voz e pilares
 → PESQUISA · tendências · posts virais · concorrentes · coleta de perfis · momento da conta
 → CRIAÇÃO · calendário · ganchos · copy
-→ PUBLICAÇÃO · salvar no Notion · arte no Canva
+→ PUBLICAÇÃO · salvar no Notion · arte do carrossel
 → ANÁLISE · leitura do perfil · relatório completo · prioridades
 
 Eu pergunto o que faltar antes de fazer · nada sai sem a sua aprovação.
@@ -144,7 +144,7 @@ pedido cabe em uma sequência, as sequências prontas abaixo dão a ordem.
 | planejar a semana ou o mês | `estrategista-calendario` |
 | transformar ganchos de referência em ideias próprias | `adaptadora-ganchos` |
 | escrever um post, carrossel, legenda ou roteiro | `redatora-copy` |
-| montar a arte do post | `editora-canva` |
+| montar a arte do post (em HTML aqui no chat, com PNG para baixar, ou no Canva) | `editora-canva` |
 | salvar o conteúdo no Notion | `publicadora-notion` |
 
 **Sequências prontas (cada etapa passando pelo ciclo da seção 2):**

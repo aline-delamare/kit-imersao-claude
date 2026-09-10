@@ -2,7 +2,8 @@
 name: configurar-marca
 description: |
   Monta o contexto de marca do criador: o documento central com tom de voz,
-  público e produto que todas as outras skills do kit usam para escrever certo.
+  público, produto e identidade visual (cores e fontes) que todas as outras
+  skills do kit usam para escrever e montar a arte certo.
   É o primeiro passo do kit, antes de qualquer outra skill. Use quando a pessoa
   estiver começando, pedir para "configurar minha marca", "criar meu contexto",
   ou quando qualquer skill notar que o contexto de marca ainda não existe.
@@ -24,7 +25,7 @@ Um documento de contexto de marca, organizado nas seções abaixo, que o criador
 
 ---
 
-## Processo — 4 blocos de perguntas
+## Processo — 5 blocos de perguntas
 
 Pergunte **um bloco por vez**. Espere as respostas do bloco inteiro antes de seguir para o próximo. Se uma resposta vier vaga, aprofunde antes de avançar — não invente por conta própria o que a pessoa não disse.
 
@@ -57,11 +58,20 @@ Pergunte **um bloco por vez**. Espere as respostas do bloco inteiro antes de seg
 > 4. Com que frequência você consegue postar por semana, e qual formato prioriza? (ex: 3x por semana, foco em carrossel e reels curtos)
 > 5. Tem algum perfil ou criador, mesmo fora do seu nicho, que você admira pela forma de se comunicar? O que chama sua atenção no estilo dessa pessoa?"
 
+### Bloco 5 — Sua identidade visual
+
+> "Por último, o visual da sua marca, que a `editora-canva` usa para montar a arte dos posts:
+> 1. Quais cores você usa, ou gostaria de usar, na sua marca? Duas ou três, pelo nome ou pelo código (ex: verde-oliva e bege, ou #2F4F4F). Se ainda não tem, descreva a sensação que quer passar (ex: acolhedora e clara, sóbria e elegante) e eu sugiro uma paleta para você aprovar.
+> 2. Quais fontes você usa, ou gostaria de usar, nos títulos e no texto? Se não souber, descreva o estilo (ex: elegante com serifa, moderna e limpa) e eu sugiro duas fontes gratuitas do Google Fonts.
+> 3. Qual é o seu @ do Instagram?"
+
+Quando a pessoa der as cores pelo nome, registre também um código aproximado (ex: verde-oliva #6B7B3A) e mostre para ela confirmar. Só sugira paleta ou fonte quando a pessoa pedir ou disser que ainda não tem; nunca escolha no lugar dela.
+
 ---
 
 ## Gerar o documento
 
-Com as respostas dos 4 blocos, monte o contexto de marca nesta estrutura:
+Com as respostas dos 5 blocos, monte o contexto de marca nesta estrutura:
 
 ```markdown
 # Contexto de Marca — [nome do criador]
@@ -97,6 +107,12 @@ Formato prioritário: [ex: carrossel + reels curtos]
 
 ## Referências de comunicação
 [criadores ou estilos admirados e por quê]
+
+## Identidade visual
+Cores: [cor principal (#código)], [cor de apoio (#código)], [cor de destaque (#código)]
+Fonte dos títulos: [nome da fonte]
+Fonte do texto: [nome da fonte]
+Instagram: [@perfil]
 ```
 
 O documento final precisa soar como o próprio criador escreveu — não como um modelo genérico preenchido.
@@ -168,7 +184,7 @@ Só trate o contexto como salvo depois que a pessoa confirmar que colou.
 
 ## Regras
 
-- Um bloco de perguntas por vez — nunca pule direto para o documento sem ouvir os 4 blocos.
+- Um bloco de perguntas por vez — nunca pule direto para o documento sem ouvir os 5 blocos.
 - Se a resposta for vaga, aprofunde com uma pergunta de acompanhamento antes de seguir.
 - Não sugira respostas antes de ouvir o criador — deixe que a pessoa defina o próprio estilo.
 - Trate o criador sempre em gênero neutro, do início ao fim da conversa.
