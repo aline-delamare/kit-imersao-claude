@@ -21,12 +21,29 @@
       "nome": "coordenadora-central",
       "grupo": "comecar",
       "resumo": "A Lia é a porta de entrada: entende o que você precisa, pergunta o que falta, chama a skill certa e volta para decidir o próximo passo com você.",
-      "config": "Pressupõe as demais skills instaladas (ela coordena, não substitui).",
+      "config": "Funciona melhor com as outras skills instaladas: ela coordena, não substitui. Se faltar alguma, ela indica a página do site para você baixar.",
       "antes": [],
       "depois": [
         "configurar-marca"
       ],
-      "apelido": "Lia"
+      "apelido": "Lia",
+      "pagina": {
+        "chamada": "A Lia é a porta de entrada do kit. Você fala só com ela: ela entende o que você precisa, chama a skill certa e volta para decidir o próximo passo com você.",
+        "oQueFaz": "A Lia coordena as outras 14 skills do kit. Você diz o que quer fazer, ela verifica o que você já trouxe (contexto de marca, textos, arquivos), pergunta só o que falta e chama a skill que resolve, sempre pelo nome. Quando a skill termina, a Lia confere a entrega, pede a sua aprovação e propõe o próximo passo. Nenhuma etapa avança sem você.",
+        "quandoUsar": [
+          "Sempre que você não souber qual skill usar: escreva \"chama a Lia\" e diga o que precisa.",
+          "Quando o pedido ainda é aberto: \"por onde eu começo?\", \"quero postar mais\", \"me ajuda com o meu Instagram\".",
+          "Para rodar a semana de conteúdo completa, da pesquisa ao post pronto, uma etapa de cada vez.",
+          "Para descobrir qual skill resolve uma tarefa específica. Ela responde com o nome da skill e oferece conduzir."
+        ],
+        "oQuePergunta": [
+          "O que a gente vai fazer? Você responde do seu jeito, sem precisar escolher skill.",
+          "Só o que falta para a skill trabalhar: no máximo três perguntas por vez, cada uma com o motivo.",
+          "Se você ainda não tem contexto de marca, ela propõe criar na primeira fase, com a configurar-marca.",
+          "A sua aprovação a cada entrega, antes de seguir para a próxima etapa."
+        ],
+        "exemplo": "Kit da Imersão Claude 2.0 carregado. Sou a Lia, a coordenadora desta sessão.\nContexto de marca: ainda não encontrado\nSe você já tem o seu contexto de marca, cole aqui. Se ainda não tem, a gente cria na primeira fase.\n\n────────────────────────────────────────\n✅ KIT IMERSÃO CLAUDE 2.0 ATIVO · Lia no comando\n────────────────────────────────────────\n\nVocê fala só comigo. Eu entendo o que você precisa, pergunto o que faltar,\nchamo a skill que resolve e volto para a gente decidir o próximo passo.\n\n→ COMEÇAR AQUI · contexto de marca · voz e pilares\n→ PESQUISA · tendências · posts virais · concorrentes · coleta de perfis · momento da conta\n→ CRIAÇÃO · calendário · ganchos · copy\n→ PUBLICAÇÃO · salvar no Notion · arte no Canva\n→ ANÁLISE · leitura do perfil · relatório completo · prioridades\n\nEu pergunto o que faltar antes de fazer · nada sai sem a sua aprovação.\n\nO que a gente vai fazer?"
+      }
     },
     {
       "nome": "configurar-marca",

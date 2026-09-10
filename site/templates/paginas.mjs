@@ -283,11 +283,15 @@ function parseSkillContent(entrada, skill) {
   const { oQueFaz, quandoUsar } = extrairDescricao(skill.description);
   const oQuePergunta = extrairOQuePergunta(skill.corpo || "", entrada);
   const exemplo = extrairExemploSaida(skill.corpo || "");
+  // Textos escritos para o aluno no meta (campo "pagina") têm prioridade sobre
+  // o que é extraído do SKILL.md, que foi escrito para o Claude.
+  const pagina = entrada.pagina || {};
   return {
-    oQueFaz,
-    quandoUsar: quandoUsar.length ? quandoUsar : [skill.description],
-    oQuePergunta,
-    exemplo,
+    chamada: pagina.chamada || oQueFaz,
+    oQueFaz: pagina.oQueFaz || oQueFaz,
+    quandoUsar: pagina.quandoUsar || (quandoUsar.length ? quandoUsar : [skill.description]),
+    oQuePergunta: pagina.oQuePergunta || oQuePergunta,
+    exemplo: pagina.exemplo || exemplo,
   };
 }
 
@@ -481,7 +485,7 @@ export function renderSkill(entrada, skill, meta) {
   <div class="head-grid">
     <div>
       <h1>${esc(entrada.apelido || entrada.nome)}</h1>
-      <p>${esc(conteudo.oQueFaz)}</p>
+      <p>${esc(conteudo.chamada)}</p>
     </div>
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
       <rect x="22" y="18" width="76" height="84" rx="8" stroke="#F0A78B" stroke-width="3"/>
