@@ -84,6 +84,10 @@ máximo estas três perguntas:
   - Só texto e formas feitas em CSS. Nada de imagem vinda de outro site: ela
     bloqueia a exportação.
   - Fontes do Google Fonts, sempre com uma fonte de reserva do sistema.
+  - Nenhum texto dos slides usa espaçamento entre letras (`letter-spacing`) nem
+    conversão automática para maiúsculas (`text-transform`): a html2canvas
+    desenha esses textos errado na exportação (letras separadas, espaço sumindo,
+    como "S LIDE2"). Escreva os rótulos já em maiúsculas no próprio texto.
 - **Botão "Baixar todos em PNG":** usa a biblioteca html2canvas carregada do
   cdnjs (`https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js`).
   Para cada slide: esperar as fontes carregarem (`document.fonts.ready`), copiar o
