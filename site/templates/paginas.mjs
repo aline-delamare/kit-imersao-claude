@@ -100,6 +100,13 @@ function footerSimples() {
 // meta.grupos / meta.skills.
 // ---------------------------------------------------------------------
 
+// Nome de exibição: "Lia · coordenadora-central" quando a skill tem apelido.
+// O nome do arquivo segue visível porque é o nome do download.
+function nomeExibicao(entrada) {
+  if (!entrada) return "";
+  return entrada.apelido ? `${entrada.apelido} · ${entrada.nome}` : entrada.nome;
+}
+
 function quebrarLinhas(texto, maxChars) {
   // Quebra "a · b · c" em linhas de ate maxChars, sem cortar nome no meio.
   const partes = texto.split(" · ");
@@ -130,6 +137,8 @@ function buildDiagramaSVG(meta) {
   const topo = 30;
 
   const grupos = GROUP_ORDER.filter((g) => meta.grupos[g]);
+  const coord = meta.skills.find((s) => s.nome === "coordenadora-central");
+  const apelido = (coord && coord.apelido) || "coordenadora";
   const fills = ["#650022", "#5C3B2E", "#382315"];
 
   const cards = grupos.map((g) => {
@@ -186,12 +195,12 @@ function buildDiagramaSVG(meta) {
     })
     .join("\n      ");
 
-  return `<svg viewBox="0 0 ${largura} ${alturaTotal}" width="100%" aria-label="Mapa do kit: a coordenadora-central no centro e as 14 skills agrupadas por função">
+  return `<svg viewBox="0 0 ${largura} ${alturaTotal}" width="100%" aria-label="Mapa do kit: ${esc(apelido)}, a coordenadora-central, no centro e as 14 skills agrupadas por função">
       ${ramos}
       <circle cx="${orbX}" cy="${orbY}" r="${orbR}" fill="#D97757"/>
       <circle cx="${orbX + 54}" cy="${orbY - 50}" r="11" fill="#650022"/>
-      <text x="${orbX}" y="${orbY - 6}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="20" fill="#FFFDEE">coordenadora</text>
-      <text x="${orbX}" y="${orbY + 20}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="20" fill="#FFFDEE">central</text>
+      <text x="${orbX}" y="${orbY + 8}" text-anchor="middle" font-family="Libre Baskerville" font-style="italic" font-size="38" fill="#FFFDEE">${esc(apelido)}</text>
+      <text x="${orbX}" y="${orbY + 34}" text-anchor="middle" font-family="JetBrains Mono" font-size="9" letter-spacing="2" fill="#FFFDEE">COORDENADORA</text>
       <text x="${orbX}" y="${orbY + orbR + 26}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" letter-spacing="2.5" fill="#5C3B2E">VOCÊ FALA COM ELA</text>
       ${caixas}
     </svg>`;
@@ -292,11 +301,11 @@ export function renderHome(meta, skills) {
   const outrasQtd = totalSkills - kitMinimoQtd;
 
   const fraseOrdem = meta.ordem_instalacao.length
-    ? `Instale primeiro, nesta ordem: ${meta.ordem_instalacao.map((n) => `<b>${esc(n)}</b>`).join(" e depois ")}. As outras ${totalSkills - meta.ordem_instalacao.length} skills podem entrar em qualquer sequência.`
+    ? `Instale primeiro, nesta ordem: ${meta.ordem_instalacao.map((n) => `<b>${esc(nomeExibicao(findSkillMeta(meta, n)) || n)}</b>`).join(" e depois ")}. As outras ${totalSkills - meta.ordem_instalacao.length} skills podem entrar em qualquer sequência.`
     : "Instale as skills na ordem que fizer sentido para você.";
 
   const kitMinimoChips = meta.kit_minimo
-    .map((n) => `<b>${esc(n)}</b>`)
+    .map((n) => `<b>${esc(nomeExibicao(findSkillMeta(meta, n)) || n)}</b>`)
     .join(", ");
 
   const catalogo = GROUP_ORDER.filter((g) => meta.grupos[g])
@@ -308,7 +317,7 @@ export function renderHome(meta, skills) {
           const cor = CARD_COLORS[i % CARD_COLORS.length];
           if (s.nome === "coordenadora-central") {
             return `<a class="card card-hero" href="${skillHref(s.nome)}">
-      <div><h4>${esc(s.nome)}</h4><p>${esc(s.resumo)}</p></div>
+      <div><h4>${esc(nomeExibicao(s))}</h4><p>${esc(s.resumo)}</p></div>
       <span class="btn">Ver skill</span>
     </a>`;
           }
@@ -350,7 +359,7 @@ export function renderHome(meta, skills) {
 
 <section class="diagram"><div class="wrap">
   <h2>Uma skill coordena. <em>As outras executam.</em></h2>
-  <p>A coordenadora-central é a porta de entrada do kit: você diz o que precisa e ela aciona as skills certas, na ordem certa. Não é preciso decorar nada.</p>
+  <p>A Lia (skill coordenadora-central) é a porta de entrada do kit: você diz o que precisa, ela pergunta o que falta, chama a skill certa e volta para decidir o próximo passo com você. Não é preciso decorar nada.</p>
   <div class="diagram-canvas">
     ${buildDiagramaSVG(meta)}
   </div>
@@ -367,11 +376,13 @@ export function renderHome(meta, skills) {
     <div class="install-card">
       <span class="mono">Claude.ai · Cowork</span>
       <h3>Upload da skill</h3>
-      <div class="step"><span class="step-n">01</span><div class="step-body"><p>Baixe o arquivo <b>.skill</b> na página da skill (ou o kit completo).</p><img src="/static/img/passo-1.png" alt="Passo 1: Página da skill mostrando o botão de download do arquivo .skill"/></div></div>
-      <div class="step"><span class="step-n">02</span><div class="step-body"><p>No Claude, abra <b>Configurações › Capacidades › Criar habilidades</b>.</p><img src="/static/img/passo-2.png" alt="Passo 2: Menu do Claude com Configurações selecionadas, mostrando a opção Capacidades › Criar habilidades"/></div></div>
-      <div class="step"><span class="step-n">03</span><div class="step-body"><p>Clique em <b>Fazer upload de uma habilidade</b> e selecione o arquivo.</p><img src="/static/img/passo-3.png" alt="Passo 3: Interface de upload no Claude com o botão 'Fazer upload de uma habilidade' e seletor de arquivo"/></div></div>
-      <div class="step"><span class="step-n">04</span><div class="step-body"><p>Comece qualquer conversa chamando a <b>coordenadora-central</b>.</p><img src="/static/img/passo-4.png" alt="Passo 4: Conversa no Claude com a coordenadora-central chamada e respondendo"/></div></div>
-      <div class="step"><span class="step-n">05</span><div class="step-body"><p>A skill está pronta! Use o comando indicado para ativar o squad completo.</p><img src="/static/img/passo-5.png" alt="Passo 5: Interface do Claude mostrando a skill coordenadora-central ativa e pronta para uso"/></div></div>
+      <div class="step"><span class="step-n">01</span><p>Baixe o arquivo <b>.skill</b> na página da skill (ou o kit completo, logo abaixo).</p></div>
+      <div class="step"><span class="step-n">02</span><div class="step-body"><p>No Claude, abra <b>Personalizar</b> (Customize) na barra lateral.</p><img src="/static/img/passo-1.png" alt="Passo 2: barra lateral do Claude com a opção Customize"/></div></div>
+      <div class="step"><span class="step-n">03</span><div class="step-body"><p>Clique em <b>Criar novas habilidades</b>.</p><img src="/static/img/passo-2.png" alt="Passo 3: tela Personalizar o Claude com o cartão Criar novas habilidades"/></div></div>
+      <div class="step"><span class="step-n">04</span><div class="step-body"><p>Em <b>Habilidades</b>, clique no <b>+</b> (Adicionar habilidade).</p><img src="/static/img/passo-3.png" alt="Passo 4: lista de Habilidades com o botão + Adicionar habilidade em destaque"/></div></div>
+      <div class="step"><span class="step-n">05</span><div class="step-body"><p>Escolha <b>Criar habilidade › Fazer upload de uma habilidade</b>.</p><img src="/static/img/passo-4.png" alt="Passo 5: menu Criar habilidade com a opção Fazer upload de uma habilidade"/></div></div>
+      <div class="step"><span class="step-n">06</span><div class="step-body"><p>Arraste o arquivo <b>.skill</b> para a janela e pronto. Repita para cada skill.</p><img src="/static/img/passo-5.png" alt="Passo 6: janela Fazer upload de habilidade com a área para arrastar o arquivo"/></div></div>
+      <div class="step"><span class="step-n">07</span><p>Abra uma conversa nova e escreva <b>chama a Lia</b>. Ela se apresenta e conduz o resto.</p></div>
     </div>
     <div class="install-card">
       <span class="mono">Claude Code</span>
@@ -444,7 +455,7 @@ export function renderSkill(entrada, skill, meta) {
   function relCard(nome, kicker) {
     const e = findSkillMeta(meta, nome);
     if (!e) return "";
-    return `<a class="rel-card" href="${skillHref(nome)}"><span class="mono">${esc(kicker)}</span><h4>${esc(nome)}</h4><p>${esc(e.resumo)}</p></a>`;
+    return `<a class="rel-card" href="${skillHref(nome)}"><span class="mono">${esc(kicker)}</span><h4>${esc(nomeExibicao(e))}</h4><p>${esc(e.resumo)}</p></a>`;
   }
 
   const relacionadas = [
@@ -466,10 +477,10 @@ export function renderSkill(entrada, skill, meta) {
   const body = `${navSkill()}
 
 <header class="head"><div class="wrap">
-  <span class="mono">${esc(grupoLabel)}${entrada.config ? " · Com configuração" : ""}</span>
+  <span class="mono">${esc(grupoLabel)}${entrada.config ? " · Com configuração" : ""}${entrada.apelido ? ` · skill ${esc(entrada.nome)}` : ""}</span>
   <div class="head-grid">
     <div>
-      <h1>${esc(entrada.nome)}</h1>
+      <h1>${esc(entrada.apelido || entrada.nome)}</h1>
       <p>${esc(conteudo.oQueFaz)}</p>
     </div>
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
@@ -508,7 +519,7 @@ export function renderSkill(entrada, skill, meta) {
   <aside>
     <div class="side-card side-download">
       <h3>Instalar no Claude</h3>
-      <p>Baixe o arquivo e faça o upload em Configurações › Capacidades › Criar habilidades.</p>
+      <p>Baixe o arquivo e faça o upload em Personalizar › Habilidades › + › Fazer upload de uma habilidade.</p>
       <a class="btn btn-coral btn-block" href="/downloads/${esc(entrada.nome)}.skill">Baixar ${esc(entrada.nome)}.skill</a>
     </div>
     <div class="side-card side-code">

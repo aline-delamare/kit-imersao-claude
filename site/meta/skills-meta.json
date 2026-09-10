@@ -20,12 +20,13 @@
     {
       "nome": "coordenadora-central",
       "grupo": "comecar",
-      "resumo": "A porta de entrada. Entende o que você precisa e conduz o squad inteiro, etapa por etapa.",
+      "resumo": "A Lia é a porta de entrada: entende o que você precisa, pergunta o que falta, chama a skill certa e volta para decidir o próximo passo com você.",
       "config": "Pressupõe as demais skills instaladas (ela coordena, não substitui).",
       "antes": [],
       "depois": [
         "configurar-marca"
-      ]
+      ],
+      "apelido": "Lia"
     },
     {
       "nome": "configurar-marca",
