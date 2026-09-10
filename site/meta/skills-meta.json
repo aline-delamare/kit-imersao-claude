@@ -48,8 +48,19 @@
     {
       "nome": "configurar-marca",
       "grupo": "comecar",
-      "resumo": "Cria o seu contexto de marca, o documento que dá o tom e o visual (cores e fontes) para todas as outras.",
-      "config": "Nenhum pré-requisito. É o ponto de partida.",
+      "resumo": "Cria o seu contexto de marca: posicionamento, público, produtos, voz, metas e visual, no documento que todas as outras skills usam.",
+      "config": "Nenhum pré-requisito. É o ponto de partida. Ajuda ter em mãos dois ou três textos seus, os preços dos seus produtos e as suas metas de 30 e 90 dias.",
+      "pagina": {
+        "oQuePergunta": [
+          "Se o contexto é do seu negócio ou de um cliente, e se você já tem algum contexto pronto para ela aproveitar.",
+          "Quem é você: nicho, posicionamento, diferencial, a transformação que você entrega e a lista dos seus produtos.",
+          "Seu público: quem é, a maior dor, as palavras que ele usa, as objeções na hora de contratar e o que já tentou antes.",
+          "Seus produtos: preço e condições, para quem servem e para quem não servem, o resultado, o produto que você vende agora e o CTA dos posts.",
+          "Seu tom: dois ou três textos seus, inteiros, as palavras que você usa sempre e as que nunca usa.",
+          "Seus pilares e objetivos: temas, formato e frequência de cada um, metas de 30 e 90 dias, datas marcadas e números que você acompanha.",
+          "Sua identidade visual: cores, fontes e o seu @. O que você não souber agora fica como A CONFIRMAR, para completar depois."
+        ]
+      },
       "antes": [
         "coordenadora-central"
       ],

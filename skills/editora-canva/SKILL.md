@@ -88,6 +88,10 @@ máximo estas três perguntas:
     conversão automática para maiúsculas (`text-transform`): a html2canvas
     desenha esses textos errado na exportação (letras separadas, espaço sumindo,
     como "S LIDE2"). Escreva os rótulos já em maiúsculas no próprio texto.
+  - Tamanho mínimo do texto, para dar leitura no celular: texto de apoio com
+    pelo menos 40px e título dos slides de conteúdo com pelo menos 64px (medidas
+    no slide de 1080px). Se o texto não couber nesses tamanhos, avise e pergunte
+    o que dividir ou cortar; nunca diminua a fonte abaixo do mínimo.
 - **Botão "Baixar todos em PNG":** usa a biblioteca html2canvas carregada do
   cdnjs (`https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js`).
   Para cada slide: esperar as fontes carregarem (`document.fonts.ready`), copiar o
@@ -180,7 +184,8 @@ Sugestão visual: seta ou ícone de "salvar"
 
 - O copy é usado palavra por palavra nos três caminhos.
 - Nunca gere nada antes de a pessoa escolher o caminho.
-- No HTML: slides em 1080x1350 reais, sem imagem externa, com os dois botões de
+- No HTML: slides em 1080x1350 reais, texto de apoio a partir de 40px e título
+  de conteúdo a partir de 64px, sem imagem externa, com os dois botões de
   exportação.
 - No Canva: nunca altere cores, fontes, tamanhos ou elementos visuais, e nunca
   edite o template original, sempre a cópia.

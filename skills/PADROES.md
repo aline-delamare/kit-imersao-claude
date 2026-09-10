@@ -97,4 +97,8 @@ claude.ai ou sem a extensão.
 - Cowork: salvar como `contexto-marca.md` na pasta de trabalho.
 - Claude Code: salvar como `contexto-marca.md` na pasta onde a pessoa trabalha
   e citar o caminho.
-- As demais skills PEDEM o contexto (bloco 1) — nada é lido "automaticamente".
+- Nas três superfícies, orientar a linha nas instruções do Projeto: "Antes de
+  qualquer tarefa, leia o arquivo contexto-marca.md." No Claude Code, oferecer
+  acrescentar essa linha no `CLAUDE.md` da pasta, só com o ok da pessoa.
+- Sem essa linha, as demais skills PEDEM o contexto (bloco 1) — nada é lido
+  "automaticamente" além do que a linha nas instruções faz.
