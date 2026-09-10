@@ -232,6 +232,6 @@ Link: notion.so/workspace/calendario-editorial
 Ao terminar:
 "[N] posts salvos no calendário."
 
-**Próximo passo:** aplique o design de cada post no Canva. Para isso, use a skill `editora-canva`. Se preferir que eu conduza o caminho inteiro, chame a `coordenadora-central`.
+**Próximo passo:** monte a arte de cada post (em HTML aqui no chat, no Canva ou em texto para colar). Para isso, use a skill `editora-visual`. Se preferir que eu conduza o caminho inteiro, chame a `coordenadora-central`.
 
 Kit da Imersão Claude 2.0 · IA Como Aliada · iacomoaliada.com/imersaoclaude2/

@@ -160,6 +160,6 @@ Story 3 (24h depois): repost com "ainda dá tempo de ler antes do seu próximo c
 - [ ] O registro usado é o do contexto de marca (ou foi perguntado, se o contexto não definia)
 - [ ] O slide 1 pararia o scroll?
 
-**Próximo passo:** com a copy pronta, o caminho depende do que falta: para publicar o post no Notion, use a skill `publicadora-notion`; para montar as artes no Canva, use a skill `editora-canva`. Se preferir que eu conduza o caminho inteiro, chame a `coordenadora-central`.
+**Próximo passo:** com a copy pronta, o caminho depende do que falta: para publicar o post no Notion, use a skill `publicadora-notion`; para montar a arte do carrossel, use a skill `editora-visual`. Se preferir que eu conduza o caminho inteiro, chame a `coordenadora-central`.
 
 Kit da Imersão Claude 2.0 · IA Como Aliada · iacomoaliada.com/imersaoclaude2/

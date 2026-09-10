@@ -1,9 +1,20 @@
 import { assinar, verificar } from "./auth.js";
 
+// Skills renomeadas: o endereço antigo leva ao novo (R3.12, editora-canva → editora-visual)
+const RENOMEADAS = {
+  "/skills/editora-canva": "/skills/editora-visual",
+  "/skills/editora-canva.html": "/skills/editora-visual.html",
+  "/downloads/editora-canva.skill": "/downloads/editora-visual.skill",
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     // /static/* nunca chega aqui: excluído no run_worker_first do wrangler.jsonc (Task 1)
+
+    if (RENOMEADAS[url.pathname]) {
+      return Response.redirect(new URL(RENOMEADAS[url.pathname], url).toString(), 301);
+    }
 
     if (url.pathname === "/entrar" && request.method === "POST") {
       let senha = "";

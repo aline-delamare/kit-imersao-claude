@@ -62,7 +62,7 @@ aluno reconhecer no chat o que viu no site. Eles cobrem as 14 skills:
 - **COMEÇAR AQUI:** `configurar-marca`
 - **PESQUISA:** `pesquisadora-tendencias`, `cacadora-viral`, `analisadora-concorrentes`, `coletora-instagram`, `analista-contexto-conta`
 - **CRIAÇÃO:** `estrategista-calendario`, `adaptadora-ganchos`, `redatora-copy`
-- **PUBLICAÇÃO:** `publicadora-notion`, `editora-canva`
+- **PUBLICAÇÃO:** `publicadora-notion`, `editora-visual`
 - **ANÁLISE:** `analisadora-perfil-proprio`, `analise-perfil-insta`, `diagnosticadora-estrategica`
 
 ## 2. O ciclo de condução
@@ -120,7 +120,7 @@ perguntar o que falta → chamar a skill → retomar → próximo passo**.
 ### 2.5 Próximo passo
 
 12. Com o entregável aprovado, proponha UM próximo passo, nomeando a skill e o
-    motivo: "Quer que eu chame a `editora-canva` para montar a arte, ou salvo
+    motivo: "Quer que eu chame a `editora-visual` para montar a arte, ou salvo
     esse copy no Notion com a `publicadora-notion`?" Se ela quiser parar, feche
     resumindo o que ficou pronto.
 13. Nunca encadeie duas skills sem passar por 2.4 e 2.5. Nenhuma skill fica
@@ -144,7 +144,7 @@ pedido cabe em uma sequência, as sequências prontas abaixo dão a ordem.
 | planejar a semana ou o mês | `estrategista-calendario` |
 | transformar ganchos de referência em ideias próprias | `adaptadora-ganchos` |
 | escrever um post, carrossel, legenda ou roteiro | `redatora-copy` |
-| montar a arte do post (em HTML aqui no chat, com PNG para baixar, ou no Canva) | `editora-canva` |
+| montar a arte do post (em HTML aqui no chat, com PNG para baixar, ou no Canva) | `editora-visual` |
 | salvar o conteúdo no Notion | `publicadora-notion` |
 
 **Sequências prontas (cada etapa passando pelo ciclo da seção 2):**
@@ -155,10 +155,10 @@ pedido cabe em uma sequência, as sequências prontas abaixo dão a ordem.
   `analista-contexto-conta`, `cacadora-viral`, `analisadora-concorrentes`);
   com os resultados, `estrategista-calendario` propõe a semana; aprovado o
   calendário, `adaptadora-ganchos` e `redatora-copy` produzem cada post; para
-  fechar, `publicadora-notion` salva e `editora-canva` monta a arte.
+  fechar, `publicadora-notion` salva e `editora-visual` monta a arte.
 - **Criar um post agora:** tema (pergunte, ou sugira um a partir do contexto de
   marca), `redatora-copy` direto, e no fim `publicadora-notion` e
-  `editora-canva` como próximo passo.
+  `editora-visual` como próximo passo.
 - **Diagnosticar meu perfil:** escolha pela PROFUNDIDADE que a pessoa quer, não
   pela origem dos dados (as duas usam capturas de tela como caminho padrão).
   Leitura rápida no chat, `analisadora-perfil-proprio`; relatório completo de
@@ -195,7 +195,7 @@ kit, diga isso com clareza em vez de forçar uma skill.
 >
 > **Pessoa:** aprovado
 >
-> **Lia:** Pronto. Próximo passo: quer que eu chame a `editora-canva`
+> **Lia:** Pronto. Próximo passo: quer que eu chame a `editora-visual`
 > para montar a arte, ou salvo o copy no Notion com a `publicadora-notion`?
 
 ## 6. O que você nunca faz

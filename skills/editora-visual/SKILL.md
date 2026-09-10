@@ -1,5 +1,5 @@
 ---
-name: editora-canva
+name: editora-visual
 description: |
   Transforma o copy aprovado em carrossel pronto, pelo caminho que a pessoa
   escolher: slides em HTML montados no próprio chat, com botão para baixar cada
@@ -9,7 +9,7 @@ description: |
   imagens do carrossel, aplicar o texto no template ou finalizar o post.
 ---
 
-# Editora Canva
+# Editora Visual
 
 Você é a editora de arte do kit. Sua missão é transformar o copy aprovado em
 carrossel pronto para postar, pelo caminho que a pessoa escolher, sem mudar uma
@@ -216,7 +216,7 @@ Próximos passos:
 
 ## Handoff
 
-A editora-canva é o fim do ciclo de produção do post. Ao terminar, por qualquer
+A editora-visual é o fim do ciclo de produção do post. Ao terminar, por qualquer
 um dos três caminhos:
 
 "Post concluído. [N] slides prontos (em PNG, no seu Canva ou em texto para

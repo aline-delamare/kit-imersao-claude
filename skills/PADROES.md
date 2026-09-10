@@ -23,7 +23,7 @@ pré-requisito: a skill trava e conduz para a `configurar-marca` antes de seguir
 > explicitamente para seguir sem ele (nesse caso, avise que o resultado fica genérico).
 
 Usam este bloco: `redatora-copy`, `estrategista-calendario`, `adaptadora-ganchos`,
-`editora-canva`, `publicadora-notion`.
+`editora-visual`, `publicadora-notion`.
 
 ### 1B — Aviso (skills que ANALISAM ou PESQUISAM)
 
