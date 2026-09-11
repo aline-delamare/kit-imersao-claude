@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{NOME}}</title>
+<meta name="description" content="{{FRASE_SIMPLES}}">
+{{LINK_FONTE}}
+<style>
+  /* ============================================================
+     GABARITO DO LINK DA BIO
+     Cada parte da página é um BLOCO marcado por comentário. A skill
+     mantém os blocos que a pessoa escolheu e retira os outros, tanto
+     o HTML quanto o script correspondente, quando houver.
+     ============================================================ */
+
+  :root {
+    --fundo: {{COR_FUNDO}};        /* fundo da página */
+    --titulo: {{COR_TITULO}};      /* títulos */
+    --texto: {{COR_TEXTO}};        /* texto corrido */
+    --destaque: {{COR_DESTAQUE}};  /* botões */
+    --acento: {{COR_ACENTO}};      /* bordas, palavra em destaque, detalhes */
+    --respiro: {{COR_RESPIRO}};    /* balões da conversa, caixa de resposta */
+    --bloco: {{COR_BLOCO}};        /* fundo do quiz em lista e da apresentação */
+    --borda: rgba(0, 0, 0, .14);
+    --fonte-titulo: {{FONTE_TITULO}};
+    --fonte-corpo: {{FONTE_CORPO}};
+    --fonte-mono: {{FONTE_MONO}};
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: var(--fonte-corpo);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 32rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+  h1, h2, h3 { font-family: var(--fonte-titulo); color: var(--titulo);
+               line-height: 1.25; margin: 0 0 .5rem; }
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.25rem; }
+  p { margin: 0 0 1rem; }
+  em.destaque { color: var(--acento); font-style: italic; }
+
+  /* Topo */
+  .topo { text-align: center; margin-bottom: 2.5rem; }
+  .topo img {
+    width: 8rem; height: 8rem; border-radius: 50%;
+    object-fit: cover; margin-bottom: 1rem;
+    border: 3px solid var(--acento);
+  }
+  .topo .frase { font-size: 1.02rem; margin-bottom: 1.5rem; }
+
+  /* Botões */
+  .botao {
+    display: inline-block; width: 100%; text-align: center;
+    padding: .95rem 1.25rem; border-radius: .75rem;
+    background: var(--destaque); color: var(--fundo);
+    font-weight: 600; text-decoration: none; border: 0;
+    font-family: var(--fonte-corpo); font-size: 1rem; cursor: pointer;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  .botao:hover { transform: translateY(-2px); opacity: .92; }
+  .botao:disabled { opacity: .5; cursor: wait; transform: none; }
+  .botao-secundario { background: var(--fundo); color: var(--titulo); border: 1px solid var(--borda); }
+  .botao-whatsapp { background: var(--respiro); color: var(--titulo); margin-top: .75rem;
+                    border: 1px solid var(--borda); }
+
+  /* Seções */
+  section { margin-bottom: 3rem; }
+  .rotulo {
+    font-family: var(--fonte-mono);
+    font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--acento); margin-bottom: .5rem;
+  }
+
+  /* BLOCO: quiz-conversa (estilo de bate-papo) */
+  .chat {
+    border-radius: 1.25rem; overflow: hidden;
+    border: 1px solid var(--borda);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+    background: var(--fundo);
+  }
+  .chat-topo {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .875rem 1.125rem; background: var(--fundo);
+    border-bottom: 1px solid var(--borda);
+  }
+  .chat-topo img {
+    width: 2.75rem; height: 2.75rem; border-radius: 50%; object-fit: cover;
+    object-position: 50% 20%; border: 2px solid var(--acento);
+  }
+  .chat-topo strong { display: block; color: var(--titulo); font-size: .95rem; line-height: 1.2; }
+  .chat-online { font-size: .78rem; color: var(--texto); display: inline-flex; align-items: center; gap: .35rem; }
+  .chat-online::before { content: ''; width: .5rem; height: .5rem; border-radius: 50%; background: #2fa84f; }
+  .chat-corpo {
+    position: relative; padding: 1.25rem 1rem;
+    min-height: 22rem; max-height: min(30rem, 75vh); overflow-y: auto;
+    background-color: var(--fundo);
+    background-image: radial-gradient(rgba(0, 0, 0, .12) 1px, transparent 1px);
+    background-size: 18px 18px;
+    display: flex; flex-direction: column; gap: .75rem;
+    scroll-behavior: smooth;
+  }
+  .chat-inicio { margin: auto; text-align: center; padding: 1rem 0; }
+  .chat-inicio img {
+    width: 6rem; height: 6rem; border-radius: 50%; object-fit: cover;
+    object-position: 50% 20%; border: 3px solid var(--acento); margin-bottom: 1rem;
+  }
+  .chat-inicio h2 { font-size: 1.3rem; }
+  .chat-inicio p { color: var(--texto); font-size: .95rem; }
+  .chat-iniciar { width: auto; padding: .85rem 2rem; border-radius: 999px; }
+  .balao {
+    max-width: 88%; padding: .8rem 1rem; border-radius: 1.1rem;
+    font-size: .95rem; line-height: 1.5;
+    animation: chegar .25s ease both;
+  }
+  .balao-ela { align-self: flex-start; background: var(--respiro); color: var(--titulo); border-bottom-left-radius: .35rem; }
+  .balao-pessoa { align-self: flex-end; background: var(--destaque); color: var(--fundo); border-bottom-right-radius: .35rem; }
+  .balao strong { font-family: var(--fonte-titulo); font-size: 1.05rem; display: block; margin-bottom: .2rem; }
+  .digitando { display: inline-flex; gap: .3rem; padding: .95rem 1rem; }
+  .digitando span {
+    width: .45rem; height: .45rem; border-radius: 50%; background: var(--titulo);
+    opacity: .4; animation: pulsar 1s infinite ease-in-out;
+  }
+  .digitando span:nth-child(2) { animation-delay: .15s; }
+  .digitando span:nth-child(3) { animation-delay: .3s; }
+  .chat-rotulo {
+    font-family: var(--fonte-mono); font-size: .74rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--titulo);
+    text-align: center; margin: .25rem 0 0;
+  }
+  .chat-opcoes { display: grid; gap: .5rem; animation: chegar .25s ease both; }
+  .chat-opcao {
+    display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    width: 100%; text-align: left; padding: .8rem 1rem; border-radius: 999px;
+    background: var(--fundo); color: var(--titulo); border: 1px solid var(--borda);
+    font-family: var(--fonte-corpo); font-size: .92rem; font-weight: 500; cursor: pointer;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .chat-opcao::after { content: '›'; font-size: 1.2rem; color: var(--acento); }
+  .chat-opcao:hover { border-color: var(--acento); transform: translateX(2px); }
+  .chat-acoes { display: grid; gap: .5rem; animation: chegar .25s ease both; }
+  .chat-acoes .botao { border-radius: 999px; }
+  @keyframes chegar { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes pulsar { 0%, 100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+  /* FIM BLOCO: quiz-conversa (CSS) */
+
+  /* BLOCO: quiz-lista (perguntas em bloco, uma por vez) */
+  .quiz { background: var(--bloco); border-radius: 1.25rem; padding: 1.5rem; }
+  .quiz .rotulo, .quiz h2, .quiz p { color: var(--titulo); }
+  .quiz-opcoes { display: grid; gap: .625rem; margin-top: 1.25rem; }
+  .quiz-opcoes .botao { text-align: left; font-weight: 500; padding: .8rem 1rem; }
+  .quiz-progresso {
+    font-family: var(--fonte-mono); font-size: .74rem; letter-spacing: .08em;
+    color: var(--titulo); margin-top: 1rem; text-align: center;
+  }
+  .quiz-resultado h3 { color: var(--destaque); font-size: 1.4rem; }
+  /* FIM BLOCO: quiz-lista (CSS) */
+
+  /* BLOCO: menu-rapido (etiquetas que rolam para o lado) */
+  .menu-rapido {
+    display: flex; gap: .5rem; overflow-x: auto; padding: .25rem 1.25rem .75rem;
+    margin: -.5rem -1.25rem 2rem;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; cursor: grab;
+  }
+  .menu-rapido::-webkit-scrollbar { display: none; }
+  .menu-rapido.arrastando { cursor: grabbing; scroll-snap-type: none; }
+  .menu-rapido.arrastando .chip { pointer-events: none; }
+  .chip {
+    flex: 0 0 auto; scroll-snap-align: start;
+    padding: .45rem .9rem; border-radius: 999px; text-decoration: none;
+    font-family: var(--fonte-mono); font-size: .72rem; letter-spacing: .06em;
+    text-transform: uppercase; white-space: nowrap;
+    background: var(--chip-fundo); color: var(--chip-texto);
+    border: 1px solid var(--borda);
+    transition: transform .15s ease;
+  }
+  .chip:hover { transform: translateY(-1px); }
+
+  /* BLOCO: vitrine (os cards) */
+  .cards { display: grid; gap: .875rem; }
+  .card {
+    display: block; text-decoration: none; position: relative; overflow: hidden;
+    background: var(--card-fundo); color: var(--card-texto);
+    border: 2px solid var(--borda); /* contorno leve, para card da cor do fundo não sumir */
+    border-radius: 1rem; padding: 1.125rem 3rem 1.125rem 1.25rem;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .card h3 { font-size: 1.05rem; margin-bottom: .25rem; color: var(--card-texto); }
+  .card p { font-size: .9rem; margin: 0; }
+  .card .tag {
+    display: inline-block; font-family: var(--fonte-mono); font-size: .74rem;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--card-tag);
+    margin-bottom: .4rem;
+  }
+  .card.destacado { border-color: var(--card-borda); box-shadow: 0 0 0 3px var(--card-borda); }
+
+  /* EFEITO: entrada dos cards (aparecem um a um ao rolar). Fica antes do efeito de passar
+     o mouse de propósito: se vier depois, anula a subida do card. */
+  .card { opacity: 0; transform: translateY(18px); }
+  .card.visivel { opacity: 1; transform: none; }
+  /* FIM EFEITO: entrada */
+
+  /* EFEITO: passar o mouse nos cards (sobe, sombra, seta e brilho). Só no computador. */
+  .card:hover {
+    transform: translateY(-4px) scale(1.01); border-color: var(--card-borda);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, .18);
+  }
+  .card::after {
+    content: '›'; position: absolute; right: 1.1rem; top: 50%;
+    font-size: 2rem; line-height: 1; color: var(--card-tag);
+    transform: translate(-6px, -50%); opacity: 0;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .card:hover::after { transform: translate(0, -50%); opacity: 1; }
+  .card::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, .22) 50%, transparent 60%);
+    transform: translateX(-120%);
+  }
+  .card:hover::before { animation: brilho .7s ease forwards; }
+  @keyframes brilho { to { transform: translateX(120%); } }
+  /* FIM EFEITO: passar o mouse */
+
+  /* Quem pediu menos movimento no celular vê a página parada. Fica sempre,
+     mesmo que os dois efeitos saiam. */
+  @media (prefers-reduced-motion: reduce) {
+    .card { opacity: 1; transform: none; transition: none; }
+    .card:hover::before { animation: none; }
+  }
+
+  /* BLOCO: formulario */
+  form { display: grid; gap: .75rem; }
+  label { font-size: .875rem; font-weight: 600; color: var(--titulo); }
+  input, textarea, select {
+    width: 100%; padding: .75rem .875rem; font-size: 1rem;
+    font-family: var(--fonte-corpo); color: var(--texto);
+    background: var(--fundo); border: 1px solid var(--borda);
+    border-radius: .625rem;
+  }
+  textarea { min-height: 6rem; resize: vertical; }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--acento); outline-offset: 1px; }
+  .formulario { border: 1px solid var(--borda); border-radius: 1.25rem; padding: 1.5rem; }
+  .fechar-formulario {
+    background: none; border: 0; cursor: pointer; float: right;
+    font-family: var(--fonte-mono); font-size: .74rem; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--acento); padding: 0;
+  }
+  .resposta-form {
+    margin: .5rem 0 0; padding: .875rem 1rem; border-radius: .625rem;
+    background: var(--respiro); color: var(--titulo); font-size: .9rem;
+    border: 1px solid var(--borda);
+  }
+  .nota { font-size: .85rem; margin-top: 1rem; text-align: center; }
+
+  /* BLOCO: apresentacao */
+  .sobre { background: var(--bloco); color: var(--titulo); border-radius: 1.25rem; padding: 1.5rem;
+           border: 1px solid var(--borda); }
+  .sobre img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 1rem; margin-bottom: 1.25rem; display: block; }
+  .sobre h2 { font-style: italic; }
+  .sobre p { color: var(--titulo); font-size: .95rem; }
+  .sobre p:last-child { margin-bottom: 0; }
+
+  /* BLOCO: rodape */
+  footer { text-align: center; font-size: .85rem; }
+  footer a { color: var(--acento); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer .assinatura { font-family: var(--fonte-titulo); font-style: italic; color: var(--titulo); margin-top: 1rem; }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- BLOCO: topo -->
+  <header class="topo">
+    <img src="{{FOTO}}" alt="{{NOME}}">
+    <h1>{{NOME}}</h1>
+    <p class="frase">{{FRASE}}</p>
+    <!-- Se o botão do topo levar a um formulário desta página, acrescente a classe
+         abre-formulario, senão ele não abre nada:
+         <a class="botao abre-formulario" href="#formulario-c">...</a> -->
+    <a class="botao" href="{{DESTINO_PRINCIPAL}}">{{TEXTO_BOTAO_PRINCIPAL}}</a>
+  </header>
+
+  <!-- BLOCO: quiz-conversa -->
+  <!-- Quiz em formato de bate-papo. Manter este bloco OU o quiz-lista, nunca os dois.
+       Se a pessoa não quiser quiz, retirar os dois blocos e os dois scripts do quiz. -->
+  <section id="quiz" class="chat">
+    <div class="chat-topo">
+      <img src="{{FOTO_CHAT}}" alt="">
+      <div>
+        <strong>{{NOME}}</strong>
+        <span class="chat-online">Online</span>
+      </div>
+    </div>
+    <div class="chat-corpo" id="chat-corpo">
+      <div class="chat-inicio" id="chat-inicio">
+        <img src="{{FOTO_CHAT}}" alt="">
+        <h2>{{CHAT_TITULO_ABERTURA}}</h2>
+        <p>{{CHAT_LINHA_ABERTURA}}</p>
+        <button type="button" class="botao chat-iniciar" id="chat-iniciar">Iniciar conversa</button>
+      </div>
+    </div>
+  </section>
+  <!-- FIM BLOCO: quiz-conversa -->
+
+  <!-- BLOCO: quiz-lista -->
+  <!-- Quiz em bloco, uma pergunta por vez. Manter este bloco OU o quiz-conversa. -->
+  <section id="quiz-lista" class="quiz">
+    <p class="rotulo">{{ROTULO_QUIZ}}</p>
+    <div id="quiz-conteudo"></div>
+  </section>
+  <!-- FIM BLOCO: quiz-lista -->
+
+  <!-- BLOCO: menu-rapido -->
+  <!-- Uma etiqueta por card, na mesma ordem dos cards. Rola para o lado. -->
+  <nav class="menu-rapido" aria-label="Ir direto para">
+    <a class="chip" href="#caminho-a" style="--chip-fundo: {{COR_CARD_A}}; --chip-texto: {{COR_TEXTO_CARD_A}};">{{ETIQUETA_A}}</a>
+    <a class="chip" href="#caminho-b" style="--chip-fundo: {{COR_CARD_B}}; --chip-texto: {{COR_TEXTO_CARD_B}};">{{ETIQUETA_B}}</a>
+    <a class="chip" href="#caminho-c" style="--chip-fundo: {{COR_CARD_C}}; --chip-texto: {{COR_TEXTO_CARD_C}};">{{ETIQUETA_C}}</a>
+  </nav>
+  <!-- FIM BLOCO: menu-rapido -->
+
+  <!-- BLOCO: vitrine -->
+  <section id="vitrine">
+    <p class="rotulo">{{ROTULO_VITRINE}}</p>
+    <div class="cards">
+      <!-- Um card por caminho. O id de cada card deve ser igual ao campo "caminho" das
+           opções do quiz e ao href da etiqueta do menu rápido.
+           Cores: uma por card, ou as mesmas em todos, conforme a pessoa escolheu.
+           Card que leva a um formulário da própria página recebe a classe abre-formulario
+           e o href aponta para o id da seção do formulário. -->
+      <!-- Card que leva para fora abre em aba nova (target="_blank"), para a pessoa não
+           perder a bio. Card que abre formulário desta página não leva esses atributos. -->
+      <a class="card" id="caminho-a" href="{{DESTINO_A}}" target="_blank" rel="noopener"
+         style="--card-fundo: {{COR_CARD_A}}; --card-texto: {{COR_TEXTO_CARD_A}}; --card-tag: {{COR_TAG_CARD_A}}; --card-borda: {{COR_BORDA_CARD_A}};">
+        <span class="tag">{{ETIQUETA_A}}</span>
+        <h3>{{TITULO_A}}</h3>
+        <p>{{EXPLICACAO_A}}</p>
+      </a>
+      <a class="card" id="caminho-b" href="{{DESTINO_B}}" target="_blank" rel="noopener"
+         style="--card-fundo: {{COR_CARD_B}}; --card-texto: {{COR_TEXTO_CARD_B}}; --card-tag: {{COR_TAG_CARD_B}}; --card-borda: {{COR_BORDA_CARD_B}};">
+        <span class="tag">{{ETIQUETA_B}}</span>
+        <h3>{{TITULO_B}}</h3>
+        <p>{{EXPLICACAO_B}}</p>
+      </a>
+      <a class="card abre-formulario" id="caminho-c" href="#formulario-c"
+         style="--card-fundo: {{COR_CARD_C}}; --card-texto: {{COR_TEXTO_CARD_C}}; --card-tag: {{COR_TAG_CARD_C}}; --card-borda: {{COR_BORDA_CARD_C}};">
+        <span class="tag">{{ETIQUETA_C}}</span>
+        <h3>{{TITULO_C}}</h3>
+        <p>{{EXPLICACAO_C}}</p>
+      </a>
+    </div>
+  </section>
+  <!-- FIM BLOCO: vitrine -->
+
+  <!-- BLOCO: formulario -->
+  <!-- Formulário ligado a um caminho: fica escondido (hidden) e abre quando a pessoa clica no
+       card ou chega nele pelo quiz. Formulário de contato geral, sem caminho: tirar o
+       atributo hidden e o botão Fechar, e ele fica visível no fim da página.
+
+       MAIS DE UM FORMULÁRIO: copie esta seção inteira, cole logo abaixo desta, mantenha o
+       atributo hidden, e troque SEIS coisas, senão os dois brigam entre si. Use o nome do
+       caminho no lugar do "c":
+       1. o id da seção          formulario-c        -> formulario-newsletter
+       2. o data-fecha do Fechar (o mesmo da seção)  -> formulario-newsletter
+       3. o id do form           form-c              -> form-newsletter
+       4. o id de cada campo e o for de cada rótulo  c-nome -> newsletter-nome
+       5. o assunto do e-mail, para separar na caixa de entrada
+       6. os campos, o texto e a mensagem de sucesso
+       O href do card correspondente aponta para o id novo da seção. O bloco do WhatsApp
+       fica só no formulário em que ela quiser. -->
+  <section id="formulario-c" class="formulario" hidden>
+    <button type="button" class="fechar-formulario" data-fecha="formulario-c">Fechar</button>
+    <p class="rotulo">{{ROTULO_FORMULARIO}}</p>
+    <h2>{{TITULO_FORMULARIO}}</h2>
+    <p>{{EXPLICACAO_FORMULARIO}}</p>
+    <form id="form-c" class="form-lead" action="https://api.web3forms.com/submit" method="POST"
+          data-sucesso="{{MENSAGEM_SUCESSO}}">
+      <input type="hidden" name="access_key" value="{{ACCESS_KEY}}">
+      <input type="hidden" name="subject" value="{{ASSUNTO_EMAIL}}">
+      <input type="hidden" name="from_name" value="{{NOME}}">
+      <!-- Armadilha anti-robô: fica escondida, e o robô que a preencher é barrado. -->
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+      <div>
+        <label for="c-nome">Nome</label>
+        <input id="c-nome" type="text" name="nome" required autocomplete="name">
+      </div>
+      <div>
+        <label for="c-email">E-mail</label>
+        <input id="c-email" type="email" name="email" required autocomplete="email">
+      </div>
+      <!-- Campos extras entram aqui, no mesmo formato. Campo de texto longo e lista de
+           opções ficam assim:
+      <div>
+        <label for="c-mensagem">Mensagem</label>
+        <textarea id="c-mensagem" name="mensagem" required></textarea>
+      </div>
+      <div>
+        <label for="c-faixa">Quanto você está disposta a investir</label>
+        <select id="c-faixa" name="faixa" required>
+          <option value="" disabled selected>Escolha uma faixa</option>
+          <option>Opção 1</option>
+        </select>
+      </div> -->
+      <button type="submit" class="botao">{{TEXTO_BOTAO_FORMULARIO}}</button>
+      <p class="resposta-form" role="status" hidden></p>
+    </form>
+    <!-- BLOCO: whatsapp (botão alternativo abaixo do formulário; retirar se ela não quiser) -->
+    <p class="nota">{{NOTA_WHATSAPP}}</p>
+    <a class="botao botao-whatsapp" href="https://wa.me/{{WHATSAPP_NUMERO}}?text={{WHATSAPP_MENSAGEM}}">{{TEXTO_WHATSAPP}}</a>
+    <!-- FIM BLOCO: whatsapp -->
+  </section>
+  <!-- FIM BLOCO: formulario -->
+
+  <!-- BLOCO: apresentacao -->
+  <section id="sobre" class="sobre">
+    <img src="{{FOTO_SOBRE}}" alt="{{NOME}}">
+    <div>
+      <p class="rotulo">{{ROTULO_SOBRE}}</p>
+      <h2>{{NOME_CURTO}}</h2>
+      {{PARAGRAFOS_SOBRE}}
+    </div>
+  </section>
+  <!-- FIM BLOCO: apresentacao -->
+
+  <!-- BLOCO: rodape -->
+  <footer>
+    <p>{{LINKS_RODAPE}}</p>
+    <p class="assinatura">{{ASSINATURA}}</p>
+  </footer>
+  <!-- FIM BLOCO: rodape -->
+
+</div>
+
+<script>
+  /* DADOS DO QUIZ. Os dois formatos de quiz leem daqui. Retirar se não houver quiz.
+     Cada opção aponta para um caminho ('caminho-a') ou para mais de um
+     (['caminho-a', 'caminho-b']). A pergunta decisiva pode ter peso: 2; nela, cada opção
+     deve apontar para UM caminho só, senão o peso se divide e não decide nada. */
+  window.QUIZ = {
+    perguntas: [
+      {
+        texto: '{{PERGUNTA_1}}',
+        opcoes: [
+          { rotulo: '{{OPCAO_1A}}', caminho: 'caminho-a' },
+          { rotulo: '{{OPCAO_1B}}', caminho: 'caminho-b' },
+          { rotulo: '{{OPCAO_1C}}', caminho: 'caminho-c' },
+        ],
+      },
+      {
+        texto: '{{PERGUNTA_2}}',
+        peso: 2,
+        opcoes: [
+          { rotulo: '{{OPCAO_2A}}', caminho: 'caminho-a' },
+          { rotulo: '{{OPCAO_2B}}', caminho: 'caminho-b' },
+          { rotulo: '{{OPCAO_2C}}', caminho: 'caminho-c' },
+        ],
+      },
+      {
+        texto: '{{PERGUNTA_3}}',
+        opcoes: [
+          { rotulo: '{{OPCAO_3A}}', caminho: 'caminho-a' },
+          { rotulo: '{{OPCAO_3B}}', caminho: 'caminho-b' },
+          { rotulo: '{{OPCAO_3C}}', caminho: 'caminho-c' },
+        ],
+      },
+    ],
+    /* Um resultado por caminho. As chaves devem ser iguais aos ids dos cards. */
+    resultados: {
+      'caminho-a': { titulo: '{{RESULTADO_A}}', texto: '{{TEXTO_RESULTADO_A}}' },
+      'caminho-b': { titulo: '{{RESULTADO_B}}', texto: '{{TEXTO_RESULTADO_B}}' },
+      'caminho-c': { titulo: '{{RESULTADO_C}}', texto: '{{TEXTO_RESULTADO_C}}' },
+    },
+    /* Falas da conversa. Só o quiz-conversa usa. */
+    conversa: {
+      boasVindas: ['{{CHAT_BOAS_VINDAS_1}}', '{{CHAT_BOAS_VINDAS_2}}'],
+      botaoComecar: '{{CHAT_BOTAO_COMECAR}}',
+      fechamento: '{{CHAT_FECHAMENTO}}',
+    },
+  };
+
+  /* Pontuação, usada pelos dois formatos de quiz. */
+  window.quizPlacar = function () {
+    const placar = {};
+    return {
+      somar: function (pergunta, caminho) {
+        const peso = pergunta.peso || 1;
+        const lista = Array.isArray(caminho) ? caminho : [caminho];
+        lista.forEach(function (chave) { placar[chave] = (placar[chave] || 0) + peso / lista.length; });
+      },
+      /* Em empate, vence o caminho que aparece primeiro em "resultados", que deve ser o
+         caminho principal. */
+      vencedor: function () {
+        const ordem = Object.keys(window.QUIZ.resultados);
+        return ordem.reduce(function (melhor, chave) {
+          return (placar[chave] || 0) > (placar[melhor] || 0) ? chave : melhor;
+        }, ordem[0]);
+      },
+      zerar: function () { Object.keys(placar).forEach(function (chave) { delete placar[chave]; }); },
+    };
+  };
+</script>
+
+<script>
+  /* ============================================================
+     BASE: NUNCA RETIRAR ESTE SCRIPT.
+     Ele abre e fecha os formulários e leva ao card do caminho. Serve ao menu
+     rápido, aos cards e aos dois formatos de quiz. Retirar quebra o menu.
+     ============================================================ */
+
+  /* Abre o formulário escondido. Também é chamado pelo botão do topo, quando
+     esse botão leva a um formulário da própria página. */
+  function abrirFormulario(id) {
+    const secao = document.getElementById(id);
+    if (!secao) return;
+    secao.hidden = false;
+    secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.abre-formulario').forEach(function (card) {
+    card.addEventListener('click', function (evento) {
+      evento.preventDefault();
+      abrirFormulario(card.getAttribute('href').slice(1));
+    });
+  });
+  document.querySelectorAll('.fechar-formulario').forEach(function (botao) {
+    botao.addEventListener('click', function () {
+      document.getElementById(botao.dataset.fecha).hidden = true;
+      document.getElementById('vitrine').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* Vai para o card do caminho: destaca o card, e abre o formulário se ele levar a um. */
+  window.irParaCaminho = function (caminho) {
+    const card = document.getElementById(caminho);
+    if (!card) return;
+    document.querySelectorAll('.card').forEach(function (item) { item.classList.remove('destacado'); });
+    card.classList.add('destacado');
+    const destino = card.getAttribute('href');
+    if (destino.charAt(0) === '#') {
+      abrirFormulario(destino.slice(1));
+    } else {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+</script>
+
+<script>
+  /* BLOCO: formulario. Envio sem sair da página. Vale para todos os .form-lead. */
+  document.querySelectorAll('form.form-lead').forEach(function (form) {
+    const resposta = form.querySelector('.resposta-form');
+    const botao = form.querySelector('button[type="submit"]');
+    const textoBotao = botao.textContent;
+    form.addEventListener('submit', async function (evento) {
+      evento.preventDefault();
+      botao.disabled = true;
+      botao.textContent = 'Enviando...';
+      try {
+        const envio = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form),
+        });
+        if (!envio.ok) throw new Error('falhou');
+        const corpo = await envio.json().catch(function () { return { success: true }; });
+        if (corpo.success === false) throw new Error('recusado');
+        form.reset();
+        resposta.textContent = form.dataset.sucesso || 'Mensagem enviada.';
+      } catch (erro) {
+        resposta.textContent = 'Não consegui enviar agora. Tente de novo em instantes.';
+      }
+      resposta.hidden = false;
+      botao.disabled = false;
+      botao.textContent = textoBotao;
+    });
+  });
+</script>
+
+<script>
+  /* EFEITO: entrada dos cards. Retirar junto com o CSS do mesmo nome se ela não quiser. */
+  (function () {
+    const cards = document.querySelectorAll('.card');
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach(function (card) { card.classList.add('visivel'); });
+      return;
+    }
+    const observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        const card = entrada.target;
+        const ordem = Array.prototype.indexOf.call(cards, card);
+        setTimeout(function () { card.classList.add('visivel'); }, (ordem % 4) * 90);
+        observador.unobserve(card);
+      });
+    }, { threshold: .15 });
+    cards.forEach(function (card) { observador.observe(card); });
+    /* Rede de segurança: se nenhum card apareceu em dois segundos, mostra todos. */
+    setTimeout(function () {
+      if (!document.querySelector('.card.visivel')) {
+        cards.forEach(function (card) { card.classList.add('visivel'); });
+      }
+    }, 2000);
+  })();
+</script>
+
+<script>
+  /* BLOCO: menu-rapido. Roda do mouse e arrastar no computador; o dedo no celular. */
+  (function () {
+    const menu = document.querySelector('.menu-rapido');
+    if (!menu) return;
+    /* Roda do mouse rola a fileira para o lado. Quando a fileira chega ao fim, a roda
+       volta a rolar a página, para a pessoa não ficar presa na altura do menu. */
+    menu.addEventListener('wheel', function (evento) {
+      const maximo = menu.scrollWidth - menu.clientWidth;
+      if (maximo <= 0) return;
+      if (Math.abs(evento.deltaY) <= Math.abs(evento.deltaX)) return;
+      const noFim = evento.deltaY > 0 && menu.scrollLeft >= maximo - 1;
+      const noInicio = evento.deltaY < 0 && menu.scrollLeft <= 0;
+      if (noFim || noInicio) return;
+      evento.preventDefault();
+      menu.scrollLeft += evento.deltaY;
+    }, { passive: false });
+    /* Arrastar com o mouse. A classe "arrastando" só entra depois de o mouse andar,
+       senão o clique simples na etiqueta deixa de funcionar. */
+    let arrastando = false, inicioX = 0, inicioScroll = 0, moveu = false;
+    menu.addEventListener('pointerdown', function (evento) {
+      if (evento.pointerType !== 'mouse') return;
+      arrastando = true; moveu = false;
+      inicioX = evento.clientX; inicioScroll = menu.scrollLeft;
+    });
+    window.addEventListener('pointermove', function (evento) {
+      if (!arrastando) return;
+      const delta = evento.clientX - inicioX;
+      if (Math.abs(delta) > 4 && !moveu) { moveu = true; menu.classList.add('arrastando'); }
+      if (moveu) menu.scrollLeft = inicioScroll - delta;
+    });
+    window.addEventListener('pointerup', function () {
+      arrastando = false;
+      menu.classList.remove('arrastando');
+      setTimeout(function () { moveu = false; }, 0);
+    });
+    menu.addEventListener('click', function (evento) {
+      if (moveu) { evento.preventDefault(); evento.stopPropagation(); }
+    }, true);
+    menu.querySelectorAll('.chip').forEach(function (chip) {
+      chip.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        irParaCaminho(chip.getAttribute('href').slice(1));
+      });
+    });
+  })();
+</script>
+
+<script>
+  /* BLOCO: quiz-conversa. Retirar junto com a seção de mesmo nome se ela escolher o outro
+     formato ou nenhum quiz. */
+  (function () {
+    const area = document.getElementById('chat-corpo');
+    if (!area || !window.QUIZ) return;
+    const dados = window.QUIZ;
+    const inicio = document.getElementById('chat-inicio');
+    const botaoIniciar = document.getElementById('chat-iniciar');
+    const placar = quizPlacar();
+    let atual = 0;
+
+    function rolar() { area.scrollTop = area.scrollHeight; }
+    /* Texto puro, para aspas, sinais de menor e "e comercial" não virarem marcação. */
+    function balao(texto, quem, titulo) {
+      const el = document.createElement('div');
+      el.className = 'balao balao-' + quem;
+      if (titulo) {
+        const forte = document.createElement('strong');
+        forte.textContent = titulo;
+        el.appendChild(forte);
+      }
+      el.appendChild(document.createTextNode(texto));
+      area.appendChild(el);
+      rolar();
+      return el;
+    }
+    function digitando(depois, tempo) {
+      const el = document.createElement('div');
+      el.className = 'balao balao-ela digitando';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      area.appendChild(el);
+      rolar();
+      setTimeout(function () { el.remove(); depois(); }, tempo || 700);
+    }
+    function opcoes(lista, aoEscolher) {
+      const rotulo = document.createElement('p');
+      rotulo.className = 'chat-rotulo';
+      rotulo.textContent = 'Escolha uma opção';
+      area.appendChild(rotulo);
+      const caixa = document.createElement('div');
+      caixa.className = 'chat-opcoes';
+      lista.forEach(function (opcao) {
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'chat-opcao';
+        botao.textContent = opcao.rotulo;
+        botao.addEventListener('click', function () {
+          rotulo.remove(); caixa.remove();
+          balao(opcao.rotulo, 'pessoa');
+          aoEscolher(opcao);
+        });
+        caixa.appendChild(botao);
+      });
+      area.appendChild(caixa);
+      rolar();
+    }
+    function perguntar() {
+      const pergunta = dados.perguntas[atual];
+      digitando(function () {
+        balao(pergunta.texto, 'ela');
+        opcoes(pergunta.opcoes, function (opcao) {
+          placar.somar(pergunta, opcao.caminho);
+          atual += 1;
+          atual < dados.perguntas.length ? perguntar() : concluir();
+        });
+      });
+    }
+    function concluir() {
+      const caminho = placar.vencedor();
+      const resultado = dados.resultados[caminho];
+      digitando(function () {
+        balao(dados.conversa.fechamento, 'ela');
+        digitando(function () {
+          balao(resultado.texto, 'ela', resultado.titulo);
+          const acoes = document.createElement('div');
+          acoes.className = 'chat-acoes';
+          const acao = document.createElement('button');
+          acao.type = 'button'; acao.className = 'botao'; acao.textContent = 'Ver este caminho';
+          acao.addEventListener('click', function () { irParaCaminho(caminho); });
+          acoes.appendChild(acao);
+          const refazer = document.createElement('button');
+          refazer.type = 'button'; refazer.className = 'botao botao-secundario'; refazer.textContent = 'Responder de novo';
+          refazer.addEventListener('click', function () { placar.zerar(); atual = 0; area.innerHTML = ''; abrir(); });
+          acoes.appendChild(refazer);
+          area.appendChild(acoes);
+          rolar();
+        }, 900);
+      });
+    }
+    function abrir() {
+      digitando(function () {
+        balao(dados.conversa.boasVindas[0], 'ela');
+        digitando(function () {
+          balao(dados.conversa.boasVindas[1], 'ela');
+          opcoes([{ rotulo: dados.conversa.botaoComecar }], function () { perguntar(); });
+        }, 800);
+      }, 500);
+    }
+    botaoIniciar.addEventListener('click', function () { inicio.remove(); abrir(); });
+  })();
+</script>
+
+<script>
+  /* BLOCO: quiz-lista. Retirar junto com a seção de mesmo nome se ela escolher o outro
+     formato ou nenhum quiz. */
+  (function () {
+    const area = document.getElementById('quiz-conteudo');
+    if (!area || !window.QUIZ) return;
+    const dados = window.QUIZ;
+    const placar = quizPlacar();
+    let atual = 0;
+
+    function desenharPergunta() {
+      const pergunta = dados.perguntas[atual];
+      area.innerHTML = '';
+      const titulo = document.createElement('h2');
+      titulo.textContent = pergunta.texto;
+      area.appendChild(titulo);
+      const opcoes = document.createElement('div');
+      opcoes.className = 'quiz-opcoes';
+      pergunta.opcoes.forEach(function (opcao) {
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'botao botao-secundario';
+        botao.textContent = opcao.rotulo;
+        botao.addEventListener('click', function () {
+          placar.somar(pergunta, opcao.caminho);
+          atual += 1;
+          atual < dados.perguntas.length ? desenharPergunta() : desenharResultado();
+        });
+        opcoes.appendChild(botao);
+      });
+      area.appendChild(opcoes);
+      const progresso = document.createElement('p');
+      progresso.className = 'quiz-progresso';
+      progresso.textContent = 'Pergunta ' + (atual + 1) + ' de ' + dados.perguntas.length;
+      area.appendChild(progresso);
+    }
+    function desenharResultado() {
+      const caminho = placar.vencedor();
+      const resultado = dados.resultados[caminho];
+      area.innerHTML = '';
+      area.className = 'quiz-resultado';
+      const titulo = document.createElement('h3');
+      titulo.textContent = resultado.titulo;
+      area.appendChild(titulo);
+      const texto = document.createElement('p');
+      texto.textContent = resultado.texto;
+      area.appendChild(texto);
+      const acao = document.createElement('button');
+      acao.type = 'button'; acao.className = 'botao'; acao.textContent = 'Ver este caminho';
+      acao.addEventListener('click', function () { irParaCaminho(caminho); });
+      area.appendChild(acao);
+      const refazer = document.createElement('button');
+      refazer.type = 'button'; refazer.className = 'botao botao-secundario';
+      refazer.style.marginTop = '.625rem'; refazer.textContent = 'Responder de novo';
+      refazer.addEventListener('click', function () { placar.zerar(); atual = 0; area.className = ''; desenharPergunta(); });
+      area.appendChild(refazer);
+    }
+    desenharPergunta();
+  })();
+</script>
+</body>
+</html>

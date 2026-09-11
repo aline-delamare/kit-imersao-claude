@@ -64,6 +64,23 @@ function lockup({ size = "normal" } = {}) {
   return `<span class="lockup">A <span class="orb"><i>ia</i></span> A</span>`;
 }
 
+// Abas do site (R11): o Squad de Conteúdo e as duas demonstrações de Claude Code
+// do dia 2 são assuntos diferentes, cada um na sua aba. Exatamente uma fica ativa.
+const ABAS = [
+  { id: "squad", href: "/index.html", rotulo: "Squad de Conteúdo" },
+  { id: "financeiro", href: "/financeiro.html", rotulo: "Dashboard financeiro" },
+  { id: "bio", href: "/link-da-bio.html", rotulo: "Link da bio" },
+];
+
+function abas(ativa) {
+  const links = ABAS.map((a) =>
+    a.id === ativa
+      ? `<a class="aba ativa" href="${a.href}" aria-current="page">${a.rotulo}</a>`
+      : `<a class="aba" href="${a.href}">${a.rotulo}</a>`
+  ).join("");
+  return `<div class="abas"><div class="wrap abas-inner" aria-label="Abas do site">${links}</div></div>`;
+}
+
 function navHome() {
   return `<nav><div class="wrap nav-inner">
   <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
@@ -71,14 +88,21 @@ function navHome() {
     <a href="/index.html#instalacao">Instalação</a><a href="/index.html#skills">Skills</a>
     <a class="nav-cta" href="/index.html#download">Baixar o kit</a>
   </div>
-</div></nav>`;
+</div>${abas("squad")}</nav>`;
 }
 
 function navSkill() {
   return `<nav><div class="wrap nav-inner">
   <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
   <a class="back" href="/index.html#skills">&larr; Todas as skills</a>
-</div></nav>`;
+</div>${abas("squad")}</nav>`;
+}
+
+function navDia2(ativa) {
+  return `<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <span class="back">Dia 2 · Claude Code</span>
+</div>${abas(ativa)}</nav>`;
 }
 
 function footerHome() {
@@ -572,4 +596,179 @@ if (params.get('erro') === '1') document.querySelector('.error').style.display =
 </script>`;
 
   return documentShell({ title: "Acesso · Kit de Skills", bodyClass: "gate-body", body });
+}
+
+// ---------------------------------------------------------------------
+// Abas do dia 2 (R11): demonstrações de Claude Code, fora do Squad.
+// Conteúdo escrito para quem participa; os pacotes vêm de extras/.
+// ---------------------------------------------------------------------
+
+function passo(n, html) {
+  return `<div class="step"><span class="step-n">${String(n).padStart(2, "0")}</span><p>${html}</p></div>`;
+}
+
+function paginaDia2({ ativa, titulo, kicker, chamada, simbolo, principal, lateral }) {
+  const body = `${navDia2(ativa)}
+
+<header class="head"><div class="wrap">
+  <span class="mono">${kicker}</span>
+  <div class="head-grid">
+    <div>
+      <h1>${titulo}</h1>
+      <p>${chamada}</p>
+    </div>
+    ${simbolo}
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    ${principal}
+  </div>
+  <aside>
+    ${lateral}
+  </aside>
+</main>
+
+${footerSimples()}
+${scriptCopiar()}`;
+  return documentShell({ title: `${titulo} · Kit de Skills`, body });
+}
+
+export function renderFinanceiro() {
+  const simbolo = `<svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="20" y="62" width="16" height="36" rx="3" fill="#F0A78B"/>
+      <rect x="44" y="44" width="16" height="54" rx="3" fill="#D97757"/>
+      <rect x="68" y="28" width="16" height="70" rx="3" fill="#F0A78B"/>
+      <circle cx="96" cy="26" r="8" fill="#DCC996"/>
+    </svg>`;
+  const principal = `<div class="section">
+      <h2>O que ela faz</h2>
+      <p>Lê os extratos do mês, separa o que é da empresa e o que é pessoal pela conta de origem, categoriza os lançamentos, monta o DRE da empresa em 7 linhas e gera o <code>dashboard.html</code> com o histórico de todos os meses fechados. O que ficar ambíguo vira pergunta: a skill nunca estima um valor.</p>
+    </div>
+    <div class="section">
+      <h2>O que ter em mãos</h2>
+      <ul>
+        <li>Os prints ou os extratos em PDF do mês: conta da empresa, conta pessoal, fatura do cartão e as plataformas onde você vende. Print de celular serve.</li>
+        <li>O aplicativo do Claude no computador, com a aba Code.</li>
+        <li>Uns 15 minutos. O primeiro mês demora um pouco mais, porque inclui a configuração inicial.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Como instalar e usar</h2>
+      ${passo(1, "Baixe o <b>meu-financeiro.zip</b> e descompacte com dois cliques. Vai aparecer a pasta <b>meu-financeiro</b>. Guarde onde preferir, por exemplo em Documentos.")}
+      ${passo(2, "No aplicativo do Claude, abra a aba <b>Code</b> e escolha a pasta <b>meu-financeiro</b> para trabalhar.")}
+      ${passo(3, "Digite <b>/fechar-mes</b>. Para testar, informe o mês <b>2026-08</b>: a pasta já vem com os prints de uma empresa fictícia, o Estúdio Aurora Design.")}
+      ${passo(4, "Na primeira vez, a skill pergunta o nome do seu negócio e quais bancos são da empresa e quais são pessoais. As respostas ficam gravadas no próprio arquivo da skill, e nos meses seguintes ela já sabe.")}
+      ${passo(5, "Revise e aprove o que ela leu, já separado entre empresa e pessoal. Depois disso, o <b>dashboard.html</b> abre no navegador.")}
+    </div>
+    <div class="section">
+      <h2>O ritual de todo mês</h2>
+      <p>Salve os extratos do mês em <code>extratos/AAAA-MM/</code> (por exemplo, <code>extratos/2026-09/</code>) ou arraste direto para a conversa, e digite <b>/fechar-mes</b>. O dashboard é refeito com o mês novo e todo o histórico. A partir do segundo mês fechado aparecem as setas de variação e os gastos recorrentes.</p>
+    </div>
+    <div class="section">
+      <h2>Bom saber</h2>
+      <ul>
+        <li>O Claude Code vai pedir permissão algumas vezes: para gravar a configuração, salvar os dados do mês e abrir o dashboard. É só aprovar.</li>
+        <li>Print ilegível ou cortado vira pendência: a skill pergunta em vez de adivinhar.</li>
+        <li>Se o PDF do banco pedir senha, abra o arquivo e use Imprimir › Salvar como PDF para gerar uma cópia sem senha.</li>
+        <li>A skill não substitui a contabilidade.</li>
+      </ul>
+    </div>`;
+  const lateral = `<div class="side-card side-download">
+      <h3>Baixar o sistema</h3>
+      <p>A pasta completa: a skill, o LEIA-ME, a pasta de dados e os prints de exemplo de agosto.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/meu-financeiro.zip">Baixar meu-financeiro.zip</a>
+    </div>
+    <div class="side-card side-config">
+      <h3>Onde funciona</h3>
+      <p>Só no Claude Code, no seu computador. Não precisa de servidor, login nem banco de dados. Sem internet, os gráficos não aparecem, mas os números, o DRE e as tabelas continuam.</p>
+    </div>
+    <div class="side-card side-code">
+      <h3>Mantenha a pasta inteira</h3>
+      <p>A pasta <b>meu-financeiro</b> tem uma parte oculta, <code>.claude</code>, que é onde a skill mora, e a pasta <code>dados</code>, que guarda os meses fechados. Se mudar de lugar, mova a pasta inteira.</p>
+    </div>`;
+  return paginaDia2({
+    ativa: "financeiro",
+    titulo: "Dashboard financeiro",
+    kicker: "Dia 2 · Claude Code · Skill fechar-mes",
+    chamada: "A skill <b>/fechar-mes</b> transforma os prints ou os extratos em PDF do seu banco em um dashboard que separa pessoa física de pessoa jurídica e entrega o DRE mensal da empresa. O sistema funciona e fica guardado no seu computador.",
+    simbolo,
+    principal,
+    lateral,
+  });
+}
+
+export function renderLinkDaBio() {
+  const simbolo = `<svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="34" y="12" width="52" height="96" rx="10" stroke="#F0A78B" stroke-width="3"/>
+      <circle cx="60" cy="34" r="8" fill="#D97757"/>
+      <rect x="44" y="52" width="32" height="10" rx="5" fill="#DCC996"/>
+      <rect x="44" y="68" width="32" height="10" rx="5" fill="#D97757"/>
+      <rect x="44" y="84" width="32" height="10" rx="5" fill="#DCC996"/>
+    </svg>`;
+  const principal = `<div class="section">
+      <h2>O que ela faz</h2>
+      <p>Entrevista você sobre o conteúdo e a aparência da página, uma pergunta por vez, e monta a página a partir de um modelo pronto, com as suas cores e fontes. Depois liga o formulário ao seu e-mail e leva até a publicação no Netlify. Se você tiver um domínio próprio, ela conduz esse passo também. Nada é publicado antes da sua aprovação.</p>
+    </div>
+    <div class="section">
+      <h2>O que ter em mãos</h2>
+      <ul>
+        <li>A sua foto, ou as suas fotos, salvas no computador em .jpg. Se vieram do iPhone em .heic, exporte como .jpg pelo próprio celular antes.</li>
+        <li>Os endereços dos seus caminhos: página de vendas, agenda, grupo, o que for.</li>
+        <li>O e-mail que deve receber os contatos do formulário.</li>
+        <li>Uma conta gratuita no Netlify, criada em netlify.com.</li>
+        <li>Se você já criou o seu contexto de marca com a configurar-marca, deixe o <code>contexto-marca.md</code> na pasta do projeto: ela aproveita as cores, as fontes e o tom.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Como instalar</h2>
+      ${passo(1, "Baixe o <b>link-da-bio.zip</b> e descompacte. Vai aparecer a pasta <b>link-da-bio</b>.")}
+      ${passo(2, "Copie a pasta inteira para a pasta de skills do Claude. No Mac: <code>/Users/o-seu-nome/.claude/skills/</code>. No Windows: <code>C:\\Users\\O-SEU-NOME\\.claude\\skills\\</code>. Se a pasta skills não existir, crie com esse nome. No Mac, a pasta .claude fica oculta: aperte Command, Shift e ponto para ela aparecer. Se preferir, o Claude Code copia por você com o pedido ao lado.")}
+      ${passo(3, "Abra o Claude Code na pasta do seu projeto, a que tem o contexto do seu negócio, e escreva: <b>quero criar o meu link da bio</b>. Se a skill não aparecer, comece uma conversa nova.")}
+    </div>
+    <div class="section">
+      <h2>Como ela conduz</h2>
+      <ul>
+        <li>Contexto: procura na pasta o contexto do seu negócio e pergunta só o que não achar.</li>
+        <li>Conteúdo: o que quem chega precisa decidir, os seus caminhos e o endereço de cada um, e o que cada formulário recebe.</li>
+        <li>Aparência: formato do quiz (em conversa, em lista ou sem quiz), cor dos cards, menu rápido, efeitos, apresentação, botão de WhatsApp e rodapé.</li>
+        <li>Textos: ela propõe e você troca pelo seu jeito de falar.</li>
+        <li>A chave do formulário: em web3forms.com, você digita o e-mail que recebe os contatos, clica em Create Access Key e cola a chave na conversa. O plano gratuito aceita 250 envios por mês.</li>
+        <li>Aprovação: você testa o quiz, os cards e cada formulário, e confirma que o e-mail chegou.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Publicar e atualizar</h2>
+      ${passo(1, "Abra <b>app.netlify.com/drop</b> já com a sua conta do Netlify aberta.")}
+      ${passo(2, "Arraste a pasta <b>meu-link-da-bio</b> inteira, e não o arquivo solto, porque as fotos vão junto.")}
+      ${passo(3, "O endereço aparece em segundos. Confira no celular e cole na bio do Instagram.")}
+      <p>Para mudar a página depois, peça a alteração em uma conversa com a skill e arraste a pasta de novo pelo painel do Netlify, em <b>Deploys</b>. Não use o app.netlify.com/drop de novo, porque ele cria um segundo site com outro endereço.</p>
+    </div>`;
+  const lateral = `<div class="side-card side-download">
+      <h3>Baixar a skill</h3>
+      <p>A pasta link-da-bio: a skill, o modelo da página e o guia das fotos.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/link-da-bio.zip">Baixar link-da-bio.zip</a>
+    </div>
+    <div class="side-card side-code">
+      <h3>Instalar pelo Claude Code</h3>
+      <p>Com o zip já descompactado na pasta Downloads, cole na aba Code:</p>
+      <div class="codebox">
+        <code>Copie a pasta link-da-bio que está na minha pasta Downloads para a pasta de skills globais do Claude Code, dentro de .claude/skills na minha pasta de usuário, e confirme que o arquivo SKILL.md ficou em .claude/skills/link-da-bio.</code>
+        <button class="copy-btn">COPIAR</button>
+      </div>
+    </div>
+    <div class="side-card side-config">
+      <h3>Onde funciona</h3>
+      <p>Só no Claude Code. A hospedagem no Netlify e a chave do formulário no Web3Forms são gratuitas.</p>
+    </div>`;
+  return paginaDia2({
+    ativa: "bio",
+    titulo: "Link da bio",
+    kicker: "Dia 2 · Claude Code · Skill link-da-bio",
+    chamada: "A skill <b>link-da-bio</b> monta com você um link da bio interativo: um quiz que direciona cada visitante para o caminho certo, cards com os seus caminhos e um formulário que envia os contatos para o seu e-mail. Ela também conduz a publicação, sem hospedagem paga.",
+    simbolo,
+    principal,
+    lateral,
+  });
 }

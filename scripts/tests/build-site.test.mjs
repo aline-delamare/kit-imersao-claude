@@ -6,9 +6,30 @@ import { readFileSync } from "node:fs";
 const meta = JSON.parse(readFileSync("site/meta/skills-meta.json", "utf8"));
 const skills = lerSkills("skills");
 
-test("gera 17 páginas (home + 15 skills + senha)", () => {
+test("gera 19 páginas (home + 15 skills + senha + 2 abas do dia 2)", () => {
   const paginas = construir({ meta, skills });
-  assert.equal(paginas.size, 17);
+  assert.equal(paginas.size, 19);
+});
+test("abas do dia 2 têm página própria com download e passo a passo (R11.1, R11.2)", () => {
+  const paginas = construir({ meta, skills });
+  const fin = paginas.get("financeiro.html");
+  const bio = paginas.get("link-da-bio.html");
+  assert.ok(fin && fin.includes("/downloads/meu-financeiro.zip") && fin.includes("/fechar-mes") && fin.includes("Claude Code"));
+  assert.ok(bio && bio.includes("/downloads/link-da-bio.zip") && bio.includes("quero criar o meu link da bio") && bio.includes("Claude Code"));
+});
+test("toda página com menu mostra as três abas, com a ativa marcada (R11.1)", () => {
+  const paginas = construir({ meta, skills });
+  for (const [caminho, html] of paginas) {
+    if (caminho === "senha.html") continue;
+    for (const href of ['href="/index.html"', 'href="/financeiro.html"', 'href="/link-da-bio.html"'])
+      assert.ok(html.includes(href), `${caminho} sem a aba ${href}`);
+    assert.equal((html.match(/aria-current="page"/g) || []).length, 1, `${caminho} sem uma única aba ativa`);
+  }
+});
+test("skills do dia 2 ficam fora do Squad (R11.3)", () => {
+  const home = construir({ meta, skills }).get("index.html");
+  assert.ok(!home.includes("fechar-mes") && !home.includes("link-da-bio.zip"));
+  assert.ok(!meta.skills.some((s) => ["fechar-mes", "link-da-bio"].includes(s.nome)));
 });
 test("home lista as 15 skills e o link do kit completo", () => {
   const home = construir({ meta, skills }).get("index.html");

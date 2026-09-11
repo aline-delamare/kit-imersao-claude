@@ -93,6 +93,15 @@ nav{background:var(--offwhite);border-bottom:1px solid rgba(56,35,21,.12);positi
 .nav-cta{background:var(--vinho);color:var(--offwhite)!important;padding:10px 22px;border-radius:999px;font-weight:500}
 .back{text-decoration:none;color:var(--medio);font-size:14px}
 
+/* ---------- ABAS (Squad de Conteúdo · Dashboard financeiro · Link da bio), R11 ---------- */
+.abas{border-top:1px solid rgba(56,35,21,.08)}
+.abas-inner{display:flex;gap:8px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+.abas-inner::-webkit-scrollbar{display:none}
+.aba{flex:0 0 auto;white-space:nowrap;text-decoration:none;font-size:13.5px;font-weight:500;color:var(--medio);padding:8px 18px;border-radius:999px;border:1px solid rgba(56,35,21,.18)}
+.aba.ativa{background:var(--marrom);border-color:var(--marrom);color:var(--offwhite)}
+.section code,.step code,.side-card p code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:rgba(56,35,21,.07);padding:1px 6px;border-radius:5px;color:var(--marrom);word-break:break-word}
+.section .step{margin-top:16px}
+
 /* ---------- BOTÕES ---------- */
 .btn{display:inline-block;text-decoration:none;padding:15px 32px;border-radius:999px;font-weight:500;font-size:15px;border:none;cursor:pointer}
 .btn-coral{background:var(--coral);color:var(--offwhite)}
@@ -252,4 +261,5 @@ footer{background:var(--offwhite);border-top:1px solid rgba(56,35,21,.12);paddin
   .nav-links a:not(.nav-cta){display:none}
   .card-hero{grid-template-columns:1fr}
   .download-cta{align-items:flex-start}
+  .abas-inner{flex-wrap:wrap;overflow-x:visible}
 }

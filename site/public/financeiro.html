@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard financeiro · Kit de Skills</title>
+<link rel="stylesheet" href="/static/base.css">
+
+</head>
+<body>
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/index.html"><span class="orb"><i>ia</i></span><b>Kit de Skills</b></a>
+  <span class="back">Dia 2 · Claude Code</span>
+</div><div class="abas"><div class="wrap abas-inner" aria-label="Abas do site"><a class="aba" href="/index.html">Squad de Conteúdo</a><a class="aba ativa" href="/financeiro.html" aria-current="page">Dashboard financeiro</a><a class="aba" href="/link-da-bio.html">Link da bio</a></div></div></nav>
+
+<header class="head"><div class="wrap">
+  <span class="mono">Dia 2 · Claude Code · Skill fechar-mes</span>
+  <div class="head-grid">
+    <div>
+      <h1>Dashboard financeiro</h1>
+      <p>A skill <b>/fechar-mes</b> transforma os prints ou os extratos em PDF do seu banco em um dashboard que separa pessoa física de pessoa jurídica e entrega o DRE mensal da empresa. O sistema funciona e fica guardado no seu computador.</p>
+    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+      <rect x="20" y="62" width="16" height="36" rx="3" fill="#F0A78B"/>
+      <rect x="44" y="44" width="16" height="54" rx="3" fill="#D97757"/>
+      <rect x="68" y="28" width="16" height="70" rx="3" fill="#F0A78B"/>
+      <circle cx="96" cy="26" r="8" fill="#DCC996"/>
+    </svg>
+  </div>
+</div></header>
+
+<main class="wrap content">
+  <div>
+    <div class="section">
+      <h2>O que ela faz</h2>
+      <p>Lê os extratos do mês, separa o que é da empresa e o que é pessoal pela conta de origem, categoriza os lançamentos, monta o DRE da empresa em 7 linhas e gera o <code>dashboard.html</code> com o histórico de todos os meses fechados. O que ficar ambíguo vira pergunta: a skill nunca estima um valor.</p>
+    </div>
+    <div class="section">
+      <h2>O que ter em mãos</h2>
+      <ul>
+        <li>Os prints ou os extratos em PDF do mês: conta da empresa, conta pessoal, fatura do cartão e as plataformas onde você vende. Print de celular serve.</li>
+        <li>O aplicativo do Claude no computador, com a aba Code.</li>
+        <li>Uns 15 minutos. O primeiro mês demora um pouco mais, porque inclui a configuração inicial.</li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>Como instalar e usar</h2>
+      <div class="step"><span class="step-n">01</span><p>Baixe o <b>meu-financeiro.zip</b> e descompacte com dois cliques. Vai aparecer a pasta <b>meu-financeiro</b>. Guarde onde preferir, por exemplo em Documentos.</p></div>
+      <div class="step"><span class="step-n">02</span><p>No aplicativo do Claude, abra a aba <b>Code</b> e escolha a pasta <b>meu-financeiro</b> para trabalhar.</p></div>
+      <div class="step"><span class="step-n">03</span><p>Digite <b>/fechar-mes</b>. Para testar, informe o mês <b>2026-08</b>: a pasta já vem com os prints de uma empresa fictícia, o Estúdio Aurora Design.</p></div>
+      <div class="step"><span class="step-n">04</span><p>Na primeira vez, a skill pergunta o nome do seu negócio e quais bancos são da empresa e quais são pessoais. As respostas ficam gravadas no próprio arquivo da skill, e nos meses seguintes ela já sabe.</p></div>
+      <div class="step"><span class="step-n">05</span><p>Revise e aprove o que ela leu, já separado entre empresa e pessoal. Depois disso, o <b>dashboard.html</b> abre no navegador.</p></div>
+    </div>
+    <div class="section">
+      <h2>O ritual de todo mês</h2>
+      <p>Salve os extratos do mês em <code>extratos/AAAA-MM/</code> (por exemplo, <code>extratos/2026-09/</code>) ou arraste direto para a conversa, e digite <b>/fechar-mes</b>. O dashboard é refeito com o mês novo e todo o histórico. A partir do segundo mês fechado aparecem as setas de variação e os gastos recorrentes.</p>
+    </div>
+    <div class="section">
+      <h2>Bom saber</h2>
+      <ul>
+        <li>O Claude Code vai pedir permissão algumas vezes: para gravar a configuração, salvar os dados do mês e abrir o dashboard. É só aprovar.</li>
+        <li>Print ilegível ou cortado vira pendência: a skill pergunta em vez de adivinhar.</li>
+        <li>Se o PDF do banco pedir senha, abra o arquivo e use Imprimir › Salvar como PDF para gerar uma cópia sem senha.</li>
+        <li>A skill não substitui a contabilidade.</li>
+      </ul>
+    </div>
+  </div>
+  <aside>
+    <div class="side-card side-download">
+      <h3>Baixar o sistema</h3>
+      <p>A pasta completa: a skill, o LEIA-ME, a pasta de dados e os prints de exemplo de agosto.</p>
+      <a class="btn btn-coral btn-block" href="/downloads/meu-financeiro.zip">Baixar meu-financeiro.zip</a>
+    </div>
+    <div class="side-card side-config">
+      <h3>Onde funciona</h3>
+      <p>Só no Claude Code, no seu computador. Não precisa de servidor, login nem banco de dados. Sem internet, os gráficos não aparecem, mas os números, o DRE e as tabelas continuam.</p>
+    </div>
+    <div class="side-card side-code">
+      <h3>Mantenha a pasta inteira</h3>
+      <p>A pasta <b>meu-financeiro</b> tem uma parte oculta, <code>.claude</code>, que é onde a skill mora, e a pasta <code>dados</code>, que guarda os meses fechados. Se mudar de lugar, mova a pasta inteira.</p>
+    </div>
+  </aside>
+</main>
+
+<footer><div class="wrap foot">
+  <span class="mono">Imersão Claude 2.0 · Um produto da IA Como Aliada</span>
+</div></footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.previousElementSibling.textContent.trim());
+    btn.textContent = 'COPIADO';
+    setTimeout(function () { btn.textContent = 'COPIAR'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>

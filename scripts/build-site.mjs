@@ -18,6 +18,8 @@ import {
   renderHome,
   renderSkill,
   renderSenha,
+  renderFinanceiro,
+  renderLinkDaBio,
 } from "../site/templates/paginas.mjs";
 
 // ---------------------------------------------------------------------
@@ -103,6 +105,8 @@ export function construir({ meta, skills }) {
 
   paginas.set("index.html", renderHome(meta, skills));
   paginas.set("senha.html", renderSenha());
+  paginas.set("financeiro.html", renderFinanceiro());
+  paginas.set("link-da-bio.html", renderLinkDaBio());
 
   for (const entrada of meta.skills) {
     const skill = skillsPorNome.get(entrada.nome);
